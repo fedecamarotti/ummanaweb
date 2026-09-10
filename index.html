@@ -118,17 +118,17 @@
     left:50%;
     transform:translate(-50%, 8px);
     min-width:270px;
-    background:rgba(255,255,255,0.38);
-    backdrop-filter:blur(28px) saturate(180%);
-    -webkit-backdrop-filter:blur(28px) saturate(180%);
-    border:1px solid rgba(255,255,255,0.55);
-    border-radius:6px;
+    background:rgba(255,255,255,0.22);
+    backdrop-filter:blur(36px) brightness(1.25);
+    -webkit-backdrop-filter:blur(36px) brightness(1.25);
+    border:none;
+    border-radius:8px;
     padding:14px 0;
     opacity:0;
     visibility:hidden;
     pointer-events:none;
     transition:opacity .35s ease, transform .35s ease;
-    box-shadow:0 24px 60px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);
+    box-shadow:0 24px 60px rgba(0,0,0,0.16);
   }
 
   .nav-item:hover .dropdown{
@@ -150,7 +150,7 @@
   }
 
   .dropdown a:hover{
-    background:rgba(255,255,255,0.35);
+    background:rgba(255,255,255,0.2);
     padding-left:32px;
   }
 
@@ -209,10 +209,15 @@
   /* ---------- INTRO / QUIENES SOMOS ---------- */
 
   .intro{
-    max-width:760px;
+    max-width:1100px;
     margin:0 auto;
     padding:140px 32px;
     text-align:center;
+  }
+
+  .intro-text{
+    max-width:720px;
+    margin:0 auto;
   }
 
   .intro-lead{
@@ -232,10 +237,10 @@
 
   .contact-row{
     display:flex;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
     align-items:center;
     justify-content:center;
-    gap:14px 34px;
+    gap:48px;
     margin-top:52px;
     padding-top:34px;
     border-top:1px solid var(--hairline);
@@ -248,6 +253,7 @@
     font-size:12px;
     letter-spacing:0.03em;
     color:var(--ink-soft);
+    white-space:nowrap;
     transition:color .2s ease;
   }
 
@@ -560,6 +566,7 @@
     .nav-write .nav-link{padding:7px 14px;}
     .dropdown{min-width:220px;}
     .intro{padding:90px 24px;}
+    .contact-row{flex-wrap:wrap;gap:14px 30px;}
     .modal-professional{flex-direction:column;}
     .modal-photo-wrap{flex-basis:auto;width:100%;}
   }
@@ -631,12 +638,14 @@
 </section>
 
 <section class="intro" id="quienes-somos">
-  <p class="intro-lead">Ummana es un espacio integral de bienestar ubicado en Banfield, pensado como una "casa" donde conviven la medicina, el movimiento, el arte, la calma y la creatividad.</p>
-  <p class="intro-body">
-    Nuestro propósito es acompañar procesos de salud desde una mirada integrativa y funcional. Nos importa la persona completa: su biología, su historia, sus hábitos, sus emociones y su entorno cotidiano.
-    <br><br>
-    Buscamos ayudar a prevenir, equilibrar y reparar el organismo con herramientas claras y sostenibles, siempre basándonos en evidencia científica pero desde un modelo humano y cercano.
-  </p>
+  <div class="intro-text">
+    <p class="intro-lead">Ummana es un espacio integral de bienestar ubicado en Banfield, pensado como una "casa" donde conviven la medicina, el movimiento, el arte, la calma y la creatividad.</p>
+    <p class="intro-body">
+      Nuestro propósito es acompañar procesos de salud desde una mirada integrativa y funcional. Nos importa la persona completa: su biología, su historia, sus hábitos, sus emociones y su entorno cotidiano.
+      <br><br>
+      Buscamos ayudar a prevenir, equilibrar y reparar el organismo con herramientas claras y sostenibles, siempre basándonos en evidencia científica pero desde un modelo humano y cercano.
+    </p>
+  </div>
 
   <div class="contact-row">
     <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Manuel+Castro+1125,+Banfield,+Buenos+Aires" target="_blank" rel="noopener">
