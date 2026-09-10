@@ -568,18 +568,27 @@
   }
 
   .btn-write{
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
     font-size:12px;
     letter-spacing:0.14em;
     font-weight:500;
     color:var(--paper);
     background:var(--ink);
-    padding:13px 36px;
+    padding:13px 30px 13px 36px;
     border-radius:2px;
     transition:background .25s ease;
   }
 
+  .btn-write svg{
+    width:13px;
+    height:13px;
+    transition:transform .3s ease;
+  }
+
   .btn-write:hover{background:var(--sand-deep);}
+  .btn-write:hover svg{transform:translateX(4px);}
 
   /* ---------- RESPONSIVE ---------- */
 
@@ -736,7 +745,10 @@
 
       <div class="modal-cta">
         <span class="modal-cta-label">Si querés más información o sacar un turno</span>
-        <a class="btn-write" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">Escribinos</a>
+        <a class="btn-write" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">
+          <span>Escribinos</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -756,7 +768,7 @@
   const areaData = {
     ginecologia: {
       title: "Ginecología",
-      intro: "Acompañamos cada etapa de la vida con una mirada funcional, estética y regenerativa. Abordamos la ginecología desde una perspectiva integradora y personalizada, entendiendo que la salud ginecológica está conectada con todos los sistemas del cuerpo y factores del entorno.\n\nOfrecemos atención personalizada y de calidad, con un enfoque integral que combina prevención, diagnóstico, tratamiento y seguimiento.",
+      intro: "Acompañamos cada etapa de la vida con una mirada funcional, estética y regenerativa. Abordamos la ginecología desde una perspectiva integradora y personalizada, entendiendo que la salud ginecológica está conectada con todos los sistemas del cuerpo y factores del entorno. Ofrecemos atención personalizada y de calidad, con un enfoque integral que combina prevención, diagnóstico, tratamiento y seguimiento.",
       professionals: [
         {
           photo: "images/fotogaby.png",
