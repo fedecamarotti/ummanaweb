@@ -117,17 +117,16 @@
     top:100%;
     left:50%;
     min-width:270px;
-    background:rgba(255,255,255,0.55);
-    backdrop-filter:blur(34px) brightness(1.1);
-    -webkit-backdrop-filter:blur(34px) brightness(1.1);
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
     border:none;
     border-radius:8px;
     padding:14px 0;
     opacity:0;
     visibility:hidden;
     pointer-events:none;
-    will-change:transform, opacity;
-    transform:translate(-50%, 8px) translateZ(0);
+    transform:translate(-50%, 8px);
     transition:opacity .35s ease, transform .35s ease;
     box-shadow:0 24px 60px rgba(0,0,0,0.16);
   }
@@ -136,7 +135,7 @@
     opacity:1;
     visibility:visible;
     pointer-events:auto;
-    transform:translate(-50%, 0) translateZ(0);
+    transform:translate(-50%, 0);
   }
 
   .dropdown a{
@@ -151,7 +150,7 @@
   }
 
   .dropdown a:hover{
-    background:rgba(255,255,255,0.4);
+    background:rgba(43,43,40,0.05);
     padding-left:32px;
   }
 
@@ -210,9 +209,14 @@
   /* ---------- INTRO / QUIENES SOMOS ---------- */
 
   .intro{
-    max-width:1100px;
+    position:relative;
+    max-width:none;
+    min-height:88vh;
     margin:0 auto;
-    padding:140px 32px;
+    padding:80px 32px 100px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-align:center;
   }
 
@@ -242,12 +246,15 @@
   }
 
   .contact-row{
+    position:absolute;
+    left:32px;
+    right:32px;
+    bottom:56px;
     display:flex;
     flex-wrap:nowrap;
     align-items:center;
     justify-content:center;
     gap:48px;
-    margin-top:52px;
     padding-top:34px;
     border-top:1px solid var(--hairline);
   }
@@ -385,14 +392,7 @@
     letter-spacing:0.2em;
     font-weight:600;
     color:var(--sand-deep);
-    margin-bottom:6px;
-  }
-
-  .modal-eyebrow-rule{
-    width:34px;
-    height:2px;
-    background:var(--sand);
-    margin:0 0 10px;
+    margin-bottom:4px;
   }
 
   .modal-intro{
@@ -590,8 +590,8 @@
     .nav-link{font-size:10.5px;letter-spacing:0.1em;}
     .nav-write .nav-link{padding:7px 14px;}
     .dropdown{min-width:220px;}
-    .intro{padding:90px 24px;}
-    .contact-row{flex-wrap:wrap;gap:14px 30px;}
+    .intro{padding:90px 24px 130px;}
+    .contact-row{position:static;left:auto;right:auto;bottom:auto;margin-top:40px;flex-wrap:wrap;gap:14px 30px;}
     .modal-professional{flex-direction:column;}
     .modal-photo-wrap{flex-basis:auto;width:100%;}
   }
@@ -711,7 +711,6 @@
 
     <div class="modal-head">
       <span class="modal-eyebrow" id="modalEyebrow"></span>
-      <div class="modal-eyebrow-rule"></div>
       <p class="modal-intro" id="modalIntro"></p>
     </div>
 
