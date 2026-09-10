@@ -14,6 +14,7 @@
     --sand:#b9b8a5;
     --sand-deep:#9a9985;
     --paper:#ffffff;
+    --cream:#f3eeea;
     --hairline:rgba(43,43,40,0.12);
     --panel:rgba(255,255,255,0.88);
   }
@@ -109,25 +110,25 @@
     color:var(--paper);
   }
 
-  /* dropdown panels */
+  /* ---------- dropdown panels: efecto vidrio ---------- */
 
   .dropdown{
     position:absolute;
     top:100%;
     left:50%;
     transform:translate(-50%, 8px);
-    min-width:260px;
-    background:var(--panel);
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
-    border:1px solid rgba(43,43,40,0.08);
-    border-radius:3px;
+    min-width:270px;
+    background:rgba(255,255,255,0.38);
+    backdrop-filter:blur(28px) saturate(180%);
+    -webkit-backdrop-filter:blur(28px) saturate(180%);
+    border:1px solid rgba(255,255,255,0.55);
+    border-radius:6px;
     padding:14px 0;
     opacity:0;
     visibility:hidden;
     pointer-events:none;
     transition:opacity .35s ease, transform .35s ease;
-    box-shadow:0 20px 40px rgba(0,0,0,0.08);
+    box-shadow:0 24px 60px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);
   }
 
   .nav-item:hover .dropdown{
@@ -142,14 +143,14 @@
     padding:11px 28px;
     font-size:12.5px;
     letter-spacing:0.03em;
-    font-weight:400;
-    color:var(--ink-soft);
+    font-weight:500;
+    color:var(--ink);
     white-space:nowrap;
-    transition:color .2s ease, padding-left .2s ease;
+    transition:background .2s ease, padding-left .2s ease;
   }
 
   .dropdown a:hover{
-    color:var(--ink);
+    background:rgba(255,255,255,0.35);
     padding-left:32px;
   }
 
@@ -214,27 +215,48 @@
     text-align:center;
   }
 
-  .intro .eyebrow{
-    font-size:12px;
-    letter-spacing:0.16em;
-    color:var(--sand-deep);
-    font-weight:500;
-    margin-bottom:20px;
-  }
-
-  .intro h2{
-    font-size:clamp(22px, 3vw, 30px);
+  .intro-lead{
+    font-size:clamp(21px, 2.6vw, 27px);
     font-weight:300;
     line-height:1.6;
     color:var(--ink);
   }
 
-  .intro p{
-    margin-top:28px;
+  .intro-body{
+    margin-top:26px;
     font-size:15px;
     line-height:1.9;
     color:var(--ink-soft);
     font-weight:400;
+  }
+
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:14px 34px;
+    margin-top:52px;
+    padding-top:34px;
+    border-top:1px solid var(--hairline);
+  }
+
+  .contact-item{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    font-size:12px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    transition:color .2s ease;
+  }
+
+  .contact-item:hover{color:var(--ink);}
+
+  .contact-item svg{
+    width:15px;
+    height:15px;
+    flex-shrink:0;
   }
 
   /* ---------- FOOTER ---------- */
@@ -303,9 +325,10 @@
     max-height:90vh;
     overflow-y:auto;
     scrollbar-width:thin;
-    background:var(--paper);
+    background:var(--cream);
+    border-top:3px solid var(--sand);
     border-radius:4px;
-    padding:38px 46px;
+    padding:42px 46px 38px;
     display:flex;
     flex-direction:column;
     gap:20px;
@@ -322,7 +345,7 @@
     position:absolute;
     top:16px;
     right:18px;
-    font-size:26px;
+    font-size:24px;
     line-height:1;
     color:var(--ink-soft);
     width:36px;
@@ -335,31 +358,71 @@
   }
 
   .modal-close:hover{
-    background:rgba(43,43,40,0.06);
+    background:rgba(43,43,40,0.08);
     color:var(--ink);
   }
 
+  .modal-eyebrow{
+    display:block;
+    font-size:11.5px;
+    letter-spacing:0.2em;
+    font-weight:600;
+    color:var(--sand-deep);
+  }
+
+  .modal-eyebrow-rule{
+    width:34px;
+    height:2px;
+    background:var(--sand);
+    margin:10px 0 18px;
+  }
+
   .modal-intro{
-    font-size:13.5px;
-    line-height:1.75;
+    font-size:14px;
+    line-height:1.8;
     color:var(--ink-soft);
     white-space:pre-line;
     padding-right:30px;
+    max-width:760px;
+  }
+
+  .modal-divider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:2px 0;
+  }
+
+  .modal-divider::before,
+  .modal-divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+  }
+
+  .modal-divider span{
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--sand);
+    display:block;
   }
 
   .modal-professional{
     display:flex;
     align-items:center;
-    gap:32px;
+    gap:34px;
   }
 
   .modal-photo-wrap{
     position:relative;
     flex:0 0 380px;
     aspect-ratio:4/3;
-    border-radius:3px;
+    border-radius:6px;
     overflow:hidden;
     background:#e7e6df;
+    box-shadow:0 14px 34px rgba(43,43,40,0.14);
   }
 
   .modal-photo-wrap img{
@@ -367,6 +430,11 @@
     height:100%;
     object-fit:cover;
     display:block;
+    transition:transform .6s ease;
+  }
+
+  .modal-photo-wrap:hover img{
+    transform:scale(1.06);
   }
 
   .carousel-arrow{
@@ -383,6 +451,7 @@
     justify-content:center;
     font-size:18px;
     transition:background .2s ease;
+    z-index:2;
   }
 
   .carousel-arrow:hover{background:#fff;}
@@ -391,16 +460,39 @@
 
   .modal-photo-wrap.has-multiple .carousel-arrow{display:flex;}
 
+  .modal-bio-label{
+    font-size:10.5px;
+    letter-spacing:0.18em;
+    font-weight:600;
+    color:var(--sand-deep);
+    margin-bottom:8px;
+    display:block;
+  }
+
   .modal-bio h3{
-    font-size:16px;
+    font-size:17px;
     font-weight:700;
-    margin-bottom:10px;
+    margin-bottom:4px;
     color:var(--ink);
+    position:relative;
+    display:inline-block;
+    padding-bottom:10px;
+  }
+
+  .modal-bio h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:34px;
+    height:2px;
+    background:var(--sand);
   }
 
   .modal-bio p{
+    margin-top:12px;
     font-size:12.5px;
-    line-height:1.75;
+    line-height:1.8;
     color:var(--ink-soft);
   }
 
@@ -432,8 +524,8 @@
     font-size:11.5px;
     letter-spacing:0.02em;
     color:var(--ink);
-    background:rgba(185,184,165,0.22);
-    border:1px solid rgba(185,184,165,0.5);
+    background:rgba(255,255,255,0.55);
+    border:1px solid rgba(43,43,40,0.14);
     padding:8px 16px;
     border-radius:20px;
     white-space:nowrap;
@@ -475,6 +567,7 @@
   @media (max-width:680px){
     nav{display:none;} /* nav simplificado: agregar menú hamburguesa en próxima iteración */
     .logo-img{height:28px;}
+    .contact-row{gap:12px 22px;}
   }
 </style>
 </head>
@@ -538,13 +631,31 @@
 </section>
 
 <section class="intro" id="quienes-somos">
-  <div class="eyebrow">Quiénes somos</div>
-  <h2>Un espacio pensado para acompañar tu bienestar de forma integral, variada y equilibrada.</h2>
-  <p>
-    Acá va la descripción de Ummana: quiénes somos, qué nos mueve y cómo integramos medicina,
-    bienestar y comunidad bajo un mismo techo. (Texto placeholder — lo reemplazamos por la
-    definición final cuando la tengan lista.)
+  <p class="intro-lead">Ummana es un espacio integral de bienestar ubicado en Banfield, pensado como una "casa" donde conviven la medicina, el movimiento, el arte, la calma y la creatividad.</p>
+  <p class="intro-body">
+    Nuestro propósito es acompañar procesos de salud desde una mirada integrativa y funcional. Nos importa la persona completa: su biología, su historia, sus hábitos, sus emociones y su entorno cotidiano.
+    <br><br>
+    Buscamos ayudar a prevenir, equilibrar y reparar el organismo con herramientas claras y sostenibles, siempre basándonos en evidencia científica pero desde un modelo humano y cercano.
   </p>
+
+  <div class="contact-row">
+    <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Manuel+Castro+1125,+Banfield,+Buenos+Aires" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg>
+      Manuel Castro 1125, Banfield, Buenos Aires
+    </a>
+    <a class="contact-item" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.98.548 3.876 1.584 5.53L2 22l4.606-1.549A9.96 9.96 0 0 0 12.004 22C17.522 22 22 17.522 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.111a8.09 8.09 0 0 1-4.13-1.129l-.296-.176-3.088 1.038 1.05-3.014-.192-.309a8.09 8.09 0 0 1-1.24-4.317c0-4.474 3.64-8.114 8.114-8.114 4.474 0 8.114 3.64 8.114 8.114 0 4.474-3.64 8.114-8.114 8.114z"/></svg>
+      +54 9 11 3920-8108
+    </a>
+    <a class="contact-item" href="mailto:info@ummana.ar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+      info@ummana.ar
+    </a>
+    <a class="contact-item" href="https://www.instagram.com/somos.ummana/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+      somos.ummana
+    </a>
+  </div>
 </section>
 
 <footer>
@@ -559,7 +670,12 @@
 <div class="modal-overlay" id="areaModal">
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Cerrar">&times;</button>
+
+    <span class="modal-eyebrow" id="modalEyebrow"></span>
+    <div class="modal-eyebrow-rule"></div>
     <p class="modal-intro" id="modalIntro"></p>
+
+    <div class="modal-divider"><span></span></div>
 
     <div class="modal-professional">
       <div class="modal-photo-wrap" id="modalPhotoWrap">
@@ -568,6 +684,7 @@
         <button class="carousel-arrow next" id="carouselNext" aria-label="Siguiente">&#8250;</button>
       </div>
       <div class="modal-bio">
+        <span class="modal-bio-label">Profesional a cargo</span>
         <h3 id="modalName"></h3>
         <p id="modalBio"></p>
       </div>
@@ -591,10 +708,12 @@
   });
 
   /* ---------- AREA DATA ----------
-     Cada área nueva se agrega acá con su intro, sus profesionales (uno o más)
-     y sus tratamientos. Los links del menú se conectan por su atributo data-area. */
+     Cada área nueva se agrega acá con su título, intro, sus profesionales
+     (uno o más) y sus tratamientos. Los links del menú se conectan por su
+     atributo data-area. */
   const areaData = {
     ginecologia: {
+      title: "Ginecología",
       intro: "Acompañamos cada etapa de la vida con una mirada funcional, estética y regenerativa. Abordamos la ginecología desde una perspectiva integradora y personalizada, entendiendo que la salud ginecológica está conectada con todos los sistemas del cuerpo y factores del entorno.\n\nOfrecemos atención personalizada y de calidad, con un enfoque integral que combina prevención, diagnóstico, tratamiento y seguimiento.",
       professionals: [
         {
@@ -616,6 +735,7 @@
 
   /* ---------- MODAL LOGIC ---------- */
   const modal = document.getElementById('areaModal');
+  const modalEyebrow = document.getElementById('modalEyebrow');
   const modalIntro = document.getElementById('modalIntro');
   const modalPhotoWrap = document.getElementById('modalPhotoWrap');
   const modalPhoto = document.getElementById('modalPhoto');
@@ -655,6 +775,7 @@
     currentArea = data;
     currentIndex = 0;
 
+    modalEyebrow.textContent = data.title;
     modalIntro.textContent = data.intro;
     renderProfessional();
 
