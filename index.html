@@ -118,9 +118,9 @@
     left:50%;
     transform:translate(-50%, 8px);
     min-width:270px;
-    background:rgba(255,255,255,0.22);
-    backdrop-filter:blur(36px) brightness(1.25);
-    -webkit-backdrop-filter:blur(36px) brightness(1.25);
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(40px) brightness(1.1);
+    -webkit-backdrop-filter:blur(40px) brightness(1.1);
     border:none;
     border-radius:8px;
     padding:14px 0;
@@ -150,7 +150,7 @@
   }
 
   .dropdown a:hover{
-    background:rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.4);
     padding-left:32px;
   }
 
@@ -216,8 +216,13 @@
   }
 
   .intro-text{
-    max-width:720px;
+    max-width:960px;
     margin:0 auto;
+  }
+
+  .intro-lead strong,
+  .intro-body strong{
+    font-weight:600;
   }
 
   .intro-lead{
@@ -374,13 +379,14 @@
     letter-spacing:0.2em;
     font-weight:600;
     color:var(--sand-deep);
+    margin-bottom:8px;
   }
 
   .modal-eyebrow-rule{
     width:34px;
     height:2px;
     background:var(--sand);
-    margin:10px 0 18px;
+    margin:0 0 14px;
   }
 
   .modal-intro{
@@ -539,7 +545,16 @@
 
   .modal-cta{
     text-align:center;
-    padding-top:4px;
+    padding-top:14px;
+  }
+
+  .modal-cta-label{
+    display:block;
+    font-size:11.5px;
+    letter-spacing:0.2em;
+    font-weight:600;
+    color:var(--sand-deep);
+    margin-bottom:14px;
   }
 
   .btn-write{
@@ -639,11 +654,15 @@
 
 <section class="intro" id="quienes-somos">
   <div class="intro-text">
-    <p class="intro-lead">Ummana es un espacio integral de bienestar ubicado en Banfield, pensado como una "casa" donde conviven la medicina, el movimiento, el arte, la calma y la creatividad.</p>
+    <p class="intro-lead"><strong>Ummana</strong> es un espacio integral de bienestar ubicado en Banfield,<br>
+    pensado como una "casa" donde conviven la medicina, el movimiento,<br>
+    el arte, la calma y la creatividad.</p>
     <p class="intro-body">
-      Nuestro propósito es acompañar procesos de salud desde una mirada integrativa y funcional. Nos importa la persona completa: su biología, su historia, sus hábitos, sus emociones y su entorno cotidiano.
+      Nuestro propósito es acompañar procesos de salud desde una mirada integrativa y funcional.<br>
+      <strong>Nos importa la persona completa:</strong> su biología, su historia, sus hábitos, sus emociones y su entorno cotidiano.
       <br><br>
-      Buscamos ayudar a prevenir, equilibrar y reparar el organismo con herramientas claras y sostenibles, siempre basándonos en evidencia científica pero desde un modelo humano y cercano.
+      <strong>Buscamos ayudar</strong> a prevenir, equilibrar y reparar el organismo con herramientas claras y sostenibles,<br>
+      siempre basándonos en evidencia científica pero desde un modelo humano y cercano.
     </p>
   </div>
 
@@ -656,19 +675,19 @@
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.98.548 3.876 1.584 5.53L2 22l4.606-1.549A9.96 9.96 0 0 0 12.004 22C17.522 22 22 17.522 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.111a8.09 8.09 0 0 1-4.13-1.129l-.296-.176-3.088 1.038 1.05-3.014-.192-.309a8.09 8.09 0 0 1-1.24-4.317c0-4.474 3.64-8.114 8.114-8.114 4.474 0 8.114 3.64 8.114 8.114 0 4.474-3.64 8.114-8.114 8.114z"/></svg>
       +54 9 11 3920-8108
     </a>
-    <a class="contact-item" href="mailto:info@ummana.ar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
-      info@ummana.ar
-    </a>
     <a class="contact-item" href="https://www.instagram.com/somos.ummana/" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
       somos.ummana
+    </a>
+    <a class="contact-item" href="mailto:info@ummana.ar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+      info@ummana.ar
     </a>
   </div>
 </section>
 
 <footer>
-  © 2026 Ummana — Banfield, Buenos Aires
+  © 2024 Ummana
 </footer>
 
 <a class="whatsapp-float" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">
@@ -704,6 +723,7 @@
     </div>
 
     <div class="modal-cta">
+      <span class="modal-cta-label">Si querés más información o sacar un turno</span>
       <a class="btn-write" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">Escribinos</a>
     </div>
   </div>
