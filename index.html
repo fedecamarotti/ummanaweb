@@ -6,7 +6,7 @@
 <title>Ummana | Una casa, mil mundos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#2b2b28;
@@ -31,6 +31,7 @@
   }
 
   a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;border:none;background:none;cursor:pointer;}
 
   /* ---------- HEADER ---------- */
 
@@ -41,26 +42,25 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:28px 48px;
+    padding:24px 48px;
     transition:padding .4s ease, background .4s ease;
   }
 
   header.scrolled{
-    padding:16px 48px;
+    padding:14px 48px;
     background:rgba(255,255,255,0.9);
     backdrop-filter:blur(10px);
     box-shadow:0 1px 0 var(--hairline);
   }
 
-  .logo{
-    font-size:18px;
-    letter-spacing:0.12em;
-    font-weight:500;
-    color:var(--paper);
-    transition:color .4s ease;
+  .logo-img{
+    height:36px;
+    width:auto;
+    display:block;
+    transition:height .4s ease;
   }
 
-  header.scrolled .logo{color:var(--ink);}
+  header.scrolled .logo-img{height:30px;}
 
   nav{
     display:flex;
@@ -167,23 +167,19 @@
     overflow:hidden;
   }
 
+  .hero-media{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
   .hero::after{
     content:"";
     position:absolute;
     inset:0;
     background:linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.35) 100%);
-  }
-
-  .video-placeholder{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:13px;
-    letter-spacing:0.35em;
-    color:#8a8a83;
-    font-weight:500;
   }
 
   .hero-copy{
@@ -241,7 +237,7 @@
     font-weight:400;
   }
 
-  /* ---------- FOOTER (minimal placeholder) ---------- */
+  /* ---------- FOOTER ---------- */
 
   footer{
     padding:60px 48px;
@@ -277,6 +273,191 @@
 
   .whatsapp-float svg{width:28px;height:28px;fill:#fff;}
 
+  /* ---------- AREA MODAL ---------- */
+
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    z-index:300;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(20,20,18,0.16);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .35s ease, visibility .35s ease;
+    padding:24px;
+  }
+
+  .modal-overlay.open{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .modal-box{
+    position:relative;
+    width:100%;
+    max-width:980px;
+    max-height:90vh;
+    overflow-y:auto;
+    scrollbar-width:thin;
+    background:var(--paper);
+    border-radius:4px;
+    padding:38px 46px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.25);
+    transform:translateY(14px) scale(0.98);
+    transition:transform .4s ease;
+  }
+
+  .modal-overlay.open .modal-box{
+    transform:translateY(0) scale(1);
+  }
+
+  .modal-close{
+    position:absolute;
+    top:16px;
+    right:18px;
+    font-size:26px;
+    line-height:1;
+    color:var(--ink-soft);
+    width:36px;
+    height:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    transition:background .2s ease, color .2s ease;
+  }
+
+  .modal-close:hover{
+    background:rgba(43,43,40,0.06);
+    color:var(--ink);
+  }
+
+  .modal-intro{
+    font-size:13.5px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    white-space:pre-line;
+    padding-right:30px;
+  }
+
+  .modal-professional{
+    display:flex;
+    align-items:center;
+    gap:32px;
+  }
+
+  .modal-photo-wrap{
+    position:relative;
+    flex:0 0 380px;
+    aspect-ratio:4/3;
+    border-radius:3px;
+    overflow:hidden;
+    background:#e7e6df;
+  }
+
+  .modal-photo-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .carousel-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.85);
+    color:var(--ink);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    transition:background .2s ease;
+  }
+
+  .carousel-arrow:hover{background:#fff;}
+  .carousel-arrow.prev{left:12px;}
+  .carousel-arrow.next{right:12px;}
+
+  .modal-photo-wrap.has-multiple .carousel-arrow{display:flex;}
+
+  .modal-bio h3{
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+
+  .modal-bio p{
+    font-size:12.5px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+
+  .marquee-wrap{
+    overflow:hidden;
+    padding:14px 0;
+    border-top:1px solid var(--hairline);
+    border-bottom:1px solid var(--hairline);
+  }
+
+  .marquee-track{
+    display:flex;
+    gap:12px;
+    width:max-content;
+    animation:marquee 26s linear infinite;
+  }
+
+  .marquee-wrap:hover .marquee-track{
+    animation-play-state:paused;
+  }
+
+  @keyframes marquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  .chip{
+    flex:0 0 auto;
+    font-size:11.5px;
+    letter-spacing:0.02em;
+    color:var(--ink);
+    background:rgba(185,184,165,0.22);
+    border:1px solid rgba(185,184,165,0.5);
+    padding:8px 16px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+
+  .modal-cta{
+    text-align:center;
+    padding-top:4px;
+  }
+
+  .btn-write{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:0.14em;
+    font-weight:500;
+    color:var(--paper);
+    background:var(--ink);
+    padding:13px 36px;
+    border-radius:2px;
+    transition:background .25s ease;
+  }
+
+  .btn-write:hover{background:var(--sand-deep);}
+
   /* ---------- RESPONSIVE ---------- */
 
   @media (max-width:900px){
@@ -287,25 +468,27 @@
     .nav-write .nav-link{padding:7px 14px;}
     .dropdown{min-width:220px;}
     .intro{padding:90px 24px;}
+    .modal-professional{flex-direction:column;}
+    .modal-photo-wrap{flex-basis:auto;width:100%;}
   }
 
   @media (max-width:680px){
     nav{display:none;} /* nav simplificado: agregar menú hamburguesa en próxima iteración */
-    .logo{font-size:16px;}
+    .logo-img{height:28px;}
   }
 </style>
 </head>
 <body>
 
 <header id="siteHeader">
-  <div class="logo">LOGO</div>
+  <img src="images/logobeige.png" alt="Ummana" class="logo-img">
   <nav>
     <div class="nav-item">
       <span class="nav-link">MEDICINA</span>
       <div class="dropdown">
         <a href="#">Medicina Funcional</a>
         <a href="#">Sueroterapia</a>
-        <a href="#">Ginecología</a>
+        <a href="#" data-area="ginecologia">Ginecología</a>
         <a href="#">Urología</a>
         <a href="#">Sueño y descanso</a>
         <a href="#">Otorrinolaringología</a>
@@ -337,7 +520,7 @@
     </div>
 
     <div class="nav-item">
-      <span class="nav-link">CONOCENOS</span>
+      <a class="nav-link" href="#quienes-somos">CONOCENOS</a>
     </div>
 
     <div class="nav-item nav-write">
@@ -347,14 +530,14 @@
 </header>
 
 <section class="hero">
-  <div class="video-placeholder">VIDEO</div>
+  <img src="images/fondoinicio.png" alt="" class="hero-media" id="heroMedia">
   <div class="hero-copy">
     <h1>Una casa, mil mundos</h1>
     <p>MEDICINA · BIENESTAR · COMUNIDAD</p>
   </div>
 </section>
 
-<section class="intro">
+<section class="intro" id="quienes-somos">
   <div class="eyebrow">Quiénes somos</div>
   <h2>Un espacio pensado para acompañar tu bienestar de forma integral, variada y equilibrada.</h2>
   <p>
@@ -372,10 +555,151 @@
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.98.548 3.876 1.584 5.53L2 22l4.606-1.549A9.96 9.96 0 0 0 12.004 22C17.522 22 22 17.522 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.111a8.09 8.09 0 0 1-4.13-1.129l-.296-.176-3.088 1.038 1.05-3.014-.192-.309a8.09 8.09 0 0 1-1.24-4.317c0-4.474 3.64-8.114 8.114-8.114 4.474 0 8.114 3.64 8.114 8.114 0 4.474-3.64 8.114-8.114 8.114z"/></svg>
 </a>
 
+<!-- ---------- AREA MODAL (contenido genérico, poblado por JS) ---------- -->
+<div class="modal-overlay" id="areaModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar">&times;</button>
+    <p class="modal-intro" id="modalIntro"></p>
+
+    <div class="modal-professional">
+      <div class="modal-photo-wrap" id="modalPhotoWrap">
+        <img id="modalPhoto" src="" alt="">
+        <button class="carousel-arrow prev" id="carouselPrev" aria-label="Anterior">&#8249;</button>
+        <button class="carousel-arrow next" id="carouselNext" aria-label="Siguiente">&#8250;</button>
+      </div>
+      <div class="modal-bio">
+        <h3 id="modalName"></h3>
+        <p id="modalBio"></p>
+      </div>
+    </div>
+
+    <div class="marquee-wrap">
+      <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
+
+    <div class="modal-cta">
+      <a class="btn-write" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">Escribinos</a>
+    </div>
+  </div>
+</div>
+
 <script>
+  /* ---------- HEADER SCROLL STATE ---------- */
   const header = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* ---------- AREA DATA ----------
+     Cada área nueva se agrega acá con su intro, sus profesionales (uno o más)
+     y sus tratamientos. Los links del menú se conectan por su atributo data-area. */
+  const areaData = {
+    ginecologia: {
+      intro: "Acompañamos cada etapa de la vida con una mirada funcional, estética y regenerativa. Abordamos la ginecología desde una perspectiva integradora y personalizada, entendiendo que la salud ginecológica está conectada con todos los sistemas del cuerpo y factores del entorno.\n\nOfrecemos atención personalizada y de calidad, con un enfoque integral que combina prevención, diagnóstico, tratamiento y seguimiento.",
+      professionals: [
+        {
+          photo: "images/fotogaby.png",
+          name: "Dra. María Gabriela Baslini",
+          bio: "Médica egresada de la UBA, especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida. Hace 23 años acompaña a mujeres en cada etapa de su vida: no trabaja sobre síntomas aislados, sino sobre tu historia completa: tu cuerpo, tu contexto y tus emociones. La consulta busca que tomes decisiones informadas y conscientes sobre tu salud para que vivas con mayor bienestar y autonomía."
+        }
+      ],
+      treatments: [
+        "Revisión ginecológica de rutina y abordajes especiales",
+        "Test de VPH, Papanicolau y colposcopia",
+        "Colocación de SIU/DIU",
+        "Modulación hormonal",
+        "Acompañamiento integral físico y emocional",
+        "Láser CO2 Genital para incontinencia de orina, atrofia genital, rejuvenecimiento vaginal, eliminación de verrugas"
+      ]
+    }
+  };
+
+  /* ---------- MODAL LOGIC ---------- */
+  const modal = document.getElementById('areaModal');
+  const modalIntro = document.getElementById('modalIntro');
+  const modalPhotoWrap = document.getElementById('modalPhotoWrap');
+  const modalPhoto = document.getElementById('modalPhoto');
+  const modalName = document.getElementById('modalName');
+  const modalBio = document.getElementById('modalBio');
+  const marqueeTrack = document.getElementById('marqueeTrack');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  const closeBtn = document.getElementById('modalClose');
+
+  let currentArea = null;
+  let currentIndex = 0;
+  let autoTimer = null;
+
+  function renderProfessional(){
+    const p = currentArea.professionals[currentIndex];
+    modalPhoto.src = p.photo;
+    modalPhoto.alt = p.name;
+    modalName.textContent = p.name;
+    modalBio.textContent = p.bio;
+    modalPhotoWrap.classList.toggle('has-multiple', currentArea.professionals.length > 1);
+  }
+
+  function startAutoAdvance(){
+    clearInterval(autoTimer);
+    if (currentArea.professionals.length > 1){
+      autoTimer = setInterval(() => {
+        currentIndex = (currentIndex + 1) % currentArea.professionals.length;
+        renderProfessional();
+      }, 10000);
+    }
+  }
+
+  function openModal(key){
+    const data = areaData[key];
+    if (!data) return; // área todavía sin contenido cargado
+    currentArea = data;
+    currentIndex = 0;
+
+    modalIntro.textContent = data.intro;
+    renderProfessional();
+
+    marqueeTrack.innerHTML = '';
+    const chipsHTML = data.treatments.map(t => `<span class="chip">${t}</span>`).join('');
+    marqueeTrack.innerHTML = chipsHTML + chipsHTML; // duplicado para loop continuo
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    startAutoAdvance();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    clearInterval(autoTimer);
+  }
+
+  document.querySelectorAll('.dropdown a[data-area]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal(link.dataset.area);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + currentArea.professionals.length) % currentArea.professionals.length;
+    renderProfessional();
+    startAutoAdvance();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % currentArea.professionals.length;
+    renderProfessional();
+    startAutoAdvance();
   });
 </script>
 
