@@ -21,7 +21,7 @@
 
   *{margin:0;padding:0;box-sizing:border-box;}
 
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; scrollbar-gutter:stable;}
 
   body{
     font-family:'Montserrat',sans-serif;
@@ -504,8 +504,8 @@
     position:absolute;
     top:50%;
     transform:translateY(-50%);
-    width:32px;
-    height:32px;
+    width:26px;
+    height:26px;
     border-radius:50%;
     background:transparent;
     border:1px solid var(--hairline);
@@ -513,9 +513,15 @@
     display:none;
     align-items:center;
     justify-content:center;
-    font-size:16px;
+    padding:0;
     transition:background .2s ease, color .2s ease, border-color .2s ease;
     z-index:2;
+  }
+
+  .carousel-arrow svg{
+    width:13px;
+    height:13px;
+    display:block;
   }
 
   .carousel-arrow:hover{
@@ -524,8 +530,8 @@
     color:var(--paper);
   }
 
-  .carousel-arrow.prev{left:2px;}
-  .carousel-arrow.next{right:2px;}
+  .carousel-arrow.prev{left:12px;}
+  .carousel-arrow.next{right:12px;}
 
   .modal-professional-row.has-multiple .carousel-arrow{display:flex;}
 
@@ -777,7 +783,7 @@
   © 2024 Ummana
 </footer>
 
-<a class="whatsapp-float" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">
+<a class="whatsapp-float" id="whatsappFloat" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.98.548 3.876 1.584 5.53L2 22l4.606-1.549A9.96 9.96 0 0 0 12.004 22C17.522 22 22 17.522 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.111a8.09 8.09 0 0 1-4.13-1.129l-.296-.176-3.088 1.038 1.05-3.014-.192-.309a8.09 8.09 0 0 1-1.24-4.317c0-4.474 3.64-8.114 8.114-8.114 4.474 0 8.114 3.64 8.114 8.114 0 4.474-3.64 8.114-8.114 8.114z"/></svg>
 </a>
 
@@ -794,8 +800,12 @@
     <div class="modal-divider"><span></span></div>
 
     <div class="modal-professional-row" id="modalProfessionalRow">
-      <button class="carousel-arrow prev" id="carouselPrev" aria-label="Anterior">&#8249;</button>
-      <button class="carousel-arrow next" id="carouselNext" aria-label="Siguiente">&#8250;</button>
+      <button class="carousel-arrow prev" id="carouselPrev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <button class="carousel-arrow next" id="carouselNext" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
 
       <div class="modal-professional" id="modalProfessional">
         <div class="modal-photo-wrap">
@@ -828,6 +838,7 @@
 <script>
   /* ---------- HEADER SCROLL STATE ---------- */
   const header = document.getElementById('siteHeader');
+  const whatsappFloat = document.getElementById('whatsappFloat');
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 40);
   });
@@ -940,10 +951,16 @@
       modalProfessional.classList.add('no-transition');
       modalProfessional.classList.remove(leaveClass);
       modalProfessional.classList.add(enterClass);
-      void modalProfessional.offsetWidth; // fuerza reflow para que el salto no se anime
 
-      modalProfessional.classList.remove('no-transition');
-      modalProfessional.classList.remove(enterClass);
+      // doble rAF: asegura que el navegador pintó el estado "sin transición,
+      // ya corrido hacia el costado" antes de sacarle esas clases, para que
+      // la animación de entrada arranque siempre limpia.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          modalProfessional.classList.remove('no-transition');
+          modalProfessional.classList.remove(enterClass);
+        });
+      });
     }, 400);
   }
 
@@ -967,6 +984,9 @@
     renderProfessional();
     modalProfessionalRow.classList.toggle('has-multiple', data.professionals.length > 1);
 
+    // precarga las fotos del área para que el cambio de profesional sea instantáneo
+    data.professionals.forEach(p => { const preload = new Image(); preload.src = p.photo; });
+
     marqueeTrack.innerHTML = '';
     const chipsHTML = data.treatments.map(t => `<span class="chip">${t}</span>`).join('');
     marqueeTrack.innerHTML = chipsHTML + chipsHTML; // duplicado para loop continuo
@@ -975,6 +995,8 @@
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = scrollbarWidth + 'px';
+    header.style.right = scrollbarWidth + 'px';
+    whatsappFloat.style.right = (28 + scrollbarWidth) + 'px';
     startAutoAdvance();
   }
 
@@ -982,6 +1004,8 @@
     modal.classList.remove('open');
     document.body.style.overflow = '';
     document.body.style.paddingRight = '';
+    header.style.right = '';
+    whatsappFloat.style.right = '';
     clearInterval(autoTimer);
   }
 
