@@ -126,9 +126,7 @@
     opacity:0;
     visibility:hidden;
     pointer-events:none;
-    will-change:opacity;
     transform:translateX(-50%);
-    transition:opacity .35s ease;
     box-shadow:0 24px 60px rgba(0,0,0,0.16);
   }
 
@@ -136,6 +134,17 @@
     opacity:1;
     visibility:visible;
     pointer-events:auto;
+  }
+
+  .dropdown-inner{
+    opacity:0;
+    transform:translateY(6px);
+    transition:opacity .3s ease, transform .3s ease;
+  }
+
+  .nav-item:hover .dropdown-inner{
+    opacity:1;
+    transform:translateY(0);
   }
 
   .dropdown a{
@@ -646,36 +655,42 @@
     <div class="nav-item">
       <span class="nav-link">MEDICINA</span>
       <div class="dropdown">
-        <a href="#" data-area="medicina-funcional">Medicina Funcional</a>
-        <a href="#">Sueroterapia</a>
-        <a href="#" data-area="ginecologia">Ginecología</a>
-        <a href="#">Urología</a>
-        <a href="#">Sueño y descanso</a>
-        <a href="#">Otorrinolaringología</a>
-        <a href="#">Gastroenterología</a>
-        <a href="#">Medicina del dolor</a>
-        <a href="#">Nutrición</a>
-        <a href="#">Kinesiología suelo pélvico</a>
-        <a href="#">Psicoterapias</a>
+        <div class="dropdown-inner">
+          <a href="#" data-area="medicina-funcional">Medicina Funcional</a>
+          <a href="#">Sueroterapia</a>
+          <a href="#" data-area="ginecologia">Ginecología</a>
+          <a href="#">Urología</a>
+          <a href="#">Sueño y descanso</a>
+          <a href="#">Otorrinolaringología</a>
+          <a href="#">Gastroenterología</a>
+          <a href="#">Medicina del dolor</a>
+          <a href="#">Nutrición</a>
+          <a href="#">Kinesiología suelo pélvico</a>
+          <a href="#">Psicoterapias</a>
+        </div>
       </div>
     </div>
 
     <div class="nav-item">
       <span class="nav-link">BIENESTAR</span>
       <div class="dropdown">
-        <a href="#">Yoga</a>
-        <a href="#">Meditación</a>
-        <a href="#">Tai Chi Chuan</a>
-        <a href="#">Chi Kung</a>
+        <div class="dropdown-inner">
+          <a href="#">Yoga</a>
+          <a href="#">Meditación</a>
+          <a href="#">Tai Chi Chuan</a>
+          <a href="#">Chi Kung</a>
+        </div>
       </div>
     </div>
 
     <div class="nav-item">
       <span class="nav-link">CURSOS &amp; TALLERES</span>
       <div class="dropdown">
-        <a href="#">Cerámica escultórica</a>
-        <a href="#">Encuadernación artesanal</a>
-        <a href="#">Puntillismo decorativo</a>
+        <div class="dropdown-inner">
+          <a href="#">Cerámica escultórica</a>
+          <a href="#">Encuadernación artesanal</a>
+          <a href="#">Puntillismo decorativo</a>
+        </div>
       </div>
     </div>
 
