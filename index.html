@@ -21,7 +21,7 @@
 
   *{margin:0;padding:0;box-sizing:border-box;}
 
-  html{scroll-behavior:smooth; scrollbar-gutter:stable;}
+  html{scroll-behavior:smooth;}
 
   body{
     font-family:'Montserrat',sans-serif;
@@ -812,7 +812,7 @@
           <img id="modalPhoto" src="" alt="">
         </div>
         <div class="modal-bio">
-          <span class="modal-bio-label">Profesional a cargo</span>
+          <span class="modal-bio-label" id="modalBioLabel">Profesional a cargo</span>
           <h3 id="modalName"></h3>
           <p id="modalBio"></p>
         </div>
@@ -911,6 +911,7 @@
   /* ---------- MODAL LOGIC ---------- */
   const modal = document.getElementById('areaModal');
   const modalEyebrow = document.getElementById('modalEyebrow');
+  const modalBioLabel = document.getElementById('modalBioLabel');
   const modalIntro = document.getElementById('modalIntro');
   const modalProfessionalRow = document.getElementById('modalProfessionalRow');
   const modalProfessional = document.getElementById('modalProfessional');
@@ -981,6 +982,8 @@
 
     modalEyebrow.textContent = data.title;
     modalIntro.textContent = data.intro;
+    modalBioLabel.textContent = data.professionals.length > 1 ? "Profesionales a cargo" : "Profesional a cargo";
+    modalPhoto.removeAttribute('src'); // evita ver la foto del área anterior mientras carga la nueva
     renderProfessional();
     modalProfessionalRow.classList.toggle('has-multiple', data.professionals.length > 1);
 
@@ -992,20 +995,11 @@
     marqueeTrack.innerHTML = chipsHTML + chipsHTML; // duplicado para loop continuo
 
     modal.classList.add('open');
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.overflow = 'hidden';
-    document.body.style.paddingRight = scrollbarWidth + 'px';
-    header.style.right = scrollbarWidth + 'px';
-    whatsappFloat.style.right = (28 + scrollbarWidth) + 'px';
     startAutoAdvance();
   }
 
   function closeModal(){
     modal.classList.remove('open');
-    document.body.style.overflow = '';
-    document.body.style.paddingRight = '';
-    header.style.right = '';
-    whatsappFloat.style.right = '';
     clearInterval(autoTimer);
   }
 
