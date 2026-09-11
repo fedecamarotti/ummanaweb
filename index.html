@@ -451,10 +451,31 @@
     display:block;
   }
 
+  .modal-professional-row{
+    position:relative;
+    margin:0 -46px;
+    padding:0 46px;
+  }
+
   .modal-professional{
     display:flex;
     align-items:center;
     gap:28px;
+    transition:opacity .4s ease, transform .4s ease;
+  }
+
+  .modal-professional.no-transition{
+    transition:none;
+  }
+
+  .modal-professional.offset-left{
+    opacity:0;
+    transform:translateX(-22px);
+  }
+
+  .modal-professional.offset-right{
+    opacity:0;
+    transform:translateX(22px);
   }
 
   .modal-photo-wrap{
@@ -483,24 +504,30 @@
     position:absolute;
     top:50%;
     transform:translateY(-50%);
-    width:34px;
-    height:34px;
+    width:32px;
+    height:32px;
     border-radius:50%;
-    background:rgba(255,255,255,0.85);
-    color:var(--ink);
+    background:transparent;
+    border:1px solid var(--hairline);
+    color:var(--ink-soft);
     display:none;
     align-items:center;
     justify-content:center;
-    font-size:18px;
-    transition:background .2s ease;
+    font-size:16px;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
     z-index:2;
   }
 
-  .carousel-arrow:hover{background:#fff;}
-  .carousel-arrow.prev{left:12px;}
-  .carousel-arrow.next{right:12px;}
+  .carousel-arrow:hover{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:var(--paper);
+  }
 
-  .modal-photo-wrap.has-multiple .carousel-arrow{display:flex;}
+  .carousel-arrow.prev{left:2px;}
+  .carousel-arrow.next{right:2px;}
+
+  .modal-professional-row.has-multiple .carousel-arrow{display:flex;}
 
   .modal-bio-label{
     font-size:10.5px;
@@ -766,16 +793,19 @@
 
     <div class="modal-divider"><span></span></div>
 
-    <div class="modal-professional">
-      <div class="modal-photo-wrap" id="modalPhotoWrap">
-        <img id="modalPhoto" src="" alt="">
-        <button class="carousel-arrow prev" id="carouselPrev" aria-label="Anterior">&#8249;</button>
-        <button class="carousel-arrow next" id="carouselNext" aria-label="Siguiente">&#8250;</button>
-      </div>
-      <div class="modal-bio">
-        <span class="modal-bio-label">Profesional a cargo</span>
-        <h3 id="modalName"></h3>
-        <p id="modalBio"></p>
+    <div class="modal-professional-row" id="modalProfessionalRow">
+      <button class="carousel-arrow prev" id="carouselPrev" aria-label="Anterior">&#8249;</button>
+      <button class="carousel-arrow next" id="carouselNext" aria-label="Siguiente">&#8250;</button>
+
+      <div class="modal-professional" id="modalProfessional">
+        <div class="modal-photo-wrap">
+          <img id="modalPhoto" src="" alt="">
+        </div>
+        <div class="modal-bio">
+          <span class="modal-bio-label">Profesional a cargo</span>
+          <h3 id="modalName"></h3>
+          <p id="modalBio"></p>
+        </div>
       </div>
     </div>
 
@@ -871,7 +901,8 @@
   const modal = document.getElementById('areaModal');
   const modalEyebrow = document.getElementById('modalEyebrow');
   const modalIntro = document.getElementById('modalIntro');
-  const modalPhotoWrap = document.getElementById('modalPhotoWrap');
+  const modalProfessionalRow = document.getElementById('modalProfessionalRow');
+  const modalProfessional = document.getElementById('modalProfessional');
   const modalPhoto = document.getElementById('modalPhoto');
   const modalName = document.getElementById('modalName');
   const modalBio = document.getElementById('modalBio');
@@ -890,15 +921,37 @@
     modalPhoto.alt = p.name;
     modalName.textContent = p.name;
     modalBio.textContent = p.bio;
-    modalPhotoWrap.classList.toggle('has-multiple', currentArea.professionals.length > 1);
+  }
+
+  /* Cambia de profesional con una transición de deslizamiento + fundido.
+     direction: 1 = siguiente (entra desde la derecha), -1 = anterior (entra desde la izquierda) */
+  function changeProfessional(direction){
+    if (!currentArea || currentArea.professionals.length <= 1) return;
+
+    const leaveClass = direction === 1 ? 'offset-left' : 'offset-right';
+    const enterClass = direction === 1 ? 'offset-right' : 'offset-left';
+
+    modalProfessional.classList.add(leaveClass);
+
+    setTimeout(() => {
+      currentIndex = (currentIndex + direction + currentArea.professionals.length) % currentArea.professionals.length;
+      renderProfessional();
+
+      modalProfessional.classList.add('no-transition');
+      modalProfessional.classList.remove(leaveClass);
+      modalProfessional.classList.add(enterClass);
+      void modalProfessional.offsetWidth; // fuerza reflow para que el salto no se anime
+
+      modalProfessional.classList.remove('no-transition');
+      modalProfessional.classList.remove(enterClass);
+    }, 400);
   }
 
   function startAutoAdvance(){
     clearInterval(autoTimer);
     if (currentArea.professionals.length > 1){
       autoTimer = setInterval(() => {
-        currentIndex = (currentIndex + 1) % currentArea.professionals.length;
-        renderProfessional();
+        changeProfessional(1);
       }, 10000);
     }
   }
@@ -912,19 +965,23 @@
     modalEyebrow.textContent = data.title;
     modalIntro.textContent = data.intro;
     renderProfessional();
+    modalProfessionalRow.classList.toggle('has-multiple', data.professionals.length > 1);
 
     marqueeTrack.innerHTML = '';
     const chipsHTML = data.treatments.map(t => `<span class="chip">${t}</span>`).join('');
     marqueeTrack.innerHTML = chipsHTML + chipsHTML; // duplicado para loop continuo
 
     modal.classList.add('open');
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = scrollbarWidth + 'px';
     startAutoAdvance();
   }
 
   function closeModal(){
     modal.classList.remove('open');
     document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
     clearInterval(autoTimer);
   }
 
@@ -946,14 +1003,12 @@
   });
 
   prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + currentArea.professionals.length) % currentArea.professionals.length;
-    renderProfessional();
+    changeProfessional(-1);
     startAutoAdvance();
   });
 
   nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % currentArea.professionals.length;
-    renderProfessional();
+    changeProfessional(1);
     startAutoAdvance();
   });
 </script>
