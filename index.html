@@ -126,6 +126,7 @@
     opacity:0;
     visibility:hidden;
     pointer-events:none;
+    will-change:opacity;
     transform:translateX(-50%);
     transition:opacity .35s ease;
     box-shadow:0 24px 60px rgba(0,0,0,0.16);
@@ -254,16 +255,16 @@
 
   .contact-row{
     position:absolute;
-    left:32px;
-    right:32px;
-    bottom:56px;
+    left:0;
+    right:0;
+    bottom:0;
     display:flex;
     flex-wrap:nowrap;
     align-items:center;
     justify-content:center;
     gap:48px;
-    padding-top:34px;
-    border-top:1px solid var(--hairline);
+    background:#232321;
+    padding:22px 32px;
     opacity:0;
     transform:translateY(36px);
     transition:opacity .9s ease .18s, transform .9s ease .18s;
@@ -280,12 +281,12 @@
     gap:9px;
     font-size:12px;
     letter-spacing:0.03em;
-    color:var(--ink-soft);
+    color:rgba(255,255,255,0.82);
     white-space:nowrap;
     transition:color .2s ease;
   }
 
-  .contact-item:hover{color:var(--ink);}
+  .contact-item:hover{color:#ffffff;}
 
   .contact-item svg{
     width:15px;
@@ -296,7 +297,7 @@
   /* ---------- FOOTER ---------- */
 
   footer{
-    padding:60px 48px;
+    padding:16px 48px;
     border-top:1px solid var(--hairline);
     text-align:center;
     font-size:11px;
@@ -645,7 +646,7 @@
     <div class="nav-item">
       <span class="nav-link">MEDICINA</span>
       <div class="dropdown">
-        <a href="#">Medicina Funcional</a>
+        <a href="#" data-area="medicina-funcional">Medicina Funcional</a>
         <a href="#">Sueroterapia</a>
         <a href="#" data-area="ginecologia">Ginecología</a>
         <a href="#">Urología</a>
@@ -810,7 +811,7 @@
         {
           photo: "images/fotogaby.png",
           name: "Dra. María Gabriela Baslini",
-          bio: "Médica egresada de la UBA, especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida. Hace 23 años acompaña a mujeres en cada etapa de su vida: no trabaja sobre síntomas aislados, sino sobre tu historia completa: tu cuerpo, tu contexto y tus emociones. La consulta busca que tomes decisiones informadas y conscientes sobre tu salud para que vivas con mayor bienestar y autonomía."
+          bio: "Médica egresada de la UBA, especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida. Hace 23 años acompaña a mujeres en cada etapa de su vida, desarrollando una mirada integral que contempla no solo los síntomas, sino también la historia de cada mujer, su cuerpo, su contexto y sus emociones. Su formación y experiencia se centran en comprender la salud desde una perspectiva funcional y regenerativa."
         }
       ],
       treatments: [
@@ -820,6 +821,33 @@
         "Modulación hormonal",
         "Acompañamiento integral físico y emocional",
         "Láser CO2 Genital para incontinencia de orina, atrofia genital, rejuvenecimiento vaginal, eliminación de verrugas"
+      ]
+    },
+    "medicina-funcional": {
+      title: "Medicina Funcional",
+      intro: "Cuidamos tu salud desde la raíz. Exploramos tu historial de salud, hábitos y objetivos para establecer un plan bioindividualizado. Analizamos antecedentes y profundizamos en los orígenes de tus dolencias, estableciendo metas claras y sostenibles para mejorar tu estilo de vida, y luego ajustamos el plan inicial según tus resultados y evolución, adaptándonos a tus necesidades para lograr resultados duraderos.",
+      professionals: [
+        {
+          photo: "images/fotoviquiprueba.png",
+          name: "Dra. María Victoria Barbieri",
+          bio: "Médica egresada de la Universidad de Buenos Aires, especialista en Dermatología Integrativa, Medicina Estética y Reparadora y Medicina Funcional. Su mirada parte de entender la salud como un equilibrio entre las distintas dimensiones de la persona, integrando cuerpo, mente, hábitos y contexto. Su abordaje busca ir más allá del síntoma puntual para comprender qué hay detrás de cada manifestación y acompañar procesos de salud de manera personalizada, consciente e integral."
+        },
+        {
+          photo: "images/fotogabyprueba.png",
+          name: "Dra. María Gabriela Baslini",
+          bio: "Médica egresada de la UBA, especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida. Hace 23 años acompaña a mujeres en cada etapa de su vida, desarrollando una mirada integral que contempla no solo los síntomas, sino también la historia de cada mujer, su cuerpo, su contexto y sus emociones. Su formación y experiencia se centran en comprender la salud desde una perspectiva funcional y regenerativa."
+        },
+        {
+          photo: "images/fotoceciprueba.png",
+          name: "Dra. Cecilia Rynkiewicz",
+          bio: "Médica especialista en Medicina General y Familiar, formada en Medicina Funcional y Ortomolecular. Su mirada integra la medicina convencional con la nutrición, los hábitos y el estilo de vida, buscando comprender a cada persona de manera integral y no solamente a partir de un síntoma. Su experiencia en el abordaje del dolor crónico, las enfermedades de larga evolución y los cuidados paliativos se complementa con una mirada funcional que busca identificar desequilibrios y trabajar sobre sus causas."
+        }
+      ],
+      treatments: [
+        "Sueroterapia endovenosa",
+        "Suplementación",
+        "Nutrición",
+        "Gestión emocional"
       ]
     }
   };
