@@ -1012,6 +1012,17 @@
 
   closeBtn.addEventListener('click', closeModal);
 
+  // Bloquea el scroll del fondo mientras el modal está abierto (rueda del mouse
+  // y swipe en mobile), sin tocar overflow/scrollbar — así no hay ningún
+  // corrimiento de layout. Si el scroll ocurre DENTRO del modal, se permite.
+  function blockBackgroundScroll(e){
+    if (!modal.classList.contains('open')) return;
+    if (e.target.closest('.modal-box')) return;
+    e.preventDefault();
+  }
+  document.addEventListener('wheel', blockBackgroundScroll, { passive: false });
+  document.addEventListener('touchmove', blockBackgroundScroll, { passive: false });
+
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
   });
