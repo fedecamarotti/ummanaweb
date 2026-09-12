@@ -662,8 +662,8 @@
     font-weight:500;
     color:var(--paper);
     background:var(--ink);
-    padding:7px 18px;
-    margin-left:8px;
+    padding:7px 16px;
+    margin-left:4px;
     border-radius:20px;
     transition:background .25s ease;
   }
@@ -703,7 +703,7 @@
       <div class="dropdown">
         <div class="dropdown-inner">
           <a href="#" data-area="medicina-funcional">Medicina Funcional</a>
-          <a href="#">Sueroterapia</a>
+          <a href="#" data-area="sueroterapia">Sueroterapia</a>
           <a href="#" data-area="ginecologia">Ginecología</a>
           <a href="#">Urología</a>
           <a href="#">Sueño y descanso</a>
@@ -840,7 +840,7 @@
       <div class="modal-cta">
         <div class="modal-cta-accent"></div>
         <p class="modal-cta-line">
-          Si querés más información o sacar un turno,
+          Si querés más información o sacar un turno
           <a class="btn-write" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">escribinos</a>
         </p>
       </div>
@@ -917,6 +917,25 @@
         "Suplementación",
         "Nutrición",
         "Gestión emocional"
+      ]
+    },
+    sueroterapia: {
+      title: "Sueroterapia",
+      intro: "Ofrecemos <strong>tratamientos endovenosos bio-individualizados</strong>, con vitaminas, minerales, antioxidantes y principios activos seleccionados según las necesidades de cada persona. La sueroterapia busca acompañar la energía, el bienestar, la recuperación física y el fortalecimiento del organismo, adaptando cada fórmula a objetivos individuales. Es un <strong>tratamiento seguro y rápido, realizado por profesionales especializados en sueroterapia</strong>, con seguimiento personalizado.",
+      professionals: [
+        {
+          photo: "images/fotosabriprueba.png",
+          name: "Dra. [nombre pendiente]",
+          bio: "Médica con formación en cardiología y <strong>gran experiencia en el abordaje integral de la salud</strong>. Su práctica incorpora una mirada orientada a la prevención, el bienestar y la optimización de la salud, integrando herramientas de medicina funcional y terapias endovenosas personalizadas. <strong>Especialista en la aplicación de sueroterapia endovenosa</strong> en tratamientos adaptados a las necesidades de cada persona."
+        }
+      ],
+      treatments: [
+        "Detox (Desintoxicante)",
+        "Anti-Stress / Energizante",
+        "Anti-Aging",
+        "Deportivo / Rendimiento",
+        "Inmunitario / Escudo",
+        "Brain Boost"
       ]
     }
   };
