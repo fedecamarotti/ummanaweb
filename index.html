@@ -227,6 +227,7 @@
     margin:0 auto;
     padding:100px 32px 110px;
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
     text-align:center;
@@ -244,6 +245,141 @@
     opacity:1;
     transform:translateY(0);
   }
+
+  .reviews-block{
+    margin-top:44px;
+    max-width:620px;
+    opacity:0;
+    transform:translateY(36px);
+    transition:opacity .9s ease .1s, transform .9s ease .1s;
+  }
+
+  .intro.in-view .reviews-block{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .reviews-card{
+    position:relative;
+    background:#faf7f3;
+    border-radius:10px;
+    padding:34px 58px 26px;
+  }
+
+  .review-arrow{
+    position:absolute;
+    top:44%;
+    transform:translateY(-50%);
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background:transparent;
+    border:1px solid rgba(43,43,40,0.14);
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
+  }
+
+  .review-arrow svg{
+    width:12px;
+    height:12px;
+    display:block;
+  }
+
+  .review-arrow:hover{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:var(--paper);
+  }
+
+  .review-arrow.prev{left:16px;}
+  .review-arrow.next{right:16px;}
+
+  .review-content{
+    transition:opacity .35s ease;
+  }
+
+  .review-content.fading{
+    opacity:0;
+  }
+
+  .review-quote{
+    font-size:14.5px;
+    font-weight:300;
+    line-height:1.75;
+    color:var(--ink);
+    margin:0 auto 16px;
+    display:-webkit-box;
+    -webkit-line-clamp:4;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    min-height:calc(1.75em * 4);
+  }
+
+  .review-author{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    margin-bottom:0;
+  }
+
+  .review-avatar{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:var(--sand);
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    font-weight:600;
+    flex-shrink:0;
+  }
+
+  .review-name{
+    font-size:12px;
+    font-weight:600;
+    color:var(--ink);
+  }
+
+  .review-stars{
+    color:#c99a2e;
+    font-size:11px;
+    letter-spacing:1px;
+  }
+
+  .review-source{
+    font-size:10px;
+    letter-spacing:0.08em;
+    color:var(--sand-deep);
+  }
+
+  .review-dots{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    margin-top:20px;
+  }
+
+  .review-dot{
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--hairline);
+    border:none;
+    padding:0;
+    cursor:pointer;
+    transition:background .2s ease, transform .2s ease;
+  }
+
+  .review-dot:hover{transform:scale(1.3);}
+  .review-dot.active{background:var(--ink);}
 
   .intro-lead strong,
   .intro-body strong{
@@ -497,6 +633,19 @@
     transform:scale(1.06);
   }
 
+  .photo-placeholder{
+    position:absolute;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:#e7e6df;
+    color:#9a9985;
+    font-size:11px;
+    letter-spacing:0.16em;
+    font-weight:600;
+  }
+
   .carousel-arrow{
     position:absolute;
     top:50%;
@@ -713,7 +862,7 @@
       <span class="nav-link">BIENESTAR</span>
       <div class="dropdown">
         <div class="dropdown-inner">
-          <a href="#">Yoga</a>
+          <a href="#" data-area="yoga">Yoga</a>
           <a href="#">Meditación</a>
           <a href="#">Tai Chi Chuan</a>
           <a href="#">Chi Kung</a>
@@ -752,16 +901,32 @@
 
 <section class="intro" id="quienes-somos">
   <div class="intro-text">
-    <p class="intro-lead"><strong>Ummana</strong> es un espacio integral de bienestar ubicado en Banfield,<br>
-    pensado como una "casa" donde conviven la medicina, el movimiento,<br>
-    el arte, la calma y la creatividad.</p>
+    <p class="intro-lead"><strong>Ummana</strong> es un espacio integral de bienestar ubicado en Banfield, donde conviven la medicina, el movimiento, el arte y la creatividad.</p>
     <p class="intro-body">
       <strong>Nuestro propósito es acompañar procesos de salud desde una mirada integrativa y funcional.</strong><br>
       Nos importa la persona completa: su biología, su historia, sus hábitos, sus emociones y su entorno cotidiano.
-      <br><br>
-      Buscamos ayudar a prevenir, equilibrar y reparar el organismo con herramientas claras y sostenibles,<br>
-      siempre basándonos en evidencia científica pero desde un <strong>modelo humano y cercano.</strong>
     </p>
+  </div>
+
+  <div class="reviews-block">
+    <div class="reviews-card">
+      <button class="review-arrow prev" id="reviewPrev" aria-label="Reseña anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <button class="review-arrow next" id="reviewNext" aria-label="Reseña siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="review-content" id="reviewContent">
+        <p class="review-quote" id="reviewQuote"></p>
+        <div class="review-author">
+          <div class="review-avatar" id="reviewAvatar"></div>
+          <span class="review-name" id="reviewName"></span>
+          <span class="review-stars">★★★★★</span>
+          <span class="review-source">· Google</span>
+        </div>
+      </div>
+      <div class="review-dots" id="reviewDots"></div>
+    </div>
   </div>
 
   <div class="contact-row">
@@ -811,6 +976,7 @@
       <div class="modal-professional" id="modalProfessional">
         <div class="modal-photo-wrap">
           <img id="modalPhoto" src="" alt="">
+          <div class="photo-placeholder" id="modalPhotoPlaceholder">SIN FOTO</div>
         </div>
         <div class="modal-bio">
           <span class="modal-bio-label" id="modalBioLabel">Profesional a cargo</span>
@@ -828,7 +994,7 @@
       <div class="modal-cta">
         <div class="modal-cta-accent"></div>
         <p class="modal-cta-line">
-          Si querés más información o sacar un turno
+          <span id="modalCtaText">Si querés más información o sacar un turno</span>
           <a class="btn-write" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">escribinos</a>
         </p>
       </div>
@@ -855,6 +1021,115 @@
     });
   }, { threshold: 0.25 });
   introObserver.observe(introSection);
+
+  /* ---------- RESEÑAS DE GOOGLE (carrusel de cita destacada) ---------- */
+  const reviewsData = [
+    {
+      name: "María Lanati",
+      text: "Excelentes todos los profesionales que me atendieron. Fue y es de gran ayuda para mi recuperación la mirada integral del cuerpo que tienen. Muy acogedor y cálido el espacio y la gente que trabaja ahí. ¡Lo recomiendo muchísimo!"
+    },
+    {
+      name: "Fernanda Dorna",
+      text: "Ummana es un lugar que transmite bienestar. Asisto desde hace tiempo a diferentes actividades y profesionales. La calidez de las personas, la excelente atención y la calidad de los profesionales hacen que cada visita sea una experiencia muy agradable. ¡Gracias por crear este espacio tan acogedor y lleno de buena energía!"
+    },
+    {
+      name: "Stephanie Gerez",
+      text: "En Ummana trabajan profesionales muy comprometidos y atentos. Se nota la vocación y el cuidado con el que acompañan a cada persona. Es un placer encontrar un equipo tan humano."
+    },
+    {
+      name: "Marisa Moreno",
+      text: "Un excelente espacio para actividades hermosas. Las prácticas de yoga, maravillosas, con un grupo de profesores muy profesionales y amorosos. ¡Qué lindo haberlos encontrado! Súper recomendable."
+    },
+    {
+      name: "Julieta Belén Álvarez",
+      text: "Una experiencia excelente en Ummana. El espacio es hermoso y transmite calidez; los profesionales y todo el staff fueron súper amables y atentos. Salí feliz y con ganas de volver. ¡Súper recomendado!"
+    },
+    {
+      name: "Flor Cores",
+      text: "Desde el primer día que entré a Ummana sentí una paz que se repite cada vez que voy. La hermosa energía que hay hace que no te quieras ir. Excelente espacio, con una enorme calidad humana y un gran nivel profesional."
+    },
+    {
+      name: "Stella Maris",
+      text: "Un lugar lleno de armonía y calidez. Un espacio zen, donde te sentís cuidada desde el momento mismo en que entrás allí. Atención y profesionalismo al más alto nivel. Lo recomiendo."
+    },
+    {
+      name: "Daniela Gambino",
+      text: "Por lejos el mejor lugar de zona sur, la calidez del espacio es inigualable, siempre súper atentos, la posibilidad de poder hacerte un tecito o tomar algo antes de entrar en la clase es genial. Espacios súper limpios y ordenados. Las clases de meditación son realmente muy hermosas."
+    },
+    {
+      name: "Laura Álamo",
+      text: "Hermoso y cálido espacio. Lleno de propuestas maravillosas. Concurro al taller de encuadernación artesanal y lo disfruto muchísimo. Agradezco la bondad de todo el personal de atención."
+    },
+    {
+      name: "Roberto Ricci",
+      text: "¡Ummana es el espacio ideal donde poder encontrar el tiempo propicio para iniciar el hábito de la meditación y el conocimiento de uno mismo, rodeado de personas capacitadas para guiarte y acompañar en el momento presente, en ese lugar mágico!"
+    }
+  ];
+
+  const reviewContent = document.getElementById('reviewContent');
+  const reviewQuote = document.getElementById('reviewQuote');
+  const reviewName = document.getElementById('reviewName');
+  const reviewAvatar = document.getElementById('reviewAvatar');
+  const reviewDotsWrap = document.getElementById('reviewDots');
+
+  let reviewIndex = 0;
+  let reviewTimer = null;
+
+  function initials(name){
+    return name.split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+  }
+
+  function paintReview(){
+    const r = reviewsData[reviewIndex];
+    reviewQuote.textContent = "\u201C" + r.text + "\u201D";
+    reviewName.textContent = r.name;
+    reviewAvatar.textContent = initials(r.name);
+    reviewDotsWrap.querySelectorAll('.review-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === reviewIndex);
+    });
+  }
+
+  function goToReview(i){
+    reviewIndex = i;
+    reviewContent.classList.add('fading');
+    setTimeout(() => {
+      paintReview();
+      reviewContent.classList.remove('fading');
+    }, 350);
+  }
+
+  function nextReview(){
+    goToReview((reviewIndex + 1) % reviewsData.length);
+  }
+
+  function restartReviewTimer(){
+    clearInterval(reviewTimer);
+    reviewTimer = setInterval(nextReview, 6000);
+  }
+
+  reviewDotsWrap.innerHTML = reviewsData.map((_, i) =>
+    `<button class="review-dot" data-i="${i}" aria-label="Reseña ${i + 1}"></button>`
+  ).join('');
+
+  reviewDotsWrap.querySelectorAll('.review-dot').forEach(btn => {
+    btn.addEventListener('click', () => {
+      goToReview(parseInt(btn.dataset.i, 10));
+      restartReviewTimer();
+    });
+  });
+
+  document.getElementById('reviewPrev').addEventListener('click', () => {
+    goToReview((reviewIndex - 1 + reviewsData.length) % reviewsData.length);
+    restartReviewTimer();
+  });
+
+  document.getElementById('reviewNext').addEventListener('click', () => {
+    nextReview();
+    restartReviewTimer();
+  });
+
+  paintReview();
+  restartReviewTimer();
 
   /* ---------- AREA DATA ----------
      Cada área nueva se agrega acá con su título, intro, sus profesionales
@@ -963,6 +1238,36 @@
         "Somnoendoscopia",
         "Planes de tratamiento personalizados y sostenibles"
       ]
+    },
+    yoga: {
+      title: "Yoga",
+      intro: "<strong>Un espacio para conectar con tu cuerpo, tu respiración y tu mente, a tu propio ritmo</strong>. A través de clases presenciales y grupos reducidos, el yoga combina movimiento, fuerza, flexibilidad y respiración para favorecer el equilibrio físico y mental. Las prácticas ayudan a reducir el estrés, mejorar la concentración y cultivar mayor calma y bienestar, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa. <strong>Contamos con distintos estilos:</strong>",
+      showBioLabel: false,
+      ctaText: "Si querés reservar tu <strong>clase de prueba sin cargo</strong>",
+      professionals: [
+        {
+          photo: "images/ashtanga.webp",
+          name: "Ashtanga Yoga",
+          bio: "<strong>Práctica dinámica basada en una serie fija de posturas que se repite en cada clase, coordinando movimiento y respiración.</strong> La repetición permite profundizar progresivamente en la práctica y desarrollar fuerza, flexibilidad, concentración y presencia. Con el tiempo, la secuencia puede convertirse en una verdadera meditación en movimiento: intensa, profunda y transformadora."
+        },
+        {
+          photo: null,
+          name: "Yoga Suave",
+          bio: "<strong>Práctica pensada para quienes buscan moverse desde la calma y la sutileza, con especial atención a la respiración, la movilidad y el descanso.</strong> Los movimientos se adaptan a las posibilidades de cada persona, favoreciendo una experiencia accesible y consciente. Es ideal para personas mayores, con movilidad reducida o para quienes desean comenzar a practicar yoga de manera gradual y sin exigencias."
+        },
+        {
+          photo: "images/hatha.webp",
+          name: "Hatha Yoga",
+          bio: "<strong>Práctica que invita a sostener y profundizar las posturas (asanas), trabajando especialmente la alineación, la estabilidad y la conciencia corporal.</strong> Se combinan posturas, respiración y concentración, utilizando elementos que pueden facilitar o intensificar la práctica según las necesidades de cada persona. Ideal para desarrollar fuerza, flexibilidad y presencia de manera progresiva."
+        }
+      ],
+      treatments: [
+        "Mejora la flexibilidad y la fuerza física",
+        "Reduce el estrés y la ansiedad",
+        "Favorece la concentración y la calma mental",
+        "Conecta respiración y movimiento",
+        "Es apto para todos los niveles, incluso sin experiencia previa"
+      ]
     }
   };
 
@@ -974,8 +1279,10 @@
   const modalProfessionalRow = document.getElementById('modalProfessionalRow');
   const modalProfessional = document.getElementById('modalProfessional');
   const modalPhoto = document.getElementById('modalPhoto');
+  const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
   const modalName = document.getElementById('modalName');
   const modalBio = document.getElementById('modalBio');
+  const modalCtaText = document.getElementById('modalCtaText');
   const marqueeTrack = document.getElementById('marqueeTrack');
   const prevBtn = document.getElementById('carouselPrev');
   const nextBtn = document.getElementById('carouselNext');
@@ -988,8 +1295,16 @@
 
   function renderProfessional(){
     const p = currentArea.professionals[currentIndex];
-    modalPhoto.src = p.photo;
-    modalPhoto.alt = p.name;
+    if (p.photo){
+      modalPhoto.style.display = '';
+      modalPhoto.src = p.photo;
+      modalPhoto.alt = p.name;
+      modalPhotoPlaceholder.style.display = 'none';
+    } else {
+      modalPhoto.style.display = 'none';
+      modalPhoto.removeAttribute('src');
+      modalPhotoPlaceholder.style.display = 'flex';
+    }
     modalName.textContent = p.name;
     modalBio.innerHTML = p.bio;
   }
@@ -1041,13 +1356,19 @@
 
     modalEyebrow.textContent = data.title;
     modalIntro.innerHTML = data.intro;
-    modalBioLabel.textContent = data.professionals.length > 1 ? "Profesionales a cargo" : "Profesional a cargo";
+    if (data.showBioLabel === false){
+      modalBioLabel.style.display = 'none';
+    } else {
+      modalBioLabel.style.display = '';
+      modalBioLabel.textContent = data.professionals.length > 1 ? "Profesionales a cargo" : "Profesional a cargo";
+    }
+    modalCtaText.innerHTML = data.ctaText || "Si querés más información o sacar un turno";
     modalPhoto.removeAttribute('src'); // evita ver la foto del área anterior mientras carga la nueva
     renderProfessional();
     modalProfessionalRow.classList.toggle('has-multiple', data.professionals.length > 1);
 
-    // precarga las fotos del área para que el cambio de profesional sea instantáneo
-    data.professionals.forEach(p => { const preload = new Image(); preload.src = p.photo; });
+    // precarga las fotos del área (si las tiene) para que el cambio sea instantáneo
+    data.professionals.forEach(p => { if (p.photo){ const preload = new Image(); preload.src = p.photo; } });
 
     marqueeTrack.innerHTML = '';
     const chipsHTML = data.treatments.map(t => `<span class="chip">${t}</span>`).join('');
