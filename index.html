@@ -456,13 +456,13 @@
     width:56px;
     height:56px;
     border-radius:50%;
-    background:#25D366;
+    background:#6FC48B;
     display:flex;
     align-items:center;
     justify-content:center;
     box-shadow:0 8px 24px rgba(0,0,0,0.2);
     z-index:200;
-    transition:transform .25s ease, box-shadow .25s ease;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
   }
 
   .whatsapp-float:hover{
@@ -470,7 +470,12 @@
     box-shadow:0 10px 28px rgba(0,0,0,0.28);
   }
 
-  .whatsapp-float svg{width:28px;height:28px;fill:#fff;}
+  .whatsapp-float svg{
+    width:27px;
+    height:27px;
+    fill:#fff;
+    transform:translate(1px, 1px);
+  }
 
   /* ---------- AREA MODAL ---------- */
 
@@ -895,7 +900,6 @@
   <img src="images/inicio.webp" alt="" class="hero-media" id="heroMedia">
   <div class="hero-copy">
     <h1>Una casa, mil mundos</h1>
-    <p>MEDICINA · BIENESTAR · COMUNIDAD</p>
   </div>
 </section>
 
@@ -1275,7 +1279,7 @@
       showBioLabel: false,
       professionals: [
         {
-          photo: "images/meditación.webp",
+          photo: "images/meditacion.webp",
           name: "¿Qué hacemos en cada encuentro?",
           bio: "<strong>Meditación sentada:</strong> Una práctica guiada para aquietar la mente y conectar con el presente.<br><br><strong>Lectura y reflexión:</strong> Un momento para integrar la enseñanza y abrir el diálogo grupal.<br><br><strong>Cierre con té grupal:</strong> Un espacio cálido para compartir experiencias, aprendizajes y generar vínculos.<br><br>Instructora: <strong>Lic. Mariela Herrero</strong>"
         }
