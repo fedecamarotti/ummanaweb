@@ -297,6 +297,11 @@
 
   .contact-item:hover{color:#ffffff;}
 
+  .contact-location:hover{color:#e04b3f;}
+  .contact-whatsapp:hover{color:#3ecf6b;}
+  .contact-instagram:hover{color:#e1306c;}
+  .contact-mail:hover{color:#7ec8f2;}
+
   .contact-item svg{
     width:15px;
     height:15px;
@@ -415,7 +420,7 @@
     display:block;
     font-size:11.5px;
     letter-spacing:0.2em;
-    font-weight:600;
+    font-weight:700;
     color:var(--sand-deep);
     margin-bottom:4px;
   }
@@ -507,14 +512,15 @@
     width:26px;
     height:26px;
     border-radius:50%;
-    background:transparent;
-    border:1px solid var(--hairline);
+    background:#e4d9c8;
+    border:1px solid rgba(154,153,133,0.4);
     color:var(--ink-soft);
     display:none;
     align-items:center;
     justify-content:center;
     padding:0;
     transition:background .2s ease, color .2s ease, border-color .2s ease;
+    animation:arrowPulse 2.6s ease-in-out infinite;
     z-index:2;
   }
 
@@ -528,6 +534,13 @@
     background:var(--ink);
     border-color:var(--ink);
     color:var(--paper);
+    animation:none;
+    transform:translateY(-50%) scale(1);
+  }
+
+  @keyframes arrowPulse{
+    0%, 100%{ transform:translateY(-50%) scale(1); }
+    50%{ transform:translateY(-50%) scale(1.1); }
   }
 
   .carousel-arrow.prev{left:12px;}
@@ -538,7 +551,7 @@
   .modal-bio-label{
     font-size:10.5px;
     letter-spacing:0.18em;
-    font-weight:600;
+    font-weight:700;
     color:var(--sand-deep);
     margin-bottom:8px;
     display:block;
@@ -751,28 +764,28 @@
     pensado como una "casa" donde conviven la medicina, el movimiento,<br>
     el arte, la calma y la creatividad.</p>
     <p class="intro-body">
-      Nuestro propósito es acompañar procesos de salud desde una mirada integrativa y funcional.<br>
-      <strong>Nos importa la persona completa:</strong> su biología, su historia, sus hábitos, sus emociones y su entorno cotidiano.
+      <strong>Nuestro propósito es acompañar procesos de salud desde una mirada integrativa y funcional.</strong><br>
+      Nos importa la persona completa: su biología, su historia, sus hábitos, sus emociones y su entorno cotidiano.
       <br><br>
-      <strong>Buscamos ayudar</strong> a prevenir, equilibrar y reparar el organismo con herramientas claras y sostenibles,<br>
-      siempre basándonos en evidencia científica pero desde un modelo humano y cercano.
+      Buscamos ayudar a prevenir, equilibrar y reparar el organismo con herramientas claras y sostenibles,<br>
+      siempre basándonos en evidencia científica pero desde un <strong>modelo humano y cercano.</strong>
     </p>
   </div>
 
   <div class="contact-row">
-    <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Manuel+Castro+1125,+Banfield,+Buenos+Aires" target="_blank" rel="noopener">
+    <a class="contact-item contact-location" href="https://www.google.com/maps/search/?api=1&query=Manuel+Castro+1125,+Banfield,+Buenos+Aires" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/><circle cx="12" cy="10" r="2.4"/></svg>
       Manuel Castro 1125, Banfield, Buenos Aires
     </a>
-    <a class="contact-item" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">
+    <a class="contact-item contact-whatsapp" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.98.548 3.876 1.584 5.53L2 22l4.606-1.549A9.96 9.96 0 0 0 12.004 22C17.522 22 22 17.522 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.111a8.09 8.09 0 0 1-4.13-1.129l-.296-.176-3.088 1.038 1.05-3.014-.192-.309a8.09 8.09 0 0 1-1.24-4.317c0-4.474 3.64-8.114 8.114-8.114 4.474 0 8.114 3.64 8.114 8.114 0 4.474-3.64 8.114-8.114 8.114z"/></svg>
       +54 9 11 3920-8108
     </a>
-    <a class="contact-item" href="https://www.instagram.com/somos.ummana/" target="_blank" rel="noopener">
+    <a class="contact-item contact-instagram" href="https://www.instagram.com/somos.ummana/" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
       somos.ummana
     </a>
-    <a class="contact-item" href="mailto:info@ummana.ar">
+    <a class="contact-item contact-mail" href="mailto:info@ummana.ar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
       info@ummana.ar
     </a>
@@ -862,12 +875,12 @@
   const areaData = {
     ginecologia: {
       title: "Ginecología",
-      intro: "Acompañamos cada etapa de la vida con una mirada funcional, estética y regenerativa. Abordamos la ginecología desde una perspectiva integradora y personalizada, entendiendo que la salud ginecológica está conectada con todos los sistemas del cuerpo y factores del entorno. Ofrecemos atención personalizada y de calidad, con un enfoque integral que combina prevención, diagnóstico, tratamiento y seguimiento.",
+      intro: "Acompañamos cada etapa de la vida con una mirada funcional, estética y regenerativa. <strong>Abordamos la ginecología desde una perspectiva integradora y personalizada</strong>, entendiendo que la salud ginecológica está conectada con todos los sistemas del cuerpo y factores del entorno. Ofrecemos <strong>atención personalizada y de calidad</strong>, con un enfoque integral que combina prevención, diagnóstico, tratamiento y seguimiento.",
       professionals: [
         {
           photo: "images/fotogaby.png",
           name: "Dra. María Gabriela Baslini",
-          bio: "Médica egresada de la UBA, especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida. Hace 23 años acompaña a mujeres en cada etapa de su vida, desarrollando una mirada integral que contempla no solo los síntomas, sino también la historia de cada mujer, su cuerpo, su contexto y sus emociones. Su formación y experiencia se centran en comprender la salud desde una perspectiva funcional y regenerativa."
+          bio: "Médica egresada de la UBA, <strong>especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida</strong>. Hace 23 años acompaña a mujeres en cada etapa de su vida, desarrollando una mirada integral que contempla no solo los síntomas, sino también la historia de cada mujer, su cuerpo, su contexto y sus emociones. Su formación y experiencia se centran en <strong>comprender la salud desde una perspectiva funcional y regenerativa</strong>."
         }
       ],
       treatments: [
@@ -881,22 +894,22 @@
     },
     "medicina-funcional": {
       title: "Medicina Funcional",
-      intro: "Cuidamos tu salud desde la raíz. Exploramos tu historial de salud, hábitos y objetivos para establecer un plan bioindividualizado. Analizamos antecedentes y profundizamos en los orígenes de tus dolencias, estableciendo metas claras y sostenibles para mejorar tu estilo de vida, y luego ajustamos el plan inicial según tus resultados y evolución, adaptándonos a tus necesidades para lograr resultados duraderos.",
+      intro: "<strong>Cuidamos tu salud desde la raíz</strong>. Exploramos tu historial de salud, hábitos y objetivos para establecer un plan bioindividualizado. Analizamos antecedentes y profundizamos en los orígenes de tus dolencias, <strong>estableciendo metas claras y sostenibles</strong> para mejorar tu estilo de vida, y luego ajustamos el plan inicial según tus resultados y evolución, adaptándonos a tus necesidades para lograr <strong>resultados duraderos</strong>.",
       professionals: [
         {
           photo: "images/fotoviquiprueba.png",
           name: "Dra. María Victoria Barbieri",
-          bio: "Médica egresada de la Universidad de Buenos Aires, especialista en Dermatología Integrativa, Medicina Estética y Reparadora y Medicina Funcional. Su mirada parte de entender la salud como un equilibrio entre las distintas dimensiones de la persona, integrando cuerpo, mente, hábitos y contexto. Su abordaje busca ir más allá del síntoma puntual para comprender qué hay detrás de cada manifestación y acompañar procesos de salud de manera personalizada, consciente e integral."
+          bio: "Médica egresada de la Universidad de Buenos Aires, <strong>especialista en Dermatología Integrativa, Medicina Estética y Reparadora y Medicina Funcional</strong>. Su mirada parte de entender la salud como un equilibrio entre las distintas dimensiones de la persona, integrando cuerpo, mente, hábitos y contexto. Su abordaje busca ir más allá del síntoma puntual para comprender qué hay detrás de cada manifestación y <strong>acompañar procesos de salud de manera personalizada, consciente e integral</strong>."
         },
         {
           photo: "images/fotogabyprueba.png",
           name: "Dra. María Gabriela Baslini",
-          bio: "Médica egresada de la UBA, especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida. Hace 23 años acompaña a mujeres en cada etapa de su vida, desarrollando una mirada integral que contempla no solo los síntomas, sino también la historia de cada mujer, su cuerpo, su contexto y sus emociones. Su formación y experiencia se centran en comprender la salud desde una perspectiva funcional y regenerativa."
+          bio: "Médica egresada de la UBA, <strong>especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida</strong>. Hace 23 años acompaña a mujeres en cada etapa de su vida, desarrollando una mirada integral que contempla no solo los síntomas, sino también la historia de cada mujer, su cuerpo, su contexto y sus emociones. Su formación y experiencia se centran en <strong>comprender la salud desde una perspectiva funcional y regenerativa</strong>."
         },
         {
           photo: "images/fotoceciprueba.png",
           name: "Dra. Cecilia Rynkiewicz",
-          bio: "Médica especialista en Medicina General y Familiar, formada en Medicina Funcional y Ortomolecular. Su mirada integra la medicina convencional con la nutrición, los hábitos y el estilo de vida, buscando comprender a cada persona de manera integral y no solamente a partir de un síntoma. Su experiencia en el abordaje del dolor crónico, las enfermedades de larga evolución y los cuidados paliativos se complementa con una mirada funcional que busca identificar desequilibrios y trabajar sobre sus causas."
+          bio: "Médica <strong>especialista en Medicina General y Familiar, formada en Medicina Funcional y Ortomolecular</strong>. Su mirada integra la medicina convencional con la nutrición, los hábitos y el estilo de vida, buscando comprender a cada persona de manera integral y no solamente a partir de un síntoma. Su experiencia en el abordaje del dolor crónico, las enfermedades de larga evolución y los cuidados paliativos se complementa con una <strong>mirada funcional que busca identificar desequilibrios y trabajar sobre sus causas</strong>."
         }
       ],
       treatments: [
@@ -926,13 +939,14 @@
   let currentArea = null;
   let currentIndex = 0;
   let autoTimer = null;
+  let lockedScrollY = 0;
 
   function renderProfessional(){
     const p = currentArea.professionals[currentIndex];
     modalPhoto.src = p.photo;
     modalPhoto.alt = p.name;
     modalName.textContent = p.name;
-    modalBio.textContent = p.bio;
+    modalBio.innerHTML = p.bio;
   }
 
   /* Cambia de profesional con una transición de deslizamiento + fundido.
@@ -970,7 +984,7 @@
     if (currentArea.professionals.length > 1){
       autoTimer = setInterval(() => {
         changeProfessional(1);
-      }, 10000);
+      }, 15000);
     }
   }
 
@@ -981,7 +995,7 @@
     currentIndex = 0;
 
     modalEyebrow.textContent = data.title;
-    modalIntro.textContent = data.intro;
+    modalIntro.innerHTML = data.intro;
     modalBioLabel.textContent = data.professionals.length > 1 ? "Profesionales a cargo" : "Profesional a cargo";
     modalPhoto.removeAttribute('src'); // evita ver la foto del área anterior mientras carga la nueva
     renderProfessional();
@@ -995,6 +1009,7 @@
     marqueeTrack.innerHTML = chipsHTML + chipsHTML; // duplicado para loop continuo
 
     modal.classList.add('open');
+    lockedScrollY = window.scrollY;
     startAutoAdvance();
   }
 
@@ -1022,6 +1037,14 @@
   }
   document.addEventListener('wheel', blockBackgroundScroll, { passive: false });
   document.addEventListener('touchmove', blockBackgroundScroll, { passive: false });
+
+  // Red de seguridad extra: si por trackpad/inercia igual se corre el scroll,
+  // lo devuelve a la posición exacta en la que estaba al abrir el modal.
+  window.addEventListener('scroll', () => {
+    if (modal.classList.contains('open')){
+      window.scrollTo(0, lockedScrollY);
+    }
+  });
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
