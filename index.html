@@ -848,16 +848,17 @@
       <div class="dropdown">
         <div class="dropdown-inner">
           <a href="#" data-area="medicina-funcional">Medicina Funcional</a>
+          <a href="#" data-area="dermatologia">Dermatología Clínica y Estética</a>
           <a href="#" data-area="sueroterapia">Sueroterapia</a>
           <a href="#" data-area="ginecologia">Ginecología</a>
           <a href="#" data-area="urologia">Urología</a>
           <a href="#" data-area="sueno-descanso">Sueño y descanso</a>
-          <a href="#">Otorrinolaringología</a>
-          <a href="#">Gastroenterología</a>
-          <a href="#">Medicina del dolor</a>
-          <a href="#">Nutrición</a>
-          <a href="#">Kinesiología suelo pélvico</a>
-          <a href="#">Psicoterapias</a>
+          <a href="#" data-area="otorrinolaringologia">Otorrinolaringología</a>
+          <a href="#" data-area="gastroenterologia">Gastroenterología</a>
+          <a href="#" data-area="medicina-del-dolor">Medicina del dolor</a>
+          <a href="#" data-area="nutricion">Nutrición</a>
+          <a href="#" data-area="kinesiologia-suelo-pelvico">Kinesiología suelo pélvico</a>
+          <a href="#" data-area="psicoterapias">Psicoterapias</a>
         </div>
       </div>
     </div>
@@ -979,7 +980,7 @@
       <div class="modal-professional" id="modalProfessional">
         <div class="modal-photo-wrap">
           <img id="modalPhoto" src="" alt="">
-          <div class="photo-placeholder" id="modalPhotoPlaceholder">SIN FOTO</div>
+          <div class="photo-placeholder" id="modalPhotoPlaceholder">FOTO PROFESIONAL</div>
         </div>
         <div class="modal-bio">
           <span class="modal-bio-label" id="modalBioLabel">Profesional a cargo</span>
@@ -1309,6 +1310,105 @@
         "Favorece la circulación y la energía vital",
         "Desarrolla el enfoque y la concentración"
       ]
+    },
+    dermatologia: {
+      title: "Dermatología Clínica y Estética",
+      intro: "Cuidamos la piel desde una mirada clínica, estética y funcional, entendiendo que su salud también está relacionada con los hábitos, la alimentación y el bienestar general. Abordamos patologías como acné, vitiligo y psoriasis, junto con prevención y diagnóstico dermatológico. Integramos tratamientos estéticos como láser CO₂, toxina botulínica, radiofrecuencia, mesoterapia, peelings y limpieza facial, siempre de manera personalizada.",
+      professionals: [
+        {
+          photo: "images/viqui.webp",
+          name: "Dra. María Victoria Barbieri",
+          bio: "<strong>Médica egresada de la Universidad de Buenos Aires, especialista en Dermatología Integrativa, Medicina Estética y Reparadora y Medicina Funcional</strong>. Su mirada parte de entender la salud como un equilibrio entre las distintas dimensiones de la persona, integrando cuerpo, mente, hábitos y contexto. Su abordaje busca ir más allá del síntoma puntual para comprender qué hay detrás de cada manifestación y acompañar procesos de salud de manera personalizada, consciente e integral."
+        },
+        {
+          photo: null,
+          name: "Lic. Florencia Torres",
+          bio: "Profesional especializada en el cuidado estético de la piel, con formación en cosmetología facial y corporal. Su trabajo parte de una evaluación personalizada para identificar las necesidades de cada piel y seleccionar el tratamiento más adecuado. Su práctica incluye limpieza facial, dermaplaning, peelings, hidratación, tratamientos para acné, rosácea y piel sensible, y microneedling, acompañando cada proceso con recomendaciones de cuidado domiciliario."
+        }
+      ],
+      treatments: ["Tratamientos - Tratamientos"]
+    },
+    otorrinolaringologia: {
+      title: "Otorrinolaringología",
+      intro: "Abordamos la salud de oídos, nariz y garganta desde una mirada integral, combinando la otorrinolaringología convencional con prevención, hábitos saludables y estrategias funcionales. Atendemos a niños y adultos, tratando patologías respiratorias, alergias, rinitis, sinusitis y ronquidos. Contamos con rinofibrolaringoscopia, evaluación del sueño y tratamientos clínicos y quirúrgicos personalizados.",
+      professionals: [
+        {
+          photo: "images/lureal.webp",
+          name: "Dra. Luciana Real",
+          bio: "Médica especialista en Otorrinolaringología, con más de 20 años de experiencia en el abordaje de patologías respiratorias y del sueño. Se especializó en Medicina del Sueño y amplió su formación en Medicina Funcional e Integrativa y Longevidad Saludable. Su enfoque combina la precisión de la medicina convencional con una mirada integral, orientada a comprender las causas y mejorar la salud respiratoria, el descanso y el bienestar."
+        }
+      ],
+      treatments: ["Tratamientos - Tratamientos"]
+    },
+    gastroenterologia: {
+      title: "Gastroenterología",
+      intro: "Abordamos la salud digestiva y hepática desde una mirada integral, basada en evidencia científica y con un enfoque preventivo. Combinamos diagnóstico y tratamiento de enfermedades digestivas y hepáticas con herramientas de Medicina del Estilo de Vida, contemplando alimentación, descanso, movimiento y manejo del estrés. También contamos con estudios específicos, como endoscopías, ecografías y test de aire espirado.",
+      professionals: [
+        {
+          photo: null,
+          name: "Dra. Lucía Campos",
+          bio: "FALTA INFO"
+        }
+      ],
+      treatments: ["Tratamientos - Tratamientos"]
+    },
+    "medicina-del-dolor": {
+      title: "Medicina del Dolor",
+      intro: "Acompañamos el dolor crónico y agudo desde una mirada integral, contemplando las dimensiones física, emocional y mental de cada persona. Diseñamos tratamientos personalizados para aliviar el dolor y mejorar la calidad de vida, abordando fibromialgia, dolor musculoesquelético, neuropático, oncológico y postquirúrgico. También ofrecemos cuidados paliativos y terapia neural, con seguimiento y acompañamiento cercano.",
+      professionals: [
+        {
+          photo: "images/ceci.webp",
+          name: "Dra. Cecilia Rynkiewicz",
+          bio: "<strong>Médica especialista en Medicina General y Familiar, formada en Medicina Funcional y Ortomolecular</strong>. Su mirada integra la medicina convencional con la nutrición, los hábitos y el estilo de vida, buscando comprender a cada persona de manera integral y no solamente a partir de un síntoma. Su experiencia en el abordaje del dolor crónico, las enfermedades de larga evolución y los cuidados paliativos se complementa con una mirada funcional que busca identificar desequilibrios y trabajar sobre sus causas."
+        }
+      ],
+      treatments: ["Tratamientos - Tratamientos"]
+    },
+    nutricion: {
+      title: "Nutrición",
+      intro: "Transformamos la alimentación desde un enfoque personalizado que combina ciencia, hábitos y estilo de vida. Partimos de la historia de salud, alimentación y objetivos de cada persona para diseñar estrategias adaptadas, que pueden integrar alimentos, suplementos y cambios cotidianos. Trabajamos sobre energía, digestión, metabolismo, función intestinal y peso saludable, con seguimiento y ajustes para construir cambios sostenibles.",
+      professionals: [
+        {
+          photo: null,
+          name: "Lic. Virna Calabró",
+          bio: "Licenciada en Nutrición, con experiencia en el acompañamiento de personas que buscan mejorar su alimentación y construir hábitos saludables de manera práctica y sostenible. Su mirada contempla las necesidades individuales y el contexto cotidiano, buscando que la alimentación pueda integrarse a la vida real sin depender de reglas rígidas. Su experiencia también incluye el abordaje del sobrepeso y la educación alimentaria para favorecer cambios posibles y duraderos."
+        }
+      ],
+      treatments: ["Tratamientos - Tratamientos"]
+    },
+    "kinesiologia-suelo-pelvico": {
+      title: "Kinesiología en Suelo Pélvico",
+      intro: "Abordamos el suelo pélvico y la postura de manera integral, con sesiones individuales y personalizadas. Comenzamos con una evaluación detallada de la musculatura y la postura para comprender cada caso y definir el tratamiento adecuado. Combinamos terapia manual, ejercicios específicos y, cuando es necesario, herramientas como biofeedback y radiofrecuencia para mejorar la función, aliviar molestias y acompañar la recuperación.",
+      professionals: [
+        {
+          photo: null,
+          name: "Lic. Mariana Inzeo",
+          bio: "Licenciada en Kinesiología y Fisiatría egresada de la Universidad de Buenos Aires, con formación en Reeducación Postural Global y especialización en distintas herramientas de abordaje corporal. Cuenta con formación específica en lesiones articulares, acupuntura y tratamiento miofascial en pelviperineología. Su enfoque integra el movimiento, la postura y el trabajo manual para acompañar de manera personalizada la recuperación y el bienestar corporal."
+        }
+      ],
+      treatments: ["Tratamientos - Tratamientos"]
+    },
+    psicoterapias: {
+      title: "Psicoterapias",
+      professionals: [
+        {
+          photo: null,
+          name: "Lic. Eugenia Barbieri",
+          bio: "Licenciada en Psicología, con una mirada orientada al acompañamiento de procesos de autoconocimiento y desarrollo personal. Su práctica dentro del psicoanálisis propone un espacio de escucha y exploración para comprender emociones, vínculos y patrones que atraviesan la propia historia. A través de un abordaje profundo y respetuoso, acompaña a cada persona en la construcción de nuevas formas de comprenderse, relacionarse y transitar sus experiencias."
+        },
+        {
+          photo: null,
+          name: "Lic. Cecilia Castro",
+          bio: "Licenciada en Psicología, orientada al acompañamiento emocional desde el enfoque de la Terapia Cognitivo-Conductual. Su trabajo integra herramientas terapéuticas y psicoeducativas para comprender la relación entre pensamientos, emociones y conductas, favoreciendo recursos más saludables para afrontar distintas situaciones. Acompaña especialmente a adolescentes y adultos, brindando un espacio de escucha, reflexión y construcción de estrategias para promover mayor bienestar emocional."
+        },
+        {
+          photo: null,
+          name: "Lic. Mariela Herrero",
+          bio: "Licenciada en Psicología, especialista en Mindfulness y Coach Ontológico profesional, con más de 15 años de práctica en atención plena. Su trabajo integra herramientas de mindfulness, aprendizaje ontológico y psicología budista para acompañar procesos de transformación y desarrollo personal. Facilita espacios individuales y grupales orientados a cultivar la atención plena, gestionar las emociones y desarrollar una relación más consciente con las experiencias cotidianas."
+        }
+      ],
+      intro: "Acompañamos tu salud mental desde la escucha, el respeto y la contención, ofreciendo diferentes enfoques terapéuticos según las necesidades de cada persona. Trabajamos con psicoanálisis y terapia cognitivo-conductual, abordando emociones, vínculos, pensamientos y conductas. Contamos con profesionales para niñez, adolescencia y adultez, con opciones de atención presencial y virtual.",
+      treatments: ["Tratamientos - Tratamientos"]
     }
   };
 
