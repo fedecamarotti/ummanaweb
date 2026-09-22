@@ -447,6 +447,149 @@
     flex-shrink:0;
   }
 
+  /* ---------- MENÚ MOBILE ---------- */
+
+  .hamburger{
+    display:none;
+    position:relative;
+    width:26px;
+    height:18px;
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+
+  .hamburger span{
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    border-radius:2px;
+    background:var(--paper);
+    transition:transform .35s ease, opacity .25s ease, top .35s ease, background .3s ease;
+  }
+
+  .hamburger span:nth-child(1){top:0;}
+  .hamburger span:nth-child(2){top:8px;}
+  .hamburger span:nth-child(3){top:16px;}
+
+  header.scrolled .hamburger span{background:var(--ink);}
+
+  .hamburger.open span:nth-child(1){top:8px; transform:rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){top:8px; transform:rotate(-45deg);}
+
+  header.menu-open{z-index:340;}
+
+  .mobile-nav{
+    position:fixed;
+    inset:0;
+    z-index:320;
+    background:rgba(255,255,255,0.93);
+    backdrop-filter:blur(26px);
+    -webkit-backdrop-filter:blur(26px);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity .4s ease, visibility .4s ease;
+    overflow-y:auto;
+    padding:110px 32px 60px;
+  }
+
+  .mobile-nav.open{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+
+  .mobile-nav-inner{
+    display:flex;
+    flex-direction:column;
+    max-width:420px;
+    margin:0 auto;
+  }
+
+  .mobile-nav-inner > *{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+
+  .mobile-nav.open .mobile-nav-inner > *{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .mobile-nav-inner > *:nth-child(1){transition-delay:.05s;}
+  .mobile-nav-inner > *:nth-child(2){transition-delay:.1s;}
+  .mobile-nav-inner > *:nth-child(3){transition-delay:.15s;}
+  .mobile-nav-inner > *:nth-child(4){transition-delay:.2s;}
+  .mobile-nav-inner > *:nth-child(5){transition-delay:.25s;}
+
+  .mobile-accordion{border-bottom:1px solid var(--hairline);}
+
+  .mobile-accordion-toggle{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:none;
+    border:none;
+    padding:18px 0;
+    font-size:14.5px;
+    letter-spacing:0.1em;
+    font-weight:500;
+    color:var(--ink);
+    cursor:pointer;
+  }
+
+  .mobile-accordion-toggle .chevron{
+    width:14px;
+    height:14px;
+    color:var(--ink-soft);
+    transition:transform .35s ease;
+    flex-shrink:0;
+  }
+
+  .mobile-accordion.open .chevron{transform:rotate(180deg);}
+
+  .mobile-accordion-panel{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .45s ease;
+  }
+
+  .mobile-accordion.open .mobile-accordion-panel{max-height:700px;}
+
+  .mobile-accordion-panel a{
+    display:block;
+    padding:12px 0 12px 6px;
+    font-size:13px;
+    color:var(--ink-soft);
+    border-top:1px solid rgba(43,43,40,0.06);
+  }
+
+  .mobile-direct-link{
+    display:block;
+    padding:18px 0;
+    font-size:14.5px;
+    letter-spacing:0.1em;
+    font-weight:500;
+    color:var(--ink);
+    border-bottom:1px solid var(--hairline);
+  }
+
+  .mobile-write{
+    margin-top:24px;
+    padding:14px 0;
+    text-align:center;
+    border:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    border-radius:2px;
+  }
+
   /* ---------- WHATSAPP FLOAT ---------- */
 
   .whatsapp-float{
@@ -832,7 +975,8 @@
   }
 
   @media (max-width:680px){
-    nav{display:none;} /* nav simplificado: agregar menú hamburguesa en próxima iteración */
+    nav{display:none;}
+    .hamburger{display:block;}
     .logo-img{height:28px;}
     .contact-row{gap:12px 22px;}
   }
@@ -894,7 +1038,64 @@
       <span class="nav-link">ESCRIBINOS</span>
     </div>
   </nav>
+
+  <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-inner">
+    <div class="mobile-accordion">
+      <button class="mobile-accordion-toggle">
+        MEDICINA
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-accordion-panel">
+        <a href="#" data-area="medicina-funcional">Medicina Funcional</a>
+        <a href="#" data-area="dermatologia">Dermatología Clínica y Estética</a>
+        <a href="#" data-area="sueroterapia">Sueroterapia</a>
+        <a href="#" data-area="ginecologia">Ginecología</a>
+        <a href="#" data-area="urologia">Urología</a>
+        <a href="#" data-area="sueno-descanso">Sueño y descanso</a>
+        <a href="#" data-area="otorrinolaringologia">Otorrinolaringología</a>
+        <a href="#" data-area="gastroenterologia">Gastroenterología</a>
+        <a href="#" data-area="medicina-del-dolor">Medicina del dolor</a>
+        <a href="#" data-area="nutricion">Nutrición</a>
+        <a href="#" data-area="kinesiologia-suelo-pelvico">Kinesiología suelo pélvico</a>
+        <a href="#" data-area="psicoterapias">Psicoterapias</a>
+      </div>
+    </div>
+
+    <div class="mobile-accordion">
+      <button class="mobile-accordion-toggle">
+        BIENESTAR
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-accordion-panel">
+        <a href="#" data-area="yoga">Yoga</a>
+        <a href="#" data-area="meditacion">Meditación</a>
+        <a href="#" data-area="tai-chi">Tai Chi Chuan</a>
+        <a href="#">Chi Kung</a>
+      </div>
+    </div>
+
+    <div class="mobile-accordion">
+      <button class="mobile-accordion-toggle">
+        CURSOS &amp; TALLERES
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-accordion-panel">
+        <a href="#">Cerámica escultórica</a>
+        <a href="#">Encuadernación artesanal</a>
+        <a href="#">Puntillismo decorativo</a>
+      </div>
+    </div>
+
+    <a class="mobile-direct-link" href="#quienes-somos" id="mobileConocenos">CONOCENOS</a>
+    <a class="mobile-direct-link mobile-write" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">ESCRIBINOS</a>
+  </div>
+</div>
 
 <section class="hero">
   <img src="images/inicio.webp" alt="" class="hero-media" id="heroMedia">
@@ -1011,8 +1212,47 @@
   const header = document.getElementById('siteHeader');
   const whatsappFloat = document.getElementById('whatsappFloat');
   window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 40);
+    if (!mobileNav.classList.contains('open')){
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }
   });
+
+  /* ---------- MENÚ MOBILE ---------- */
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileNav = document.getElementById('mobileNav');
+
+  function openMobileNav(){
+    mobileNav.classList.add('open');
+    hamburgerBtn.classList.add('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+    header.classList.add('scrolled', 'menu-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileNav(){
+    mobileNav.classList.remove('open');
+    hamburgerBtn.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    header.classList.remove('menu-open');
+    if (window.scrollY <= 40) header.classList.remove('scrolled');
+    document.body.style.overflow = '';
+  }
+
+  hamburgerBtn.addEventListener('click', () => {
+    if (mobileNav.classList.contains('open')) closeMobileNav();
+    else openMobileNav();
+  });
+
+  document.querySelectorAll('.mobile-accordion-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const acc = btn.closest('.mobile-accordion');
+      const wasOpen = acc.classList.contains('open');
+      document.querySelectorAll('.mobile-accordion.open').forEach(el => el.classList.remove('open'));
+      if (!wasOpen) acc.classList.add('open');
+    });
+  });
+
+  document.getElementById('mobileConocenos').addEventListener('click', closeMobileNav);
 
   /* ---------- REVEAL "CONOCENOS" AL ENTRAR EN PANTALLA ---------- */
   const introSection = document.getElementById('quienes-somos');
@@ -1525,9 +1765,10 @@
     clearInterval(autoTimer);
   }
 
-  document.querySelectorAll('.dropdown a[data-area]').forEach(link => {
+  document.querySelectorAll('[data-area]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
+      closeMobileNav();
       openModal(link.dataset.area);
     });
   });
