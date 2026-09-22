@@ -931,8 +931,8 @@
 
   .modal-cta-line{
     font-size:13.5px;
+    line-height:1.9;
     color:var(--ink-soft);
-    white-space:nowrap;
     opacity:0;
     transform:translateY(10px);
     transition:opacity .55s ease .5s, transform .55s ease .5s;
@@ -951,7 +951,7 @@
     color:var(--paper);
     background:var(--ink);
     padding:7px 16px;
-    margin-left:4px;
+    margin-top:6px;
     border-radius:20px;
     transition:background .25s ease;
   }
@@ -971,7 +971,6 @@
     .contact-row{position:static;left:auto;right:auto;bottom:auto;margin-top:40px;flex-wrap:wrap;gap:14px 30px;}
     .modal-professional{flex-direction:column;}
     .modal-photo-wrap{flex-basis:auto;width:100%;}
-    .modal-cta-line{white-space:normal;}
   }
 
   @media (max-width:680px){
@@ -1199,7 +1198,7 @@
       <div class="modal-cta">
         <div class="modal-cta-accent"></div>
         <p class="modal-cta-line">
-          <span id="modalCtaText">Si querés más información o sacar un turno</span>
+          <span id="modalCtaText">Si querés más información<br>o sacar un turno</span><br>
           <a class="btn-write" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">escribinos</a>
         </p>
       </div>
@@ -1487,7 +1486,7 @@
       title: "Yoga",
       intro: "<strong>Un espacio para conectar con tu cuerpo, tu respiración y tu mente, a tu propio ritmo</strong>. A través de clases presenciales y grupos reducidos, el yoga combina movimiento, fuerza, flexibilidad y respiración para favorecer el equilibrio físico y mental. Las prácticas ayudan a reducir el estrés, mejorar la concentración y cultivar mayor calma y bienestar, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa. <strong>Contamos con distintos estilos:</strong>",
       showBioLabel: false,
-      ctaText: "Si querés reservar tu <strong>clase de prueba sin cargo</strong>",
+      ctaText: "Si querés reservar tu<br><strong>clase de prueba sin cargo</strong>",
       professionals: [
         {
           photo: "images/ashtanga.webp",
@@ -1517,6 +1516,7 @@
       title: "Meditación",
       intro: "<strong>Un espacio para bajar el ritmo, aquietar la mente y volver a conectar con vos mismo/a.</strong> La meditación propone momentos de pausa, respiración y atención plena, sin exigencias ni apuro, para cultivar mayor presencia y calma en el día a día. Los encuentros son presenciales, en grupos reducidos y en un ambiente cálido y de confianza, con prácticas de una hora pensadas para acompañarte a encontrar equilibrio y bienestar.",
       showBioLabel: false,
+      ctaText: "Si querés reservar tu<br><strong>clase de prueba sin cargo</strong>",
       professionals: [
         {
           photo: "images/meditacion.webp",
@@ -1536,6 +1536,7 @@
       title: "Tai Chi Chuan",
       intro: "<strong>Práctica ancestral de origen marcial que combina movimientos suaves y fluidos, respiración consciente y concentración.</strong> El Tai Chi Chuan invita a conectar cuerpo, mente y respiración a través de secuencias realizadas con calma y presencia. Más que una práctica física, es un camino hacia el equilibrio y el bienestar integral, que favorece la movilidad, la coordinación, la relajación y una mayor conciencia corporal.",
       showBioLabel: false,
+      ctaText: "Si querés reservar tu<br><strong>clase de prueba sin cargo</strong>",
       professionals: [
         {
           photo: "images/taichi.webp",
@@ -1743,7 +1744,7 @@
       modalBioLabel.style.display = '';
       modalBioLabel.textContent = data.professionals.length > 1 ? "Profesionales a cargo" : "Profesional a cargo";
     }
-    modalCtaText.innerHTML = data.ctaText || "Si querés más información o sacar un turno";
+    modalCtaText.innerHTML = data.ctaText || "Si querés más información<br>o sacar un turno";
     modalPhoto.removeAttribute('src'); // evita ver la foto del área anterior mientras carga la nueva
     renderProfessional();
     modalProfessionalRow.classList.toggle('has-multiple', data.professionals.length > 1);
