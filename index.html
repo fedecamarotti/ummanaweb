@@ -836,6 +836,30 @@
 
   .modal-professional-row.has-multiple .carousel-arrow{display:flex;}
 
+  .modal-dots{
+    display:none;
+    justify-content:center;
+    gap:0;
+    margin:-6px 0;
+  }
+
+  .modal-dots.show{display:flex;}
+
+  .modal-dots button{
+    width:20px;
+    height:20px;
+    padding:6px;
+    background:rgba(154,153,133,0.4);
+    background-clip:content-box;
+    border-radius:50%;
+    transition:background-color .25s ease, transform .25s ease;
+  }
+
+  .modal-dots button.active{
+    background-color:var(--sand-deep);
+    transform:scale(1.25);
+  }
+
   .modal-bio-label{
     font-size:10.5px;
     letter-spacing:0.18em;
@@ -1191,6 +1215,8 @@
         </div>
       </div>
     </div>
+
+    <div class="modal-dots" id="modalDots"></div>
 
     <div class="modal-treatments">
       <div class="marquee-wrap">
@@ -1701,6 +1727,7 @@
   const modalName = document.getElementById('modalName');
   const modalBio = document.getElementById('modalBio');
   const modalCtaText = document.getElementById('modalCtaText');
+  const modalDots = document.getElementById('modalDots');
   const marqueeTrack = document.getElementById('marqueeTrack');
   const prevBtn = document.getElementById('carouselPrev');
   const nextBtn = document.getElementById('carouselNext');
@@ -1725,11 +1752,34 @@
     }
     modalName.textContent = p.name;
     modalBio.innerHTML = p.bio;
+    paintDots();
   }
+
+  /* Puntos indicadores: se muestran solo cuando el área tiene más de un profesional */
+  function buildDots(){
+    const n = currentArea.professionals.length;
+    modalDots.classList.toggle('show', n > 1);
+    modalDots.innerHTML = n > 1
+      ? currentArea.professionals.map((_, i) => `<button aria-label="Ver profesional ${i + 1}"></button>`).join('')
+      : '';
+  }
+
+  function paintDots(){
+    modalDots.querySelectorAll('button').forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+  }
+
+  modalDots.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    const i = [...modalDots.children].indexOf(btn);
+    if (i === currentIndex) return;
+    changeProfessional(i > currentIndex ? 1 : -1, i);
+    startAutoAdvance();
+  });
 
   /* Cambia de profesional con una transición de deslizamiento + fundido.
      direction: 1 = siguiente (entra desde la derecha), -1 = anterior (entra desde la izquierda) */
-  function changeProfessional(direction){
+  function changeProfessional(direction, target){
     if (!currentArea || currentArea.professionals.length <= 1) return;
 
     const leaveClass = direction === 1 ? 'offset-left' : 'offset-right';
@@ -1738,7 +1788,7 @@
     modalProfessional.classList.add(leaveClass);
 
     setTimeout(() => {
-      currentIndex = (currentIndex + direction + currentArea.professionals.length) % currentArea.professionals.length;
+      currentIndex = (target !== undefined) ? target : (currentIndex + direction + currentArea.professionals.length) % currentArea.professionals.length;
       renderProfessional();
 
       modalProfessional.classList.add('no-transition');
@@ -1782,6 +1832,7 @@
     }
     modalCtaText.innerHTML = data.ctaText || "Si querés más información<br>o sacar un turno";
     modalPhoto.removeAttribute('src'); // evita ver la foto del área anterior mientras carga la nueva
+    buildDots();
     renderProfessional();
     modalProfessionalRow.classList.toggle('has-multiple', data.professionals.length > 1);
 

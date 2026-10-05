@@ -184,7 +184,7 @@
 
   .band{
     width:100%;
-    padding:26px 24px 80px;
+    padding:26px 0 0;
     scroll-margin-top:61px;
   }
 
@@ -192,8 +192,9 @@
   .band.white{background:var(--paper);}
 
   .band-inner{
-    max-width:1080px;
+    max-width:1128px;
     margin:0 auto;
+    padding:0 24px;
   }
 
   .band-title{
@@ -300,7 +301,7 @@
     color:var(--ink-soft);
   }
 
-  .band-foot{margin-top:60px;}
+  .band-foot{margin-top:60px;margin-bottom:44px;}
 
   .marquee-wrap{
     overflow:hidden;
@@ -335,44 +336,39 @@
     white-space:nowrap;
   }
 
-  .band-cta{
-    text-align:center;
-    padding-top:26px;
+  /* franja oscura del llamado a la acción */
+  .cta-strip{
+    background:#262624;
+    padding:22px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
   }
 
-  .band-cta-accent{
-    width:34px;
-    height:2px;
-    background:var(--sand);
-    margin:0 auto 14px;
+  .cta-strip-text{
+    font-size:14px;
+    line-height:1.5;
+    letter-spacing:0.01em;
+    color:#fff;
   }
 
-  .band-cta-line{
-    font-size:13.5px;
-    line-height:1.9;
-    color:var(--ink-soft);
-  }
+  .cta-strip-text strong{font-weight:600;}
 
-  .btn-write{
+  .btn-strip{
     display:inline-block;
     font-size:12px;
     letter-spacing:0.08em;
-    font-weight:500;
-    color:var(--paper);
-    background:var(--ink);
-    padding:7px 16px;
-    margin-top:6px;
+    font-weight:600;
+    color:#262624;
+    background:#fff;
+    padding:8px 22px;
     border-radius:20px;
     transition:background .25s ease;
   }
 
-  .btn-write:hover{background:var(--sand-deep);}
-
-  /* En la versión web, el texto y el botón van en una sola línea */
-  @media (min-width:681px){
-    .cta-br{display:none;}
-    .band-cta-line .btn-write{margin-top:0;margin-left:10px;}
-  }
+  .btn-strip:hover{background:var(--cream);}
 
   /* ---------- WHATSAPP FLOAT ---------- */
 
@@ -447,7 +443,8 @@
 
   @media (max-width:680px){
     /* espaciado pensado para el celular */
-    .band{scroll-margin-top:58px;padding:21px 20px 44px;}
+    .band{scroll-margin-top:58px;padding:21px 0 0;}
+    .band-inner{padding:0 20px;}
     .band-title{font-size:28px;padding-bottom:12px;margin-bottom:14px;}
     .band-intro{font-size:14px;line-height:1.7;}
     .styles{margin-top:26px;}
@@ -461,10 +458,9 @@
     .style-text p{order:3;margin-top:16px;font-size:14px;line-height:1.7;}
 
     .marquee-wrap{padding:12px 0;}
-    .band-cta{padding-top:20px;}
-    .band-cta-accent{margin-bottom:12px;}
-    .band-cta-line{line-height:1.8;}
-    .band-cta-line .btn-write{font-size:13px;padding:10px 24px;margin-top:8px;}
+    .cta-strip{flex-direction:column;gap:10px;padding:16px 16px 18px;}
+    .cta-strip-text{font-size:13px;text-align:center;}
+    .btn-strip{font-size:13px;padding:9px 26px;}
 
     .whatsapp-float{width:52px;height:52px;bottom:18px;right:16px;}
     .whatsapp-float svg{width:26px;height:26px;}
@@ -489,7 +485,7 @@
     }
 
     /* la franja de beneficios queda a la distancia de una línea en blanco del instructor */
-    .band-foot{margin-top:31px;}
+    .band-foot{margin-top:31px;margin-bottom:26px;}
 
     /* estilos de Yoga: se deslizan con el dedo o con las flechas */
     .band.multi .styles{
@@ -602,7 +598,7 @@
   updateHeader();
 
   /* ---------- CONTENIDO (mismo texto que los desplegables del sitio principal) ---------- */
-  const CTA_TEXT = 'Si querés reservar tu<br class="cta-br"> <strong>clase de prueba sin cargo</strong>';
+  const CTA_TEXT = 'Si querés reservar tu <strong>clase de prueba sin cargo</strong>';
 
   const blocksData = [
     {
@@ -720,14 +716,11 @@
         <div class="styles">${rowsHTML}</div>
         <div class="band-foot">
           <div class="marquee-wrap"><div class="marquee-track">${chipsHTML}${chipsHTML}</div></div>
-          <div class="band-cta">
-            <div class="band-cta-accent"></div>
-            <p class="band-cta-line">
-              ${CTA_TEXT}<br class="cta-br">
-              <a class="btn-write cta-track" href="${waLink(data.waText)}" target="_blank" rel="noopener">escribinos</a>
-            </p>
-          </div>
         </div>
+      </div>
+      <div class="cta-strip">
+        <p class="cta-strip-text">${CTA_TEXT}</p>
+        <a class="btn-strip cta-track" href="${waLink(data.waText)}" target="_blank" rel="noopener">escribinos</a>
       </div>
     `;
     container.appendChild(section);
