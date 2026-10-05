@@ -184,8 +184,8 @@
 
   .band{
     width:100%;
-    padding:96px 24px 80px;
-    scroll-margin-top:60px;
+    padding:26px 24px 80px;
+    scroll-margin-top:62px;
   }
 
   .band.beige{background:var(--cream);}
@@ -221,7 +221,6 @@
     font-size:15px;
     line-height:1.8;
     color:var(--ink-soft);
-    max-width:860px;
   }
 
   .styles{
@@ -369,6 +368,12 @@
 
   .btn-write:hover{background:var(--sand-deep);}
 
+  /* En la versión web, el texto y el botón van en una sola línea */
+  @media (min-width:681px){
+    .cta-br{display:none;}
+    .band-cta-line .btn-write{margin-top:0;margin-left:10px;}
+  }
+
   /* ---------- WHATSAPP FLOAT ---------- */
 
   .whatsapp-float{
@@ -414,7 +419,7 @@
     header.scrolled .logo-wrap{height:26px;}
     .hero-words{bottom:112px;}
     .back-link{font-size:10.5px;padding:8px 14px 8px 11px;}
-    .band{padding:72px 20px 64px;}
+    .band{padding:22px 20px 64px;}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -499,7 +504,7 @@
   updateHeader();
 
   /* ---------- CONTENIDO (mismo texto que los desplegables del sitio principal) ---------- */
-  const CTA_TEXT = "Si querés reservar tu<br><strong>clase de prueba sin cargo</strong>";
+  const CTA_TEXT = 'Si querés reservar tu<br class="cta-br"> <strong>clase de prueba sin cargo</strong>';
 
   const blocksData = [
     {
@@ -612,7 +617,7 @@
           <div class="band-cta">
             <div class="band-cta-accent"></div>
             <p class="band-cta-line">
-              ${CTA_TEXT}<br>
+              ${CTA_TEXT}<br class="cta-br">
               <a class="btn-write cta-track" href="${waLink(data.waText)}" target="_blank" rel="noopener">escribinos</a>
             </p>
           </div>
