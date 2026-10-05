@@ -164,90 +164,68 @@
     50%{ transform:translateY(-5px); }
   }
 
-  /* ---------- BLOQUES ---------- */
+  /* ---------- BLOQUES (franjas a todo el ancho) ---------- */
 
-  .blocks{
-    background:var(--paper);
-    padding:70px 24px 90px;
+  .band{
+    width:100%;
+    padding:96px 24px 80px;
+    scroll-margin-top:60px;
+  }
+
+  .band.beige{background:var(--cream);}
+  .band.white{background:var(--paper);}
+
+  .band-inner{
+    max-width:1080px;
+    margin:0 auto;
+  }
+
+  .band-title{
+    font-size:clamp(26px, 3.2vw, 34px);
+    font-weight:500;
+    letter-spacing:0.04em;
+    color:var(--ink);
+    position:relative;
+    display:inline-block;
+    padding-bottom:14px;
+    margin-bottom:18px;
+  }
+
+  .band-title::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:44px;
+    height:2px;
+    background:var(--sand);
+  }
+
+  .band-intro{
+    font-size:15px;
+    line-height:1.8;
+    color:var(--ink-soft);
+    max-width:860px;
+  }
+
+  .styles{
     display:flex;
     flex-direction:column;
+    gap:64px;
+    margin-top:56px;
+  }
+
+  .style-row{
+    display:flex;
+    align-items:center;
     gap:56px;
   }
 
-  .block{
+  .style-row.reverse{flex-direction:row-reverse;}
+
+  .style-photo{
     position:relative;
-    width:100%;
-    max-width:980px;
-    margin:0 auto;
-    background:var(--cream);
-    border-top:3px solid var(--sand);
-    border-radius:4px;
-    padding:34px 46px 30px;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-    box-shadow:0 20px 60px rgba(43,43,40,0.08);
-    scroll-margin-top:84px;
-  }
-
-  .block-eyebrow{
-    display:block;
-    font-size:11.5px;
-    letter-spacing:0.2em;
-    font-weight:700;
-    color:var(--sand-deep);
-    margin-bottom:4px;
-  }
-
-  .block-intro{
-    font-size:14px;
-    line-height:1.7;
-    color:var(--ink-soft);
-  }
-
-  .block-divider{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin:2px 0;
-  }
-
-  .block-divider::before,
-  .block-divider::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:var(--hairline);
-  }
-
-  .block-divider span{
-    width:5px;
-    height:5px;
-    border-radius:50%;
-    background:var(--sand);
-    display:block;
-  }
-
-  .pro-row{
-    position:relative;
-    margin:0 -46px;
-    padding:0 46px;
-  }
-
-  .pro{
-    display:flex;
-    align-items:center;
-    gap:28px;
-    transition:opacity .4s ease, transform .4s ease;
-  }
-
-  .pro.no-transition{transition:none;}
-  .pro.offset-left{opacity:0;transform:translateX(-22px);}
-  .pro.offset-right{opacity:0;transform:translateX(22px);}
-
-  .pro-photo-wrap{
-    position:relative;
-    flex:0 0 340px;
+    flex:0 0 46%;
     aspect-ratio:4/3;
     border-radius:6px;
     overflow:hidden;
@@ -255,7 +233,7 @@
     box-shadow:0 14px 34px rgba(43,43,40,0.14);
   }
 
-  .pro-photo-wrap img{
+  .style-photo img{
     width:100%;
     height:100%;
     object-fit:cover;
@@ -263,12 +241,12 @@
     transition:transform .6s ease;
   }
 
-  .pro-photo-wrap:hover img{transform:scale(1.06);}
+  .style-photo:hover img{transform:scale(1.05);}
 
   .photo-placeholder{
     position:absolute;
     inset:0;
-    display:none;
+    display:flex;
     align-items:center;
     justify-content:center;
     background:#e7e6df;
@@ -278,55 +256,19 @@
     font-weight:600;
   }
 
-  .carousel-arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:26px;
-    height:26px;
-    border-radius:50%;
-    background:#e4d9c8;
-    border:1px solid rgba(154,153,133,0.4);
-    color:var(--ink-soft);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:0;
-    transition:background .2s ease, color .2s ease, border-color .2s ease;
-    animation:arrowPulse 2.6s ease-in-out infinite;
-    z-index:2;
-  }
+  .style-text{flex:1 1 auto;}
 
-  .carousel-arrow svg{width:13px;height:13px;display:block;}
-
-  .carousel-arrow:hover{
-    background:var(--ink);
-    border-color:var(--ink);
-    color:var(--paper);
-    animation:none;
-    transform:translateY(-50%) scale(1);
-  }
-
-  @keyframes arrowPulse{
-    0%, 100%{ transform:translateY(-50%) scale(1); }
-    50%{ transform:translateY(-50%) scale(1.1); }
-  }
-
-  .carousel-arrow.prev{left:12px;}
-  .carousel-arrow.next{right:12px;}
-  .pro-row.has-multiple .carousel-arrow{display:flex;}
-
-  .pro-bio h3{
-    font-size:17px;
+  .style-text h3{
+    font-size:21px;
     font-weight:700;
-    margin-bottom:4px;
     color:var(--ink);
     position:relative;
     display:inline-block;
-    padding-bottom:10px;
+    padding-bottom:12px;
+    margin-bottom:6px;
   }
 
-  .pro-bio h3::after{
+  .style-text h3::after{
     content:"";
     position:absolute;
     left:0;
@@ -336,12 +278,14 @@
     background:var(--sand);
   }
 
-  .pro-bio p{
-    margin-top:10px;
-    font-size:12.5px;
-    line-height:1.7;
+  .style-text p{
+    margin-top:12px;
+    font-size:14px;
+    line-height:1.8;
     color:var(--ink-soft);
   }
+
+  .band-foot{margin-top:60px;}
 
   .marquee-wrap{
     overflow:hidden;
@@ -369,26 +313,26 @@
     font-size:11.5px;
     letter-spacing:0.02em;
     color:var(--ink);
-    background:rgba(255,255,255,0.55);
+    background:rgba(255,255,255,0.7);
     border:1px solid rgba(43,43,40,0.14);
     padding:8px 16px;
     border-radius:20px;
     white-space:nowrap;
   }
 
-  .block-cta{
+  .band-cta{
     text-align:center;
-    padding-top:14px;
+    padding-top:26px;
   }
 
-  .block-cta-accent{
+  .band-cta-accent{
     width:34px;
     height:2px;
     background:var(--sand);
     margin:0 auto 14px;
   }
 
-  .block-cta-line{
+  .band-cta-line{
     font-size:13.5px;
     line-height:1.9;
     color:var(--ink-soft);
@@ -443,25 +387,22 @@
   @media (max-width:900px){
     header{padding:20px 24px;}
     header.scrolled{padding:14px 24px;}
-    .pro{flex-direction:column;}
-    .pro-photo-wrap{flex-basis:auto;width:100%;}
+    .style-row,
+    .style-row.reverse{flex-direction:column;gap:28px;align-items:stretch;}
+    .style-photo{flex-basis:auto;width:100%;}
+    .styles{gap:52px;}
   }
 
   @media (max-width:680px){
     .logo-img{height:28px;}
     .hero-words{bottom:112px;}
     .back-link{font-size:10.5px;padding:8px 14px 8px 11px;}
-    .blocks{padding:48px 16px 80px;gap:40px;}
-    .block{padding:28px 24px 26px;}
-    .pro-row{margin:0 -24px;padding:0 24px;}
-    .carousel-arrow.prev{left:6px;}
-    .carousel-arrow.next{right:6px;}
+    .band{padding:72px 20px 64px;}
   }
 
   @media (prefers-reduced-motion:reduce){
     .hero-word{animation:none;}
     .marquee-track{animation:none;}
-    .carousel-arrow{animation:none;}
   }
 </style>
 </head>
@@ -486,7 +427,7 @@
   </div>
 </section>
 
-<main class="blocks" id="blocks"></main>
+<main id="blocks"></main>
 
 <a class="whatsapp-float cta-track" id="whatsappFloat" data-wa-text="Hola! Quiero reservar una clase de prueba sin cargo" href="#" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.98.548 3.876 1.584 5.53L2 22l4.606-1.549A9.96 9.96 0 0 0 12.004 22C17.522 22 22 17.522 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.111a8.09 8.09 0 0 1-4.13-1.129l-.296-.176-3.088 1.038 1.05-3.014-.192-.309a8.09 8.09 0 0 1-1.24-4.317c0-4.474 3.64-8.114 8.114-8.114 4.474 0 8.114 3.64 8.114 8.114 0 4.474-3.64 8.114-8.114 8.114z"/></svg>
@@ -543,6 +484,7 @@
   const blocksData = [
     {
       id: "yoga",
+      bg: "beige",
       title: "Yoga",
       waText: "Hola! Quiero reservar una clase de prueba sin cargo de Yoga",
       intro: "<strong>Un espacio para conectar con tu cuerpo, tu respiración y tu mente, a tu propio ritmo</strong>. A través de clases presenciales y grupos reducidos, el yoga combina movimiento, fuerza, flexibilidad y respiración para favorecer el equilibrio físico y mental. Las prácticas ayudan a reducir el estrés, mejorar la concentración y cultivar mayor calma y bienestar, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa. <strong>Contamos con distintos estilos:</strong>",
@@ -573,6 +515,7 @@
     },
     {
       id: "meditacion",
+      bg: "white",
       title: "Meditación",
       waText: "Hola! Quiero reservar una clase de prueba sin cargo de Meditación",
       intro: "<strong>Un espacio para bajar el ritmo, aquietar la mente y volver a conectar con vos mismo/a.</strong> La meditación propone momentos de pausa, respiración y atención plena, sin exigencias ni apuro, para cultivar mayor presencia y calma en el día a día. Los encuentros son presenciales, en grupos reducidos y en un ambiente cálido y de confianza, con prácticas de una hora pensadas para acompañarte a encontrar equilibrio y bienestar.",
@@ -593,6 +536,7 @@
     },
     {
       id: "tai-chi",
+      bg: "beige",
       title: "Tai Chi Chuan",
       waText: "Hola! Quiero reservar una clase de prueba sin cargo de Tai Chi",
       intro: "<strong>Práctica ancestral de origen marcial que combina movimientos suaves y fluidos, respiración consciente y concentración.</strong> El Tai Chi Chuan invita a conectar cuerpo, mente y respiración a través de secuencias realizadas con calma y presencia. Más que una práctica física, es un camino hacia el equilibrio y el bienestar integral, que favorece la movilidad, la coordinación, la relajación y una mayor conciencia corporal.",
@@ -613,124 +557,50 @@
     }
   ];
 
-  const ARROW_PREV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>';
-  const ARROW_NEXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
-
-  /* ---------- ARMADO DE LOS BLOQUES ---------- */
+  /* ---------- ARMADO DE LAS FRANJAS ---------- */
   const container = document.getElementById('blocks');
 
-  blocksData.forEach(data => {
+  blocksData.forEach((data, i) => {
     const chipsHTML = data.chips.map(t => `<span class="chip">${t}</span>`).join('');
-    const multiple = data.items.length > 1;
+
+    const rowsHTML = data.items.map((p, idx) => {
+      // las franjas con varios estilos alternan el lado de la foto: izquierda, derecha, izquierda
+      const reverse = idx % 2 === 1 ? ' reverse' : '';
+      const photoHTML = p.photo
+        ? `<img src="${p.photo}" alt="${p.name}" loading="lazy">`
+        : `<div class="photo-placeholder">FOTO PROFESIONAL</div>`;
+      return `
+        <div class="style-row${reverse}">
+          <div class="style-photo">${photoHTML}</div>
+          <div class="style-text">
+            <h3>${p.name}</h3>
+            <p>${p.bio}</p>
+          </div>
+        </div>`;
+    }).join('');
 
     const section = document.createElement('section');
-    section.className = 'block';
+    section.className = 'band ' + (data.bg === 'white' ? 'white' : 'beige');
     section.id = data.id;
     section.innerHTML = `
-      <div>
-        <span class="block-eyebrow">${data.title}</span>
-        <p class="block-intro">${data.intro}</p>
-      </div>
-      <div class="block-divider"><span></span></div>
-      <div class="pro-row${multiple ? ' has-multiple' : ''}">
-        <button class="carousel-arrow prev" aria-label="Anterior">${ARROW_PREV}</button>
-        <button class="carousel-arrow next" aria-label="Siguiente">${ARROW_NEXT}</button>
-        <div class="pro">
-          <div class="pro-photo-wrap">
-            <img src="" alt="">
-            <div class="photo-placeholder">FOTO PROFESIONAL</div>
+      <div class="band-inner">
+        <h2 class="band-title">${data.title}</h2>
+        <p class="band-intro">${data.intro}</p>
+        <div class="styles">${rowsHTML}</div>
+        <div class="band-foot">
+          <div class="marquee-wrap"><div class="marquee-track">${chipsHTML}${chipsHTML}</div></div>
+          <div class="band-cta">
+            <div class="band-cta-accent"></div>
+            <p class="band-cta-line">
+              ${CTA_TEXT}<br>
+              <a class="btn-write cta-track" href="${waLink(data.waText)}" target="_blank" rel="noopener">escribinos</a>
+            </p>
           </div>
-          <div class="pro-bio">
-            <h3></h3>
-            <p></p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="marquee-wrap"><div class="marquee-track">${chipsHTML}${chipsHTML}</div></div>
-        <div class="block-cta">
-          <div class="block-cta-accent"></div>
-          <p class="block-cta-line">
-            ${CTA_TEXT}<br>
-            <a class="btn-write cta-track" href="${waLink(data.waText)}" target="_blank" rel="noopener">escribinos</a>
-          </p>
         </div>
       </div>
     `;
     container.appendChild(section);
-
-    setupCarousel(section, data);
   });
-
-  /* ---------- CARRUSEL (mismo comportamiento que el desplegable) ---------- */
-  function setupCarousel(section, data){
-    const pro = section.querySelector('.pro');
-    const photo = section.querySelector('.pro-photo-wrap img');
-    const placeholder = section.querySelector('.photo-placeholder');
-    const nameEl = section.querySelector('.pro-bio h3');
-    const bioEl = section.querySelector('.pro-bio p');
-    const prevBtn = section.querySelector('.carousel-arrow.prev');
-    const nextBtn = section.querySelector('.carousel-arrow.next');
-    let index = 0;
-    let timer = null;
-    let visible = false;
-
-    data.items.forEach(p => { if (p.photo){ const pre = new Image(); pre.src = p.photo; } });
-
-    function render(){
-      const p = data.items[index];
-      if (p.photo){
-        photo.style.display = '';
-        photo.src = p.photo;
-        photo.alt = p.name;
-        placeholder.style.display = 'none';
-      } else {
-        photo.style.display = 'none';
-        photo.removeAttribute('src');
-        placeholder.style.display = 'flex';
-      }
-      nameEl.textContent = p.name;
-      bioEl.innerHTML = p.bio;
-    }
-
-    function change(direction){
-      if (data.items.length <= 1) return;
-      const leaveClass = direction === 1 ? 'offset-left' : 'offset-right';
-      const enterClass = direction === 1 ? 'offset-right' : 'offset-left';
-      pro.classList.add(leaveClass);
-      setTimeout(() => {
-        index = (index + direction + data.items.length) % data.items.length;
-        render();
-        pro.classList.add('no-transition');
-        pro.classList.remove(leaveClass);
-        pro.classList.add(enterClass);
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            pro.classList.remove('no-transition');
-            pro.classList.remove(enterClass);
-          });
-        });
-      }, 400);
-    }
-
-    function startAuto(){
-      clearInterval(timer);
-      if (data.items.length > 1 && visible){
-        timer = setInterval(() => change(1), 15000);
-      }
-    }
-
-    prevBtn.addEventListener('click', () => { change(-1); startAuto(); });
-    nextBtn.addEventListener('click', () => { change(1); startAuto(); });
-
-    // el avance automático solo corre mientras el bloque está en pantalla
-    new IntersectionObserver(entries => {
-      visible = entries[0].isIntersecting;
-      if (visible) startAuto(); else clearInterval(timer);
-    }, { threshold: 0.25 }).observe(section);
-
-    render();
-  }
 
   /* ---------- BOTÓN FLOTANTE DE WHATSAPP ---------- */
   const waFloat = document.getElementById('whatsappFloat');
