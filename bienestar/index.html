@@ -185,7 +185,7 @@
   .band{
     width:100%;
     padding:26px 24px 80px;
-    scroll-margin-top:62px;
+    scroll-margin-top:61px;
   }
 
   .band.beige{background:var(--cream);}
@@ -414,6 +414,8 @@
     .styles{gap:52px;}
   }
 
+  .slider-dots{display:none;}
+
   /* flechas del carrusel de estilos: solo se usan en el celular */
   .m-arrow{
     position:absolute;
@@ -444,13 +446,47 @@
   }
 
   @media (max-width:680px){
+    /* espaciado pensado para el celular */
+    .band{scroll-margin-top:58px;padding:21px 20px 44px;}
+    .band-title{font-size:28px;padding-bottom:12px;margin-bottom:14px;}
+    .band-intro{font-size:14px;line-height:1.7;}
+    .styles{margin-top:26px;}
+
     /* cada estilo: título, subrayado, foto y después la descripción */
     .style-row,
     .style-row.reverse{gap:0;align-items:stretch;}
     .style-text{display:contents;}
-    .style-text h3{order:1;align-self:flex-start;}
-    .style-photo{order:2;margin-top:14px;}
-    .style-text p{order:3;margin-top:18px;}
+    .style-text h3{order:1;align-self:flex-start;font-size:20px;padding-bottom:11px;margin-bottom:0;}
+    .style-photo{order:2;margin-top:14px;box-shadow:0 8px 20px rgba(43,43,40,0.12);}
+    .style-text p{order:3;margin-top:16px;font-size:14px;line-height:1.7;}
+
+    .marquee-wrap{padding:12px 0;}
+    .band-cta{padding-top:20px;}
+    .band-cta-accent{margin-bottom:12px;}
+    .band-cta-line{line-height:1.8;}
+    .band-cta-line .btn-write{font-size:13px;padding:10px 24px;margin-top:8px;}
+
+    .whatsapp-float{width:52px;height:52px;bottom:18px;right:16px;}
+    .whatsapp-float svg{width:26px;height:26px;}
+
+    /* puntos: indican cuántos estilos hay y cuál se está viendo */
+    .band.multi .slider-dots{
+      display:flex;
+      gap:8px;
+      margin-top:20px;
+    }
+    .slider-dots button{
+      width:8px;
+      height:8px;
+      padding:0;
+      border-radius:50%;
+      background:rgba(154,153,133,0.4);
+      transition:background .25s ease, transform .25s ease;
+    }
+    .slider-dots button.active{
+      background:var(--sand-deep);
+      transform:scale(1.25);
+    }
 
     /* la franja de beneficios queda a la distancia de una línea en blanco del instructor */
     .band-foot{margin-top:31px;}
@@ -475,12 +511,12 @@
       scroll-snap-stop:always;
     }
     .band.multi .m-arrow{display:flex;}
+    .band.multi .style-photo{box-shadow:none;}
 
     .logo-wrap{height:28px;}
     header.scrolled .logo-wrap{height:26px;}
     .hero-words{bottom:112px;}
     .back-link{font-size:10.5px;padding:8px 14px 8px 11px;}
-    .band{padding:22px 20px 64px;}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -706,6 +742,14 @@
     const mq = window.matchMedia('(max-width:680px)');
     let index = 0;
 
+    const dots = document.createElement('div');
+    dots.className = 'slider-dots';
+    dots.innerHTML = rows.map((_, i) => `<button aria-label="Ir al estilo ${i + 1}"></button>`).join('');
+    track.parentNode.insertBefore(dots, track);
+    const dotBtns = [...dots.querySelectorAll('button')];
+    dotBtns.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+    function paintDots(){ dotBtns.forEach((d, i) => d.classList.toggle('active', i === index)); }
+
     // la altura sigue al estilo visible, así la franja de beneficios queda pegada al instructor
     function fitHeight(){
       if (!mq.matches){ track.style.height = ''; return; }
@@ -728,7 +772,7 @@
       requestAnimationFrame(() => {
         ticking = false;
         const i = currentIndex();
-        if (i !== index){ index = i; fitHeight(); }
+        if (i !== index){ index = i; fitHeight(); paintDots(); }
       });
     }, { passive: true });
 
@@ -737,8 +781,9 @@
 
     const ro = new ResizeObserver(fitHeight);
     rows.forEach(r => ro.observe(r));
-    mq.addEventListener('change', () => { track.scrollLeft = 0; index = 0; fitHeight(); });
+    mq.addEventListener('change', () => { track.scrollLeft = 0; index = 0; fitHeight(); paintDots(); });
     fitHeight();
+    paintDots();
   }
 
   /* ---------- BOTÓN FLOTANTE DE WHATSAPP ---------- */
