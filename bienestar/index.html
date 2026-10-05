@@ -54,14 +54,29 @@
     box-shadow:0 1px 0 var(--hairline);
   }
 
-  .logo-img{
-    height:36px;
-    width:auto;
+  .logo-wrap{
+    position:relative;
     display:block;
+    height:36px;
     transition:height .4s ease;
   }
 
-  header.scrolled .logo-img{height:30px;}
+  .logo-img{
+    height:100%;
+    width:auto;
+    display:block;
+    transition:opacity .4s ease;
+  }
+
+  .logo-img.logo-beige{
+    position:absolute;
+    top:0;left:0;
+    opacity:0;
+  }
+
+  header.scrolled .logo-wrap{height:30px;}
+  header.scrolled .logo-img.logo-white{opacity:0;}
+  header.scrolled .logo-img.logo-beige{opacity:1;}
 
   .back-link{
     display:flex;
@@ -119,7 +134,8 @@
     position:absolute;
     inset:0;
     background:
-      linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 62%, rgba(0,0,0,0.42) 100%);
+      linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 24%, rgba(0,0,0,0) 58%, rgba(0,0,0,0.38) 100%),
+      rgba(58,48,38,0.34);
     pointer-events:none;
   }
 
@@ -394,7 +410,8 @@
   }
 
   @media (max-width:680px){
-    .logo-img{height:28px;}
+    .logo-wrap{height:28px;}
+    header.scrolled .logo-wrap{height:26px;}
     .hero-words{bottom:112px;}
     .back-link{font-size:10.5px;padding:8px 14px 8px 11px;}
     .band{padding:72px 20px 64px;}
@@ -409,7 +426,10 @@
 <body>
 
 <header id="siteHeader">
-  <img src="/images/logobeige.png" alt="Ummana" class="logo-img">
+  <a class="logo-wrap" href="/bienestar/" aria-label="Ummana">
+    <img src="/images/logoblanco.png" alt="Ummana" class="logo-img logo-white">
+    <img src="/images/logobeige.png" alt="" class="logo-img logo-beige">
+  </a>
   <a class="back-link" href="/" aria-label="Volver a la página principal">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
     VOLVER
