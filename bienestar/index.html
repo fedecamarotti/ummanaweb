@@ -835,9 +835,19 @@
       }, AUTO_MS);
     }
 
-    track.addEventListener('touchstart', () => { held = true; clearTimeout(timer); }, { passive: true });
+    let startX = 0, startY = 0;
+    track.addEventListener('touchstart', e => {
+      held = true; clearTimeout(timer);
+      startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+    }, { passive: true });
     const release = () => { held = false; schedule(); };
-    track.addEventListener('touchend', release, { passive: true });
+    // en el último estilo, deslizar hacia adelante vuelve al primero
+    track.addEventListener('touchend', e => {
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX, dy = t.clientY - startY;
+      if (currentIndex() === rows.length - 1 && dx < -40 && Math.abs(dx) > Math.abs(dy) * 1.5) goTo(0);
+      release();
+    }, { passive: true });
     track.addEventListener('touchcancel', release, { passive: true });
 
     new IntersectionObserver(entries => {
