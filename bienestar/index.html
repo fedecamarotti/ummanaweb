@@ -24,7 +24,7 @@
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;overscroll-behavior-y:none;}
 
   body{
     font-family:'Montserrat',sans-serif;
@@ -48,6 +48,10 @@
     justify-content:space-between;
     padding:24px 48px;
     transition:padding .4s ease, background .4s ease;
+    /* lo mantiene pegado arriba aunque el navegador del celular achique o agrande su barra */
+    transform:translate3d(0,0,0);
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
   }
 
   header.scrolled{
