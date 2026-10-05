@@ -234,6 +234,15 @@
     margin-top:56px;
   }
 
+  .styles-title{
+    margin-top:44px;
+    font-size:17px;
+    font-weight:700;
+    color:var(--ink);
+  }
+
+  .band.multi .styles{margin-top:28px;}
+
   .style-row{
     display:flex;
     align-items:center;
@@ -304,13 +313,11 @@
     color:var(--ink-soft);
   }
 
-  .band-foot{margin-top:60px;margin-bottom:44px;}
+  .band-foot{margin-top:34px;margin-bottom:28px;}
 
   .marquee-wrap{
     overflow:hidden;
-    padding:14px 0;
-    border-top:1px solid var(--hairline);
-    border-bottom:1px solid var(--hairline);
+    padding:4px 0;
   }
 
   .marquee-track{
@@ -413,36 +420,9 @@
     .styles{gap:52px;}
   }
 
-  .slider-dots{display:none;}
-
-  /* flechas del deslizador de estilos: junto al título, solo en el celular */
+  /* puntos del deslizador de estilos: junto al título, solo en el celular */
   .slider-wrap{position:relative;}
-  .slider-arrows{display:none;}
-
-  .m-arrow{
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    background:#fff;
-    border:1px solid rgba(154,153,133,0.6);
-    color:var(--ink);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:0;
-    box-shadow:0 2px 8px rgba(43,43,40,0.14);
-    animation:mArrowPulse 2.8s ease-in-out infinite;
-    transition:background .2s ease, color .2s ease;
-  }
-
-  .m-arrow.next{animation-delay:.3s;}
-  .m-arrow:active{background:var(--ink);color:#fff;animation:none;}
-  .m-arrow svg{width:15px;height:15px;display:block;}
-
-  @keyframes mArrowPulse{
-    0%, 100%{ transform:scale(1); }
-    50%{ transform:scale(1.09); }
-  }
+  .slider-dots{display:none;}
 
   @media (max-width:680px){
     /* espaciado pensado para el celular */
@@ -460,7 +440,7 @@
     .style-photo{order:2;margin-top:14px;box-shadow:0 8px 20px rgba(43,43,40,0.12);}
     .style-text p{order:3;margin-top:16px;font-size:14px;line-height:1.7;}
 
-    .marquee-wrap{padding:12px 0;}
+    .marquee-wrap{padding:4px 0;}
     .cta-strip{flex-direction:column;gap:10px;padding:16px 16px 18px;}
     .cta-strip-text{font-size:13px;text-align:center;}
     .btn-strip{font-size:13px;padding:9px 26px;}
@@ -468,27 +448,32 @@
     .whatsapp-float{width:52px;height:52px;bottom:18px;right:16px;}
     .whatsapp-float svg{width:26px;height:26px;}
 
-    /* puntos: indican cuántos estilos hay y cuál se está viendo */
+    /* "Nuestros estilos:" y puntos: indican cuántos estilos hay y cuál se está viendo */
+    .styles-title{margin-top:22px;font-size:16px;}
+    .band.multi .styles{margin-top:16px;}
     .band.multi .slider-dots{
       display:flex;
-      gap:8px;
-      margin-top:20px;
+      position:absolute;
+      top:1px;
+      right:-7px;
+      z-index:2;
     }
     .slider-dots button{
-      width:8px;
-      height:8px;
-      padding:0;
+      width:22px;
+      height:22px;
+      padding:7px;
       border-radius:50%;
-      background:rgba(154,153,133,0.4);
-      transition:background .25s ease, transform .25s ease;
+      background-color:rgba(154,153,133,0.4);
+      background-clip:content-box;
+      transition:background-color .25s ease, transform .25s ease;
     }
     .slider-dots button.active{
-      background:var(--sand-deep);
+      background-color:var(--sand-deep);
       transform:scale(1.25);
     }
 
-    /* la franja de beneficios queda a la distancia de una línea en blanco del instructor */
-    .band-foot{margin-top:31px;margin-bottom:26px;}
+    /* la franja de beneficios queda bien pegada al instructor y a la franja oscura */
+    .band-foot{margin-top:16px;margin-bottom:16px;}
 
     /* estilos de Yoga: se deslizan con el dedo o con las flechas */
     .band.multi .styles{
@@ -508,14 +493,6 @@
       min-width:0;
       scroll-snap-align:start;
       scroll-snap-stop:always;
-    }
-    .band.multi .slider-arrows{
-      display:flex;
-      gap:8px;
-      position:absolute;
-      top:-5px;
-      right:0;
-      z-index:2;
     }
     .band.multi .style-photo{box-shadow:none;}
 
@@ -588,7 +565,6 @@
     .js .band-title.reveal::after{width:44px;transition:none;}
     .hero-word{animation:none;}
     .marquee-track{animation:none;}
-    .m-arrow{animation:none;}
   }
 </style>
 </head>
@@ -676,7 +652,8 @@
       bg: "beige",
       title: "Yoga",
       waText: "Hola! Quiero reservar una clase de prueba sin cargo de Yoga",
-      intro: "<strong>Un espacio para conectar con tu cuerpo, tu respiración y tu mente, a tu propio ritmo</strong>. A través de clases presenciales y grupos reducidos, el yoga combina movimiento, fuerza, flexibilidad y respiración para favorecer el equilibrio físico y mental. Las prácticas ayudan a reducir el estrés, mejorar la concentración y cultivar mayor calma y bienestar, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa. <strong>Contamos con distintos estilos:</strong>",
+      intro: "<strong>Un espacio para conectar con tu cuerpo, tu respiración y tu mente, a tu propio ritmo</strong>. A través de clases presenciales y grupos reducidos, el yoga combina movimiento, fuerza, flexibilidad y respiración para favorecer el equilibrio físico y mental. Las prácticas ayudan a reducir el estrés, mejorar la concentración y cultivar mayor calma y bienestar, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa.",
+      stylesTitle: "Nuestros estilos:",
       items: [
         {
           photo: "../images/ashtanga.webp",
@@ -746,9 +723,6 @@
     }
   ];
 
-  const ARROW_PREV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>';
-  const ARROW_NEXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
-
   /* ---------- ARMADO DE LAS FRANJAS ---------- */
   const container = document.getElementById('blocks');
 
@@ -779,6 +753,7 @@
       <div class="band-inner">
         <h2 class="band-title reveal">${data.title}</h2>
         <p class="band-intro reveal" style="--d:.1s">${data.intro}</p>
+        ${data.stylesTitle ? `<h3 class="styles-title reveal">${data.stylesTitle}</h3>` : ''}
         <div class="styles">${rowsHTML}</div>
         <div class="band-foot">
           <div class="marquee-wrap reveal"><div class="marquee-track">${chipsHTML}${chipsHTML}</div></div>
@@ -799,25 +774,26 @@
     const track = section.querySelector('.styles');
     const rows = [...track.querySelectorAll('.style-row')];
     const mq = window.matchMedia('(max-width:680px)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const AUTO_MS = 10000;
     let index = 0;
+    let held = false;       // el dedo está apretando el deslizador
+    let visible = false;    // la franja está en pantalla
+    let timer = null;
 
-    const dots = document.createElement('div');
-    dots.className = 'slider-dots';
-    dots.innerHTML = rows.map((_, i) => `<button aria-label="Ir al estilo ${i + 1}"></button>`).join('');
-    track.parentNode.insertBefore(dots, track);
-    const dotBtns = [...dots.querySelectorAll('button')];
-    dotBtns.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
-    function paintDots(){ dotBtns.forEach((d, i) => d.classList.toggle('active', i === index)); }
-
-    // el deslizador queda envuelto y las flechas se ubican en la línea del título, a la derecha
+    // el deslizador queda envuelto; los puntos se ubican en la línea del título, a la derecha
     const wrap = document.createElement('div');
     wrap.className = 'slider-wrap';
     track.parentNode.insertBefore(wrap, track);
     wrap.appendChild(track);
-    const arrows = document.createElement('div');
-    arrows.className = 'slider-arrows';
-    arrows.innerHTML = `<button class="m-arrow prev" aria-label="Estilo anterior">${ARROW_PREV}</button><button class="m-arrow next" aria-label="Estilo siguiente">${ARROW_NEXT}</button>`;
-    wrap.appendChild(arrows);
+
+    const dots = document.createElement('div');
+    dots.className = 'slider-dots';
+    dots.innerHTML = rows.map((_, i) => `<button aria-label="Ir al estilo ${i + 1}"></button>`).join('');
+    wrap.appendChild(dots);
+    const dotBtns = [...dots.querySelectorAll('button')];
+    dotBtns.forEach((d, i) => d.addEventListener('click', () => { goTo(i); schedule(); }));
+    function paintDots(){ dotBtns.forEach((d, i) => d.classList.toggle('active', i === index)); }
 
     // la altura sigue al estilo visible, así la franja de beneficios queda pegada al instructor
     function fitHeight(){
@@ -834,6 +810,26 @@
       track.scrollTo({ left: target * track.clientWidth, behavior: 'smooth' });
     }
 
+    // avance automático: pasa al siguiente cada 10 segundos, salvo que haya un dedo apretando
+    function schedule(){
+      clearTimeout(timer);
+      if (reducedMotion || !mq.matches || !visible || held) return;
+      timer = setTimeout(() => {
+        if (!held && !document.hidden) goTo(currentIndex() + 1);
+        schedule();
+      }, AUTO_MS);
+    }
+
+    track.addEventListener('touchstart', () => { held = true; clearTimeout(timer); }, { passive: true });
+    const release = () => { held = false; schedule(); };
+    track.addEventListener('touchend', release, { passive: true });
+    track.addEventListener('touchcancel', release, { passive: true });
+
+    new IntersectionObserver(entries => {
+      visible = entries[0].isIntersecting;
+      schedule();
+    }, { threshold: 0.25 }).observe(section);
+
     let ticking = false;
     track.addEventListener('scroll', () => {
       if (ticking) return;
@@ -845,12 +841,9 @@
       });
     }, { passive: true });
 
-    section.querySelectorAll('.m-arrow.prev').forEach(b => b.addEventListener('click', () => goTo(currentIndex() - 1)));
-    section.querySelectorAll('.m-arrow.next').forEach(b => b.addEventListener('click', () => goTo(currentIndex() + 1)));
-
     const ro = new ResizeObserver(fitHeight);
     rows.forEach(r => ro.observe(r));
-    mq.addEventListener('change', () => { track.scrollLeft = 0; index = 0; fitHeight(); paintDots(); });
+    mq.addEventListener('change', () => { track.scrollLeft = 0; index = 0; fitHeight(); paintDots(); schedule(); });
     fitHeight();
     paintDots();
   }
