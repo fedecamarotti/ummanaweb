@@ -414,7 +414,68 @@
     .styles{gap:52px;}
   }
 
+  /* flechas del carrusel de estilos: solo se usan en el celular */
+  .m-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:rgba(243,238,234,0.94);
+    border:1px solid rgba(154,153,133,0.55);
+    color:var(--ink);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    box-shadow:0 4px 14px rgba(0,0,0,0.22);
+    animation:mArrowPulse 2.6s ease-in-out infinite;
+    z-index:2;
+  }
+
+  .m-arrow svg{width:16px;height:16px;display:block;}
+  .m-arrow.prev{left:10px;}
+  .m-arrow.next{right:10px;}
+
+  @keyframes mArrowPulse{
+    0%, 100%{ transform:translateY(-50%) scale(1); }
+    50%{ transform:translateY(-50%) scale(1.1); }
+  }
+
   @media (max-width:680px){
+    /* cada estilo: título, subrayado, foto y después la descripción */
+    .style-row,
+    .style-row.reverse{gap:0;align-items:stretch;}
+    .style-text{display:contents;}
+    .style-text h3{order:1;align-self:flex-start;}
+    .style-photo{order:2;margin-top:14px;}
+    .style-text p{order:3;margin-top:18px;}
+
+    /* la franja de beneficios queda a la distancia de una línea en blanco del instructor */
+    .band-foot{margin-top:31px;}
+
+    /* estilos de Yoga: se deslizan con el dedo o con las flechas */
+    .band.multi .styles{
+      flex-direction:row;
+      gap:0;
+      overflow-x:auto;
+      overflow-y:hidden;
+      scroll-snap-type:x mandatory;
+      scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+      align-items:flex-start;
+      transition:height .3s ease;
+    }
+    .band.multi .styles::-webkit-scrollbar{display:none;}
+    .band.multi .style-row{
+      flex:0 0 100%;
+      min-width:0;
+      scroll-snap-align:start;
+      scroll-snap-stop:always;
+    }
+    .band.multi .m-arrow{display:flex;}
+
     .logo-wrap{height:28px;}
     header.scrolled .logo-wrap{height:26px;}
     .hero-words{bottom:112px;}
@@ -425,6 +486,7 @@
   @media (prefers-reduced-motion:reduce){
     .hero-word{animation:none;}
     .marquee-track{animation:none;}
+    .m-arrow{animation:none;}
   }
 </style>
 </head>
@@ -582,11 +644,19 @@
     }
   ];
 
+  const ARROW_PREV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>';
+  const ARROW_NEXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+
   /* ---------- ARMADO DE LAS FRANJAS ---------- */
   const container = document.getElementById('blocks');
 
   blocksData.forEach((data, i) => {
     const chipsHTML = data.chips.map(t => `<span class="chip">${t}</span>`).join('');
+
+    const multiple = data.items.length > 1;
+    const arrowsHTML = multiple
+      ? `<button class="m-arrow prev" aria-label="Estilo anterior">${ARROW_PREV}</button><button class="m-arrow next" aria-label="Estilo siguiente">${ARROW_NEXT}</button>`
+      : '';
 
     const rowsHTML = data.items.map((p, idx) => {
       // las franjas con varios estilos alternan el lado de la foto: izquierda, derecha, izquierda
@@ -596,7 +666,7 @@
         : `<div class="photo-placeholder">FOTO PROFESIONAL</div>`;
       return `
         <div class="style-row${reverse}">
-          <div class="style-photo">${photoHTML}</div>
+          <div class="style-photo">${photoHTML}${arrowsHTML}</div>
           <div class="style-text">
             <h3>${p.name}</h3>
             <p>${p.bio}</p>
@@ -605,7 +675,7 @@
     }).join('');
 
     const section = document.createElement('section');
-    section.className = 'band ' + (data.bg === 'white' ? 'white' : 'beige');
+    section.className = 'band ' + (data.bg === 'white' ? 'white' : 'beige') + (multiple ? ' multi' : '');
     section.id = data.id;
     section.innerHTML = `
       <div class="band-inner">
@@ -625,7 +695,51 @@
       </div>
     `;
     container.appendChild(section);
+
+    if (multiple) setupMobileSlider(section);
   });
+
+  /* ---------- DESLIZADOR DE ESTILOS (solo celular) ---------- */
+  function setupMobileSlider(section){
+    const track = section.querySelector('.styles');
+    const rows = [...track.querySelectorAll('.style-row')];
+    const mq = window.matchMedia('(max-width:680px)');
+    let index = 0;
+
+    // la altura sigue al estilo visible, así la franja de beneficios queda pegada al instructor
+    function fitHeight(){
+      if (!mq.matches){ track.style.height = ''; return; }
+      track.style.height = rows[index].offsetHeight + 'px';
+    }
+
+    function currentIndex(){
+      return Math.max(0, Math.min(rows.length - 1, Math.round(track.scrollLeft / track.clientWidth)));
+    }
+
+    function goTo(i){
+      const target = (i + rows.length) % rows.length;
+      track.scrollTo({ left: target * track.clientWidth, behavior: 'smooth' });
+    }
+
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const i = currentIndex();
+        if (i !== index){ index = i; fitHeight(); }
+      });
+    }, { passive: true });
+
+    section.querySelectorAll('.m-arrow.prev').forEach(b => b.addEventListener('click', () => goTo(currentIndex() - 1)));
+    section.querySelectorAll('.m-arrow.next').forEach(b => b.addEventListener('click', () => goTo(currentIndex() + 1)));
+
+    const ro = new ResizeObserver(fitHeight);
+    rows.forEach(r => ro.observe(r));
+    mq.addEventListener('change', () => { track.scrollLeft = 0; index = 0; fitHeight(); });
+    fitHeight();
+  }
 
   /* ---------- BOTÓN FLOTANTE DE WHATSAPP ---------- */
   const waFloat = document.getElementById('whatsappFloat');
