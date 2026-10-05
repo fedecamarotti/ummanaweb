@@ -187,7 +187,7 @@
 
   .band{
     width:100%;
-    padding:26px 0 0;
+    padding:26px 0 40px;
     scroll-margin-top:61px;
   }
 
@@ -426,7 +426,7 @@
 
   @media (max-width:680px){
     /* espaciado pensado para el celular */
-    .band{scroll-margin-top:58px;padding:21px 0 0;}
+    .band{scroll-margin-top:58px;padding:21px 0 28px;}
     .band-inner{padding:0 20px;}
     .band-title{font-size:28px;padding-bottom:12px;margin-bottom:14px;}
     .band-intro{font-size:14px;line-height:1.7;}
@@ -773,10 +773,10 @@
         <div class="band-foot">
           <div class="marquee-wrap reveal"><div class="marquee-track">${chipsHTML}${chipsHTML}</div></div>
         </div>
-      </div>
-      <div class="cta-strip reveal">
-        <p class="cta-strip-text">${CTA_TEXT}</p>
-        <a class="btn-strip cta-track" href="${waLink(data.waText)}" target="_blank" rel="noopener">escribinos</a>
+        <div class="cta-strip reveal">
+          <p class="cta-strip-text">${CTA_TEXT}</p>
+          <a class="btn-strip cta-track" href="${waLink(data.waText)}" target="_blank" rel="noopener">escribinos</a>
+        </div>
       </div>
     `;
     container.appendChild(section);
