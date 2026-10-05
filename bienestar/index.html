@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bienestar | Ummana</title>
+<script>document.documentElement.classList.add('js');</script>
+<meta name="theme-color" content="#262624">
+<link rel="preload" as="image" href="../images/salon.webp" fetchpriority="high">
 <meta name="description" content="Yoga, meditación y tai chi en Ummana. Reservá tu clase de prueba sin cargo.">
 <link rel="icon" href="../images/logobeige.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +34,7 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  a{color:inherit;text-decoration:none;}
+  a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent;}
   button{font-family:inherit;border:none;background:none;cursor:pointer;}
 
   /* ---------- HEADER ---------- */
@@ -412,33 +415,33 @@
 
   .slider-dots{display:none;}
 
-  /* flechas del carrusel de estilos: solo se usan en el celular */
+  /* flechas del deslizador de estilos: junto al título, solo en el celular */
+  .slider-wrap{position:relative;}
+  .slider-arrows{display:none;}
+
   .m-arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:36px;
-    height:36px;
+    width:34px;
+    height:34px;
     border-radius:50%;
-    background:rgba(243,238,234,0.94);
-    border:1px solid rgba(154,153,133,0.55);
+    background:#fff;
+    border:1px solid rgba(154,153,133,0.6);
     color:var(--ink);
-    display:none;
+    display:flex;
     align-items:center;
     justify-content:center;
     padding:0;
-    box-shadow:0 4px 14px rgba(0,0,0,0.22);
-    animation:mArrowPulse 2.6s ease-in-out infinite;
-    z-index:2;
+    box-shadow:0 2px 8px rgba(43,43,40,0.14);
+    animation:mArrowPulse 2.8s ease-in-out infinite;
+    transition:background .2s ease, color .2s ease;
   }
 
-  .m-arrow svg{width:16px;height:16px;display:block;}
-  .m-arrow.prev{left:10px;}
-  .m-arrow.next{right:10px;}
+  .m-arrow.next{animation-delay:.3s;}
+  .m-arrow:active{background:var(--ink);color:#fff;animation:none;}
+  .m-arrow svg{width:15px;height:15px;display:block;}
 
   @keyframes mArrowPulse{
-    0%, 100%{ transform:translateY(-50%) scale(1); }
-    50%{ transform:translateY(-50%) scale(1.1); }
+    0%, 100%{ transform:scale(1); }
+    50%{ transform:scale(1.09); }
   }
 
   @media (max-width:680px){
@@ -506,7 +509,14 @@
       scroll-snap-align:start;
       scroll-snap-stop:always;
     }
-    .band.multi .m-arrow{display:flex;}
+    .band.multi .slider-arrows{
+      display:flex;
+      gap:8px;
+      position:absolute;
+      top:-5px;
+      right:0;
+      z-index:2;
+    }
     .band.multi .style-photo{box-shadow:none;}
 
     .logo-wrap{height:28px;}
@@ -515,7 +525,67 @@
     .back-link{font-size:10.5px;padding:8px 14px 8px 11px;}
   }
 
+  /* ---------- ANIMACIONES (solo transform y opacity: livianas) ---------- */
+
+  @keyframes heroZoom{
+    from{ transform:scale(1.07); }
+    to{ transform:scale(1); }
+  }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  @keyframes fadeIn{
+    from{ opacity:0; }
+    to{ opacity:1; }
+  }
+
+  @keyframes waRing{
+    0%{ transform:scale(1); opacity:0.55; }
+    70%, 100%{ transform:scale(1.65); opacity:0; }
+  }
+
+  .hero-media{animation:heroZoom 2.4s cubic-bezier(.2,.7,.2,1) both;}
+  .hero-words{animation:fadeUp 1s ease .55s both;}
+  header{animation:fadeIn .9s ease both;}
+
+  /* anillo suave en el botón de WhatsApp para llamar la atención */
+  .whatsapp-float::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:2px solid #4FBE82;
+    animation:waRing 3.6s ease-out 2.5s infinite;
+    pointer-events:none;
+  }
+
+  .btn-strip:active{transform:scale(0.96);}
+
+  /* aparición al hacer scroll */
+  .js .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+    transition-delay:var(--d, 0s);
+  }
+  .js .reveal.in{opacity:1;transform:none;}
+
+  .band-title::after{transition:width .9s cubic-bezier(.2,.7,.2,1) .25s;}
+  .js .band-title.reveal::after{width:0;}
+  .js .band-title.reveal.in::after{width:44px;}
+
+  /* en el celular, los estilos de Yoga se deslizan: no se animan por scroll vertical */
+  @media (max-width:680px){
+    .js .band.multi .style-row .reveal{opacity:1;transform:none;transition:none;}
+  }
+
   @media (prefers-reduced-motion:reduce){
+    .hero-media,.hero-words,header,.whatsapp-float::after{animation:none;}
+    .js .reveal{opacity:1;transform:none;transition:none;}
+    .js .band-title.reveal::after{width:44px;transition:none;}
     .hero-word{animation:none;}
     .marquee-track{animation:none;}
     .m-arrow{animation:none;}
@@ -536,7 +606,7 @@
 </header>
 
 <section class="hero">
-  <img src="../images/salon.webp" alt="Salón de Ummana" class="hero-media">
+  <img src="../images/salon.webp" alt="Salón de Ummana" class="hero-media" fetchpriority="high" decoding="async">
   <div class="hero-words">
     <a class="hero-word" href="#yoga">Yoga</a>
     <span class="hero-bar"></span>
@@ -686,10 +756,6 @@
     const chipsHTML = data.chips.map(t => `<span class="chip">${t}</span>`).join('');
 
     const multiple = data.items.length > 1;
-    const arrowsHTML = multiple
-      ? `<button class="m-arrow prev" aria-label="Estilo anterior">${ARROW_PREV}</button><button class="m-arrow next" aria-label="Estilo siguiente">${ARROW_NEXT}</button>`
-      : '';
-
     const rowsHTML = data.items.map((p, idx) => {
       // las franjas con varios estilos alternan el lado de la foto: izquierda, derecha, izquierda
       const reverse = idx % 2 === 1 ? ' reverse' : '';
@@ -698,10 +764,10 @@
         : `<div class="photo-placeholder">FOTO PROFESIONAL</div>`;
       return `
         <div class="style-row${reverse}">
-          <div class="style-photo">${photoHTML}${arrowsHTML}</div>
+          <div class="style-photo reveal">${photoHTML}</div>
           <div class="style-text">
-            <h3>${p.name}</h3>
-            <p>${p.bio}</p>
+            <h3 class="reveal" style="--d:.1s">${p.name}</h3>
+            <p class="reveal" style="--d:.2s">${p.bio}</p>
           </div>
         </div>`;
     }).join('');
@@ -711,14 +777,14 @@
     section.id = data.id;
     section.innerHTML = `
       <div class="band-inner">
-        <h2 class="band-title">${data.title}</h2>
-        <p class="band-intro">${data.intro}</p>
+        <h2 class="band-title reveal">${data.title}</h2>
+        <p class="band-intro reveal" style="--d:.1s">${data.intro}</p>
         <div class="styles">${rowsHTML}</div>
         <div class="band-foot">
-          <div class="marquee-wrap"><div class="marquee-track">${chipsHTML}${chipsHTML}</div></div>
+          <div class="marquee-wrap reveal"><div class="marquee-track">${chipsHTML}${chipsHTML}</div></div>
         </div>
       </div>
-      <div class="cta-strip">
+      <div class="cta-strip reveal">
         <p class="cta-strip-text">${CTA_TEXT}</p>
         <a class="btn-strip cta-track" href="${waLink(data.waText)}" target="_blank" rel="noopener">escribinos</a>
       </div>
@@ -742,6 +808,16 @@
     const dotBtns = [...dots.querySelectorAll('button')];
     dotBtns.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
     function paintDots(){ dotBtns.forEach((d, i) => d.classList.toggle('active', i === index)); }
+
+    // el deslizador queda envuelto y las flechas se ubican en la línea del título, a la derecha
+    const wrap = document.createElement('div');
+    wrap.className = 'slider-wrap';
+    track.parentNode.insertBefore(wrap, track);
+    wrap.appendChild(track);
+    const arrows = document.createElement('div');
+    arrows.className = 'slider-arrows';
+    arrows.innerHTML = `<button class="m-arrow prev" aria-label="Estilo anterior">${ARROW_PREV}</button><button class="m-arrow next" aria-label="Estilo siguiente">${ARROW_NEXT}</button>`;
+    wrap.appendChild(arrows);
 
     // la altura sigue al estilo visible, así la franja de beneficios queda pegada al instructor
     function fitHeight(){
@@ -777,6 +853,19 @@
     mq.addEventListener('change', () => { track.scrollLeft = 0; index = 0; fitHeight(); paintDots(); });
     fitHeight();
     paintDots();
+  }
+
+  /* ---------- APARICIÓN AL HACER SCROLL ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
   }
 
   /* ---------- BOTÓN FLOTANTE DE WHATSAPP ---------- */
