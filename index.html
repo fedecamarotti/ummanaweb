@@ -1867,7 +1867,7 @@
     modalProfessionalRow.classList.toggle('has-multiple', data.professionals.length > 1);
 
     // precarga las fotos del área (si las tiene) para que el cambio sea instantáneo
-    data.professionals.forEach(p => { if (p.photo){ const preload = new Image(); preload.src = p.photo; } });
+    preloadArea(key);
 
     marqueeTrack.innerHTML = '';
     const chipsHTML = data.treatments.map(t => `<span class="chip">${t}</span>`).join('');
@@ -1890,6 +1890,34 @@
       closeMobileNav();
       openModal(link.dataset.area);
     });
+  });
+
+  // precarga de fotos: al pasar el mouse / tocar un link del menú se piden las de esa área,
+  // y cuando la página terminó de cargar se piden todas en segundo plano, así al abrir ya están listas
+  const preloaded = new Set();
+  function preloadArea(key){
+    const d = areaData[key];
+    if (!d) return;
+    d.professionals.forEach(p => {
+      if (p.photo && !preloaded.has(p.photo)){
+        preloaded.add(p.photo);
+        const img = new Image();
+        img.decoding = 'async';
+        img.src = p.photo;
+      }
+    });
+  }
+  document.querySelectorAll('[data-area]').forEach(link => {
+    const warm = () => preloadArea(link.dataset.area);
+    link.addEventListener('mouseenter', warm, { passive: true });
+    link.addEventListener('touchstart', warm, { passive: true });
+    link.addEventListener('focus', warm);
+  });
+  // al tocar el menú del celular o pasar por "profesionales" se adelantan todas
+  window.addEventListener('load', () => {
+    const run = () => Object.keys(areaData).forEach((k, i) => setTimeout(() => preloadArea(k), i * 150));
+    if ('requestIdleCallback' in window) requestIdleCallback(run, { timeout: 3000 });
+    else setTimeout(run, 1500);
   });
 
   closeBtn.addEventListener('click', closeModal);
