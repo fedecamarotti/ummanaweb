@@ -483,17 +483,6 @@
       right:-7px;
       z-index:2;
     }
-    /* el título que pasa por detrás de los puntos se vuelve invisible */
-    .band.multi .styles{
-      -webkit-mask-image:linear-gradient(#000,#000),linear-gradient(#000,#000);
-      mask-image:linear-gradient(#000,#000),linear-gradient(#000,#000);
-      -webkit-mask-repeat:no-repeat;
-      mask-repeat:no-repeat;
-      -webkit-mask-size:100% calc(100% - 28px),calc(100% - 72px) 28px;
-      mask-size:100% calc(100% - 28px),calc(100% - 72px) 28px;
-      -webkit-mask-position:0 100%,0 0;
-      mask-position:0 100%,0 0;
-    }
     .slider-dots button{
       width:22px;
       height:22px;
@@ -511,25 +500,21 @@
     /* la franja de beneficios queda bien pegada al instructor y a la franja oscura */
     .band-foot{margin-top:16px;margin-bottom:16px;}
 
-    /* estilos de Yoga: se deslizan con el dedo o con las flechas */
+    /* estilos de Yoga: se ve uno a la vez; al cambiar sale con fundido + deslizamiento y entra el siguiente */
     .band.multi .styles{
-      flex-direction:row;
-      gap:0;
-      overflow-x:auto;
-      overflow-y:hidden;
-      scroll-snap-type:x mandatory;
-      scrollbar-width:none;
-      -webkit-overflow-scrolling:touch;
-      align-items:flex-start;
+      display:block;
+      overflow:hidden;
+      touch-action:pan-y;
       transition:height .3s ease;
     }
-    .band.multi .styles::-webkit-scrollbar{display:none;}
     .band.multi .style-row{
-      flex:0 0 100%;
-      min-width:0;
-      scroll-snap-align:start;
-      scroll-snap-stop:always;
+      display:none;
+      transition:opacity .4s ease, transform .4s ease;
     }
+    .band.multi .style-row.is-active{display:flex;}
+    .band.multi .style-row.no-transition{transition:none;}
+    .band.multi .style-row.offset-left{opacity:0;transform:translateX(-22px);}
+    .band.multi .style-row.offset-right{opacity:0;transform:translateX(22px);}
     .band.multi .style-photo{box-shadow:none;}
 
     .logo-wrap{height:28px;}
@@ -817,10 +802,14 @@
     const mq = window.matchMedia('(max-width:680px)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
     const AUTO_MS = 10000;
+    const FADE_MS = 400;
     let index = 0;
     let held = false;       // el dedo está apretando el deslizador
     let visible = false;    // la franja está en pantalla
+    let busy = false;       // hay un cambio de estilo en curso
     let timer = null;
+
+    rows[0].classList.add('is-active');
 
     // el deslizador queda envuelto; los puntos se ubican en la línea del título, a la derecha
     const wrap = document.createElement('div');
@@ -833,7 +822,7 @@
     dots.innerHTML = rows.map((_, i) => `<button aria-label="Ir al estilo ${i + 1}"></button>`).join('');
     wrap.appendChild(dots);
     const dotBtns = [...dots.querySelectorAll('button')];
-    dotBtns.forEach((d, i) => d.addEventListener('click', () => { goTo(i); schedule(); }));
+    dotBtns.forEach((d, i) => d.addEventListener('click', () => { goTo(i, i > index ? 1 : -1); schedule(); }));
     function paintDots(){ dotBtns.forEach((d, i) => d.classList.toggle('active', i === index)); }
 
     // la altura sigue al estilo visible, así la franja de beneficios queda pegada al instructor
@@ -842,13 +831,31 @@
       track.style.height = rows[index].offsetHeight + 'px';
     }
 
-    function currentIndex(){
-      return Math.max(0, Math.min(rows.length - 1, Math.round(track.scrollLeft / track.clientWidth)));
-    }
-
-    function goTo(i){
-      const target = (i + rows.length) % rows.length;
-      track.scrollTo({ left: target * track.clientWidth, behavior: 'smooth' });
+    // cambia de estilo: el actual se desvanece deslizándose, y el nuevo entra desde el otro lado
+    // direction: 1 = siguiente (entra desde la derecha), -1 = anterior (entra desde la izquierda)
+    function goTo(target, direction){
+      target = (target + rows.length) % rows.length;
+      if (!mq.matches || busy || target === index) return;
+      busy = true;
+      const old = rows[index];
+      const next = rows[target];
+      const leaveClass = direction === 1 ? 'offset-left' : 'offset-right';
+      const enterClass = direction === 1 ? 'offset-right' : 'offset-left';
+      track.style.height = old.offsetHeight + 'px';
+      old.classList.add(leaveClass);
+      setTimeout(() => {
+        old.classList.remove('is-active', leaveClass);
+        index = target;
+        next.classList.add('no-transition', enterClass, 'is-active');
+        paintDots();
+        fitHeight();
+        // doble rAF: asegura que el navegador pintó el estado "ya corrido hacia el costado"
+        // antes de soltar la transición, para que la entrada arranque siempre limpia
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          next.classList.remove('no-transition', enterClass);
+          busy = false;
+        }));
+      }, reducedMotion ? 0 : FADE_MS);
     }
 
     // avance automático: pasa al siguiente cada 10 segundos, salvo que haya un dedo apretando
@@ -856,22 +863,25 @@
       clearTimeout(timer);
       if (reducedMotion || !mq.matches || !visible || held) return;
       timer = setTimeout(() => {
-        if (!held && !document.hidden) goTo(currentIndex() + 1);
+        if (!held && !document.hidden) goTo(index + 1, 1);
         schedule();
       }, AUTO_MS);
     }
 
+    // deslizar con el dedo: hacia la izquierda pasa al siguiente (y del último vuelve al primero),
+    // hacia la derecha vuelve al anterior
     let startX = 0, startY = 0;
     track.addEventListener('touchstart', e => {
       held = true; clearTimeout(timer);
       startX = e.touches[0].clientX; startY = e.touches[0].clientY;
     }, { passive: true });
     const release = () => { held = false; schedule(); };
-    // en el último estilo, deslizar hacia adelante vuelve al primero
     track.addEventListener('touchend', e => {
       const t = e.changedTouches[0];
       const dx = t.clientX - startX, dy = t.clientY - startY;
-      if (currentIndex() === rows.length - 1 && dx < -40 && Math.abs(dx) > Math.abs(dy) * 1.5) goTo(0);
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5){
+        if (dx < 0) goTo(index + 1, 1); else goTo(index - 1, -1);
+      }
       release();
     }, { passive: true });
     track.addEventListener('touchcancel', release, { passive: true });
@@ -881,20 +891,13 @@
       schedule();
     }, { threshold: 0.25 }).observe(section);
 
-    let ticking = false;
-    track.addEventListener('scroll', () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        ticking = false;
-        const i = currentIndex();
-        if (i !== index){ index = i; fitHeight(); paintDots(); }
-      });
-    }, { passive: true });
-
-    const ro = new ResizeObserver(fitHeight);
+    const ro = new ResizeObserver(() => { if (!busy) fitHeight(); });
     rows.forEach(r => ro.observe(r));
-    mq.addEventListener('change', () => { track.scrollLeft = 0; index = 0; fitHeight(); paintDots(); schedule(); });
+    mq.addEventListener('change', () => {
+      rows.forEach(r => r.classList.remove('offset-left', 'offset-right', 'no-transition'));
+      rows.forEach((r, i) => r.classList.toggle('is-active', i === 0));
+      index = 0; busy = false; fitHeight(); paintDots(); schedule();
+    });
     fitHeight();
     paintDots();
   }
