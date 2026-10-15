@@ -369,6 +369,8 @@
   }
 
   /* franja oscura del llamado a la acción */
+  .styles + .cta-strip{margin-top:38px;}
+
   .cta-strip{
     background:rgba(185,184,165,0.26);
     border-radius:16px;
@@ -469,6 +471,7 @@
 
     .marquee-wrap{padding:4px 0;}
     .cta-strip{flex-direction:column;gap:10px;padding:16px 16px 18px;}
+    .styles + .cta-strip,.slider-wrap + .cta-strip{margin-top:22px;}
     .cta-strip-text{font-size:13px;text-align:center;}
     .btn-strip{font-size:13px;padding:9px 26px;}
 
@@ -699,13 +702,7 @@
           bio: "Práctica que invita a sostener y profundizar las posturas, trabajando especialmente la alineación, la estabilidad y la conciencia corporal, utilizando elementos que pueden facilitar o intensificar la práctica según las necesidades de cada persona. <strong>Ideal para desarrollar fuerza, flexibilidad y presencia de manera progresiva.</strong><br><br>Instructora: <strong>Ana Crupi</strong>"
         }
       ],
-      chips: [
-        "Mejora la flexibilidad y la fuerza física",
-        "Reduce el estrés y la ansiedad",
-        "Favorece la concentración y la calma mental",
-        "Conecta respiración y movimiento",
-        "Es apto para todos los niveles, incluso sin experiencia previa"
-      ]
+      chips: []
     },
     {
       id: "meditacion",
@@ -720,13 +717,7 @@
           bio: "<strong>Meditación sentada:</strong> Una práctica guiada para aquietar la mente y conectar con el presente.<br><strong>Lectura y reflexión:</strong> Un momento para integrar la enseñanza y abrir el diálogo grupal.<br><strong>Cierre con té grupal:</strong> Un espacio cálido para compartir experiencias, aprendizajes y generar vínculos.<br><br>Instructora: <strong>Lic. Mariela Herrero</strong>"
         }
       ],
-      chips: [
-        "Disminuye el estrés y la ansiedad",
-        "Favorece el descanso y mejora la calidad del sueño",
-        "Aumenta la concentración y la claridad mental",
-        "Brinda calma emocional y resiliencia",
-        "Ayuda a integrar hábitos conscientes en la vida cotidiana"
-      ]
+      chips: []
     },
     {
       id: "tai-chi",
@@ -741,13 +732,7 @@
           bio: "El Taichi conecta cuerpo y mente a través del movimiento, la respiración y la atención plena, ayudándote a encontrar mayor equilibrio, calma y presencia en el día a día. <strong>Es una práctica accesible para todas las edades y niveles</strong>, no requiere experiencia previa y se adapta al ritmo de cada persona, favoreciendo la movilidad, la coordinación y el bienestar integral.<br><br>Instructor: <strong>Maxi Labombarda</strong>"
         }
       ],
-      chips: [
-        "Reduce el estrés y la ansiedad",
-        "Mejora el equilibrio y la coordinación",
-        "Aumenta la flexibilidad y fortalece las articulaciones",
-        "Favorece la circulación y la energía vital",
-        "Desarrolla el enfoque y la concentración"
-      ]
+      chips: []
     }
   ];
 
@@ -755,7 +740,7 @@
   const container = document.getElementById('blocks');
 
   blocksData.forEach((data, i) => {
-    const chipsHTML = data.chips.map(t => `<span class="chip">${t}</span>`).join('');
+    const chipsHTML = (data.chips || []).map(t => `<span class="chip">${t}</span>`).join('');
 
     const multiple = data.items.length > 1;
     const rowsHTML = data.items.map((p, idx) => {
@@ -783,9 +768,9 @@
         <p class="band-intro reveal" style="--d:.1s">${data.intro}</p>
         ${data.stylesTitle ? `<h3 class="styles-title reveal">${data.stylesTitle}<svg class="styles-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></h3>` : ''}
         <div class="styles">${rowsHTML}</div>
-        <div class="band-foot">
+        ${data.chips && data.chips.length ? `<div class="band-foot">
           <div class="marquee-wrap reveal"><div class="marquee-track">${chipsHTML}${chipsHTML}</div></div>
-        </div>
+        </div>` : ''}
         <div class="cta-strip reveal">
           <p class="cta-strip-text">${CTA_TEXT}</p>
           <a class="btn-strip cta-track" href="${waLink(data.waText)}" target="_blank" rel="noopener">escribinos</a>
