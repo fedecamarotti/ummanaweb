@@ -6,7 +6,8 @@
 <title>Bienestar | Ummana</title>
 <script>document.documentElement.classList.add('js');</script>
 <meta name="theme-color" content="#262624">
-<link rel="preload" as="image" href="../images/salon.webp" fetchpriority="high">
+<link rel="preload" as="image" href="../images/salonmovil.webp" media="(max-width:680px)" fetchpriority="high">
+<link rel="preload" as="image" href="../images/salon.webp" media="(min-width:681px)" fetchpriority="high">
 <meta name="description" content="Yoga, meditación y tai chi en Ummana. Reservá tu clase de prueba sin cargo.">
 <link rel="icon" href="../images/logobeige.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -617,7 +618,10 @@
 </header>
 
 <section class="hero">
-  <img src="../images/salon.webp" alt="Salón de Ummana" class="hero-media" fetchpriority="high" decoding="async">
+  <picture>
+    <source media="(max-width:680px)" srcset="../images/salonmovil.webp">
+    <img src="../images/salon.webp" alt="Salón de Ummana" class="hero-media" fetchpriority="high" decoding="async">
+  </picture>
   <div class="hero-words">
     <a class="hero-word" href="#yoga">Yoga</a>
     <span class="hero-bar"></span>
