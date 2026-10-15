@@ -954,6 +954,11 @@
   }
 
   .modal-cta-line{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:6px 14px;
     font-size:13.5px;
     line-height:1.9;
     color:var(--ink-soft);
@@ -975,8 +980,8 @@
     color:var(--paper);
     background:var(--ink);
     padding:7px 16px;
-    margin-top:6px;
     border-radius:20px;
+    white-space:nowrap;
     transition:background .25s ease;
   }
 
@@ -998,6 +1003,8 @@
   }
 
   @media (max-width:680px){
+    .modal-cta-line{font-size:12px;}
+    #modalCtaText{white-space:nowrap;}
     nav{display:none;}
     .hamburger{display:block;}
     .logo-img{height:28px;}
@@ -1021,7 +1028,6 @@
           <a href="#" data-area="gastroenterologia">Gastroenterología</a>
           <a href="#" data-area="medicina-del-dolor">Medicina del dolor</a>
           <a href="#" data-area="nutricion">Nutrición</a>
-          <a href="#" data-area="orientacion-vocacional">Orientación vocacional</a>
           <a href="#" data-area="otorrinolaringologia">Otorrinolaringología</a>
           <a href="#" data-area="psicoterapias">Psicoterapias</a>
           <a href="#" data-area="sueno-descanso">Sueño y descanso</a>
@@ -1038,7 +1044,6 @@
           <a href="#" data-area="yoga">Yoga</a>
           <a href="#" data-area="meditacion">Meditación</a>
           <a href="#" data-area="tai-chi">Tai Chi Chuan</a>
-          <a href="#">Chi Kung</a>
         </div>
       </div>
     </div>
@@ -1083,7 +1088,6 @@
         <a href="#" data-area="gastroenterologia">Gastroenterología</a>
         <a href="#" data-area="medicina-del-dolor">Medicina del dolor</a>
         <a href="#" data-area="nutricion">Nutrición</a>
-        <a href="#" data-area="orientacion-vocacional">Orientación vocacional</a>
         <a href="#" data-area="otorrinolaringologia">Otorrinolaringología</a>
         <a href="#" data-area="psicoterapias">Psicoterapias</a>
         <a href="#" data-area="sueno-descanso">Sueño y descanso</a>
@@ -1101,7 +1105,6 @@
         <a href="#" data-area="yoga">Yoga</a>
         <a href="#" data-area="meditacion">Meditación</a>
         <a href="#" data-area="tai-chi">Tai Chi Chuan</a>
-        <a href="#">Chi Kung</a>
       </div>
     </div>
 
@@ -1226,7 +1229,7 @@
       <div class="modal-cta">
         <div class="modal-cta-accent"></div>
         <p class="modal-cta-line">
-          <span id="modalCtaText">Si querés más información<br>o sacar un turno</span><br>
+          <span id="modalCtaText">Si querés más información o sacar un turno</span>
           <a class="btn-write" href="https://api.whatsapp.com/send?phone=5491139208108" target="_blank" rel="noopener">escribinos</a>
         </p>
       </div>
@@ -1409,12 +1412,12 @@
   const areaData = {
     ginecologia: {
       title: "Ginecología",
-      intro: "<strong>Abordamos la ginecología desde una perspectiva integradora y personalizada</strong>. Acompañamos cada etapa de la vida con una mirada funcional, estética y regenerativa, entendiendo que la salud ginecológica está conectada con todos los sistemas del cuerpo y factores del entorno. Ofrecemos atención personalizada y de calidad, con un enfoque integral que combina prevención, diagnóstico, tratamiento y seguimiento.",
+      intro: "<strong>Abordamos la ginecología desde una perspectiva integradora y personalizada.</strong> Acompañamos cada etapa de la vida con una mirada funcional, estética y regenerativa, entendiendo que la salud ginecológica está conectada con todos los sistemas del cuerpo y factores del entorno. Ofrecemos atención personalizada y de calidad, con un enfoque integral que combina prevención, diagnóstico, tratamiento y seguimiento.",
       professionals: [
         {
           photo: "images/gaby.webp",
           name: "Dra. María Gabriela Baslini",
-          bio: "<strong>Médica egresada de la UBA, especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida</strong>. Hace 23 años acompaña a mujeres en cada etapa de su vida, desarrollando una mirada integral que contempla no solo los síntomas, sino también la historia de cada mujer, su cuerpo, su contexto y sus emociones. Su formación y experiencia se centran en comprender la salud desde una perspectiva funcional y regenerativa."
+          bio: "<strong>Médica egresada de la UBA, especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida.</strong> Hace 23 años acompaña a mujeres en cada etapa de su vida, desarrollando una mirada integral que contempla no solo los síntomas, sino también la historia de cada mujer, su cuerpo, su contexto y sus emociones. Su formación y experiencia se centran en comprender la salud desde una perspectiva funcional y regenerativa."
         }
       ],
       treatments: [
@@ -1428,22 +1431,22 @@
     },
     "medicina-funcional": {
       title: "Medicina Funcional",
-      intro: "<strong>Cuidamos tu salud desde la raíz</strong>. Exploramos tu historial de salud, hábitos y objetivos para establecer un plan bio-individualizado. Analizamos antecedentes y profundizamos en los orígenes de tus dolencias, estableciendo metas claras y sostenibles para mejorar tu estilo de vida, y luego ajustamos el plan inicial según tus resultados y evolución, adaptándonos a tus necesidades para lograr resultados duraderos.",
+      intro: "<strong>Cuidamos tu salud desde la raíz.</strong> Exploramos tu historial de salud, hábitos y objetivos para establecer un plan bio-individualizado. Analizamos antecedentes y profundizamos en los orígenes de tus dolencias, estableciendo metas claras y sostenibles para mejorar tu estilo de vida, y luego ajustamos el plan inicial según tus resultados y evolución, adaptándonos a tus necesidades para lograr resultados duraderos.",
       professionals: [
         {
           photo: "images/viqui.webp",
           name: "Dra. María Victoria Barbieri",
-          bio: "<strong>Médica egresada de la Universidad de Buenos Aires, especialista en Dermatología Integrativa, Medicina Estética y Reparadora y Medicina Funcional</strong>. Su mirada parte de entender la salud como un equilibrio entre las distintas dimensiones de la persona, integrando cuerpo, mente, hábitos y contexto. Su abordaje busca ir más allá del síntoma puntual para comprender qué hay detrás de cada manifestación y acompañar procesos de salud de manera personalizada, consciente e integral."
+          bio: "<strong>Médica egresada de la Universidad de Buenos Aires, especialista en Dermatología Integrativa, Medicina Estética y Reparadora y Medicina Funcional.</strong> Su mirada parte de entender la salud como un equilibrio entre las distintas dimensiones de la persona, integrando cuerpo, mente, hábitos y contexto. Su abordaje busca ir más allá del síntoma puntual para comprender qué hay detrás de cada manifestación y acompañar procesos de salud de manera personalizada, consciente e integral."
         },
         {
           photo: "images/gaby.webp",
           name: "Dra. María Gabriela Baslini",
-          bio: "<strong>Médica egresada de la UBA, especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida</strong>. Hace 23 años acompaña a mujeres en cada etapa de su vida, desarrollando una mirada integral que contempla no solo los síntomas, sino también la historia de cada mujer, su cuerpo, su contexto y sus emociones. Su formación y experiencia se centran en comprender la salud desde una perspectiva funcional y regenerativa."
+          bio: "<strong>Médica egresada de la UBA, especialista en Ginecología Funcional, Estética y Regenerativa, con Diplomatura en Longevidad Saludable y Calidad de Vida.</strong> Hace 23 años acompaña a mujeres en cada etapa de su vida, desarrollando una mirada integral que contempla no solo los síntomas, sino también la historia de cada mujer, su cuerpo, su contexto y sus emociones. Su formación y experiencia se centran en comprender la salud desde una perspectiva funcional y regenerativa."
         },
         {
           photo: "images/lureal.webp",
           name: "Dra. Luciana Real",
-          bio: "<strong>Médica especialista en Otorrinolaringología, con más de 20 años de experiencia en el abordaje de patologías respiratorias y del sueño</strong>. Se especializó en Medicina del Sueño y amplió su formación en Medicina Funcional e Integrativa y Longevidad Saludable. Su enfoque combina la precisión de la medicina convencional con una mirada integral, orientada a comprender las causas y mejorar la salud respiratoria, el descanso y el bienestar."
+          bio: "<strong>Médica especialista en Otorrinolaringología, con más de 20 años de experiencia en el abordaje de patologías respiratorias y del sueño.</strong> Se especializó en Medicina del Sueño y amplió su formación en Medicina Funcional e Integrativa y Longevidad Saludable. Su enfoque combina la precisión de la medicina convencional con una mirada integral, orientada a comprender las causas y mejorar la salud respiratoria, el descanso y el bienestar."
         }
       ],
       treatments: [
@@ -1460,7 +1463,7 @@
         {
           photo: "images/sabri.webp",
           name: "Dra. Sabrina Plam",
-          bio: "<strong>Médica con formación en cardiología y gran experiencia en el abordaje integral de la salud</strong>. Su práctica incorpora una mirada orientada a la prevención, el bienestar y la optimización de la salud, integrando herramientas de medicina funcional y terapias endovenosas personalizadas. Especialista en la aplicación de sueroterapia endovenosa en tratamientos adaptados a las necesidades de cada persona."
+          bio: "<strong>Médica con formación en cardiología y gran experiencia en el abordaje integral de la salud.</strong> Su práctica incorpora una mirada orientada a la prevención, el bienestar y la optimización de la salud, integrando herramientas de medicina funcional y terapias endovenosas personalizadas. Especialista en la aplicación de sueroterapia endovenosa en tratamientos adaptados a las necesidades de cada persona."
         }
       ],
       treatments: [
@@ -1474,12 +1477,12 @@
     },
     urologia: {
       title: "Urología",
-      intro: "<strong>Abordamos la urología desde una mirada integral, combinando la medicina convencional con estrategias de prevención, hábitos saludables y sabiduría ancestral</strong>. A través de una escucha activa y una evaluación clínica minuciosa, atendemos la salud prostática y sexual, la incontinencia, la urolitiasis y los síntomas urinarios. Ofrecemos evaluación mediante flujometría y un acompañamiento personalizado para cuidar tu salud y calidad de vida.",
+      intro: "<strong>Abordamos la urología desde una mirada integral, combinando la medicina convencional con estrategias de prevención, hábitos saludables y sabiduría ancestral.</strong> A través de una escucha activa y una evaluación clínica minuciosa, atendemos la salud prostática y sexual, la incontinencia, la urolitiasis y los síntomas urinarios. Ofrecemos evaluación mediante flujometría y un acompañamiento personalizado para cuidar tu salud y calidad de vida.",
       professionals: [
         {
           photo: "images/beluparks.webp",
           name: "Dra. Belén Parks",
-          bio: "<strong>Médica egresada de la Universidad de Buenos Aires y especialista en Urología, con formación de posgrado en Medicina Ayurveda</strong>. Su práctica integra la urología convencional con una mirada preventiva e integral, incorporando hábitos saludables, movimiento y herramientas de la medicina ancestral. Su enfoque busca comprender la salud urinaria y genital desde una perspectiva global, acompañando a cada persona en la prevención, el cuidado y la construcción de un bienestar sostenible."
+          bio: "<strong>Médica egresada de la Universidad de Buenos Aires y especialista en Urología, con formación de posgrado en Medicina Ayurveda.</strong> Su práctica integra la urología convencional con una mirada preventiva e integral, incorporando hábitos saludables, movimiento y herramientas de la medicina ancestral. Su enfoque busca comprender la salud urinaria y genital desde una perspectiva global, acompañando a cada persona en la prevención, el cuidado y la construcción de un bienestar sostenible."
         }
       ],
       treatments: [
@@ -1493,12 +1496,12 @@
     },
     "sueno-descanso": {
       title: "Sueño y descanso",
-      intro: "<strong>Abordamos el sueño desde una mirada médica integral, combinando otorrinolaringología, medicina del sueño y medicina funcional</strong>. Evaluamos las causas que pueden afectar el descanso, desde alteraciones de la vía aérea hasta factores sistémicos, para diseñar planes personalizados. Contamos con estudios como poligrafía, titulación de CPAP, fibroscopia y somnoendoscopia, junto con tratamientos clínicos y quirúrgicos orientados a mejorar el descanso, la energía y el bienestar.",
+      intro: "<strong>Abordamos el sueño desde una mirada médica integral, combinando otorrinolaringología, medicina del sueño y medicina funcional.</strong> Evaluamos las causas que pueden afectar el descanso, desde alteraciones de la vía aérea hasta factores sistémicos, para diseñar planes personalizados. Contamos con estudios como poligrafía, titulación de CPAP, fibroscopia y somnoendoscopia, junto con tratamientos clínicos y quirúrgicos orientados a mejorar el descanso, la energía y el bienestar.",
       professionals: [
         {
           photo: "images/lureal.webp",
           name: "Dra. Luciana Real",
-          bio: "<strong>Médica especialista en Otorrinolaringología, con más de 20 años de experiencia en el abordaje de patologías respiratorias y del sueño</strong>. Se especializó en Medicina del Sueño y amplió su formación en Medicina Funcional e Integrativa y Longevidad Saludable. Su enfoque combina la precisión de la medicina convencional con una mirada integral, orientada a comprender las causas y mejorar la salud respiratoria, el descanso y el bienestar."
+          bio: "<strong>Médica especialista en Otorrinolaringología, con más de 20 años de experiencia en el abordaje de patologías respiratorias y del sueño.</strong> Se especializó en Medicina del Sueño y amplió su formación en Medicina Funcional e Integrativa y Longevidad Saludable. Su enfoque combina la precisión de la medicina convencional con una mirada integral, orientada a comprender las causas y mejorar la salud respiratoria, el descanso y el bienestar."
         }
       ],
       treatments: [
@@ -1512,7 +1515,7 @@
     },
     yoga: {
       title: "Yoga",
-      intro: "<strong>Un espacio para conectar con tu cuerpo, tu respiración y tu mente, a tu propio ritmo</strong>. A través de clases presenciales y grupos reducidos, el yoga combina movimiento, fuerza, flexibilidad y respiración para favorecer el equilibrio físico y mental. Las prácticas ayudan a reducir el estrés, mejorar la concentración y cultivar mayor calma y bienestar, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa. <strong>Contamos con distintos estilos:</strong>",
+      intro: "<strong>Un espacio para conectar con tu cuerpo, tu respiración y tu mente, a tu propio ritmo.</strong> A través de clases presenciales y grupos reducidos, el yoga combina movimiento, fuerza, flexibilidad y respiración para favorecer el equilibrio físico y mental. Las prácticas ayudan a reducir el estrés, mejorar la concentración y cultivar mayor calma y bienestar, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa. <strong>Contamos con distintos estilos:</strong>",
       showBioLabel: false,
       ctaText: "Si querés reservar tu<br><strong>clase de prueba sin cargo</strong>",
       professionals: [
@@ -1582,97 +1585,98 @@
     },
     dermatologia: {
       title: "Dermatología Clínica y Estética",
-      intro: "Cuidamos la piel desde una mirada clínica, estética y funcional, entendiendo que su salud también está relacionada con los hábitos, la alimentación y el bienestar general. Abordamos patologías como acné, vitiligo y psoriasis, junto con prevención y diagnóstico dermatológico. Integramos tratamientos estéticos como láser CO₂, toxina botulínica, radiofrecuencia, mesoterapia, peelings y limpieza facial, siempre de manera personalizada.",
+      intro: "<strong>Cuidamos la piel desde una mirada clínica, estética y funcional</strong>, entendiendo que su salud también está relacionada con los hábitos, la alimentación y el bienestar general. Abordamos patologías como acné, vitiligo y psoriasis, junto con prevención y diagnóstico dermatológico. Integramos tratamientos estéticos como láser CO₂, toxina botulínica, radiofrecuencia, mesoterapia, peelings y limpieza facial, siempre de manera personalizada.",
       professionals: [
         {
           photo: "images/viqui.webp",
           name: "Dra. María Victoria Barbieri",
-          bio: "<strong>Médica egresada de la Universidad de Buenos Aires, especialista en Dermatología Integrativa, Medicina Estética y Reparadora y Medicina Funcional</strong>. Su mirada parte de entender la salud como un equilibrio entre las distintas dimensiones de la persona, integrando cuerpo, mente, hábitos y contexto. Su abordaje busca ir más allá del síntoma puntual para comprender qué hay detrás de cada manifestación y acompañar procesos de salud de manera personalizada, consciente e integral."
-        },
-        {
-          photo: null,
-          name: "Lic. Florencia Torres",
-          bio: "Profesional especializada en el cuidado estético de la piel, con formación en cosmetología facial y corporal. Su trabajo parte de una evaluación personalizada para identificar las necesidades de cada piel y seleccionar el tratamiento más adecuado. Su práctica incluye limpieza facial, dermaplaning, peelings, hidratación, tratamientos para acné, rosácea y piel sensible, y microneedling, acompañando cada proceso con recomendaciones de cuidado domiciliario."
+          bio: "<strong>Médica egresada de la Universidad de Buenos Aires, especialista en Dermatología Integrativa, Medicina Estética y Reparadora y Medicina Funcional.</strong> Su mirada parte de entender la salud como un equilibrio entre las distintas dimensiones de la persona, integrando cuerpo, mente, hábitos y contexto. Su abordaje busca ir más allá del síntoma puntual para comprender qué hay detrás de cada manifestación y acompañar procesos de salud de manera personalizada, consciente e integral."
         }
       ],
-      treatments: ["Tratamientos - Tratamientos"]
+      treatments: [
+        "Consulta presencial / virtual",
+        "Dermatoscopia corporal",
+        "Mesoterapia",
+        "Láser CO₂",
+        "Radiofrecuencia",
+        "Bionutrición",
+        "Toxina Botulínica",
+        "Ac. Hialurónico",
+        "Plasma Rico en Plaquetas"
+      ]
+      
     },
     cosmiatria: {
       title: "Cosmiatría",
-      intro: "Cuidamos la piel desde una mirada clínica, estética y funcional, entendiendo que su salud también está relacionada con los hábitos, la alimentación y el bienestar general. Abordamos patologías como acné, vitiligo y psoriasis, junto con prevención y diagnóstico dermatológico. Integramos tratamientos estéticos como láser CO₂, toxina botulínica, radiofrecuencia, mesoterapia, peelings y limpieza facial, siempre de manera personalizada.",
+      intro: "<strong>Abordamos el cuidado de la piel de manera personalizada, a partir de una evaluación que contempla sus necesidades, sensibilidad y objetivos.</strong> Realizamos limpiezas faciales, hidratación, dermaplaning, peelings y microneedling, seleccionando activos y aparatología según cada caso. Acompañamos cada tratamiento con recomendaciones para el cuidado domiciliario, buscando mejorar la textura, la hidratación y la luminosidad de la piel de forma progresiva.",
       professionals: [
         {
           photo: null,
-          name: "Lic. Florencia Torres",
-          bio: "Profesional especializada en el cuidado estético de la piel, con formación en cosmetología facial y corporal. Su trabajo parte de una evaluación personalizada para identificar las necesidades de cada piel y seleccionar el tratamiento más adecuado. Su práctica incluye limpieza facial, dermaplaning, peelings, hidratación, tratamientos para acné, rosácea y piel sensible, y microneedling, acompañando cada proceso con recomendaciones de cuidado domiciliario."
+          name: "Téc. Florencia Torres",
+          bio: "<strong>Técnica en Cosmetología Facial y Corporal egresada de la Universidad de Buenos Aires, cosmiatra y dermatocosmiatra.</strong> Su enfoque parte de reconocer que cada piel tiene necesidades propias, por lo que realiza evaluaciones personalizadas para definir el tratamiento más adecuado. Integra técnicas cosmetológicas, activos específicos y aparatología, priorizando el cuidado de la barrera cutánea y la mejora de la textura, hidratación y luminosidad, con recomendaciones domiciliarias y seguimiento."
         }
       ],
-      treatments: ["Tratamientos - Tratamientos"]
+      treatments: [
+        "Limpieza de cutis e hidratación",
+        "Microneedling",
+        "Peeling",
+        "Drenaje linfático",
+        "Timexpert radiance",
+        "Timexpert wrinkless"
+      ]
+      
     },
     otorrinolaringologia: {
       title: "Otorrinolaringología",
-      intro: "Abordamos la salud de oídos, nariz y garganta desde una mirada integral, combinando la otorrinolaringología convencional con prevención, hábitos saludables y estrategias funcionales. Atendemos a niños y adultos, tratando patologías respiratorias, alergias, rinitis, sinusitis y ronquidos. Contamos con rinofibrolaringoscopia, evaluación del sueño y tratamientos clínicos y quirúrgicos personalizados.",
+      intro: "<strong>Abordamos la salud de oídos, nariz y garganta desde una mirada integral</strong>, combinando la otorrinolaringología convencional con prevención, hábitos saludables y estrategias funcionales. Atendemos a niños y adultos, tratando patologías respiratorias, alergias, rinitis, sinusitis y ronquidos. Contamos con rinofibrolaringoscopia, evaluación del sueño y tratamientos clínicos y quirúrgicos personalizados.",
       professionals: [
         {
           photo: "images/lureal.webp",
           name: "Dra. Luciana Real",
-          bio: "Médica especialista en Otorrinolaringología, con más de 20 años de experiencia en el abordaje de patologías respiratorias y del sueño. Se especializó en Medicina del Sueño y amplió su formación en Medicina Funcional e Integrativa y Longevidad Saludable. Su enfoque combina la precisión de la medicina convencional con una mirada integral, orientada a comprender las causas y mejorar la salud respiratoria, el descanso y el bienestar."
+          bio: "<strong>Médica especialista en Otorrinolaringología, con más de 20 años de experiencia en el abordaje de patologías respiratorias y del sueño.</strong> Se especializó en Medicina del Sueño y amplió su formación en Medicina Funcional e Integrativa y Longevidad Saludable. Su enfoque combina la precisión de la medicina convencional con una mirada integral, orientada a comprender las causas y mejorar la salud respiratoria, el descanso y el bienestar."
         }
       ],
-      treatments: ["Tratamientos - Tratamientos"]
+      treatments: []
+      
     },
     gastroenterologia: {
       title: "Gastroenterología",
-      intro: "Abordamos la salud digestiva y hepática desde una mirada integral, basada en evidencia científica y con un enfoque preventivo. Combinamos diagnóstico y tratamiento de enfermedades digestivas y hepáticas con herramientas de Medicina del Estilo de Vida, contemplando alimentación, descanso, movimiento y manejo del estrés. También contamos con estudios específicos, como endoscopías, ecografías y test de aire espirado.",
+      intro: "<strong>Abordamos la salud digestiva y hepática desde una mirada integral</strong>, basada en evidencia científica y con un enfoque preventivo. Combinamos diagnóstico y tratamiento de enfermedades digestivas y hepáticas con herramientas de Medicina del Estilo de Vida, contemplando alimentación, descanso, movimiento y manejo del estrés. También contamos con estudios específicos, como endoscopías, ecografías y test de aire espirado.",
       professionals: [
         {
           photo: "images/lucampos.webp",
           name: "Dra. Lucía Campos",
-          bio: "FALTA INFO"
+          bio: "<strong>Médica especialista en Gastroenterología, con experiencia en el abordaje de enfermedades del aparato digestivo y del hígado.</strong> Su trayectoria incluye actividad clínica y participación en trabajos científicos vinculados a la salud digestiva. Su enfoque contempla la prevención, el diagnóstico y el tratamiento, integrando una mirada sobre la alimentación y los hábitos cotidianos para acompañar a cada persona de manera personalizada y promover el cuidado de la salud digestiva a largo plazo."
         }
       ],
-      treatments: ["Tratamientos - Tratamientos"]
+      treatments: []
+      
     },
     "medicina-del-dolor": {
       title: "Medicina del Dolor",
-      intro: "Acompañamos el dolor crónico y agudo desde una mirada integral, contemplando las dimensiones física, emocional y mental de cada persona. Diseñamos tratamientos personalizados para aliviar el dolor y mejorar la calidad de vida, abordando fibromialgia, dolor musculoesquelético, neuropático, oncológico y postquirúrgico. También ofrecemos cuidados paliativos y terapia neural, con seguimiento y acompañamiento cercano.",
+      intro: "<strong>Acompañamos el dolor crónico y agudo desde una mirada integral, contemplando las dimensiones física, emocional y mental de cada persona.</strong> Diseñamos tratamientos personalizados para aliviar el dolor y mejorar la calidad de vida, abordando fibromialgia, dolor musculoesquelético, neuropático, oncológico y postquirúrgico. También ofrecemos cuidados paliativos y terapia neural, con seguimiento y acompañamiento cercano.",
       professionals: [
         {
           photo: "images/ceci.webp",
           name: "Dra. Cecilia Rynkiewicz",
-          bio: "<strong>Médica especialista en Medicina General y Familiar, formada en Medicina Funcional y Ortomolecular</strong>. Su mirada integra la medicina convencional con la nutrición, los hábitos y el estilo de vida, buscando comprender a cada persona de manera integral y no solamente a partir de un síntoma. Su experiencia en el abordaje del dolor crónico, las enfermedades de larga evolución y los cuidados paliativos se complementa con una mirada funcional que busca identificar desequilibrios y trabajar sobre sus causas."
+          bio: "<strong>Médica especialista en Medicina General y Familiar, formada en Medicina Funcional y Ortomolecular.</strong> Su mirada integra la medicina convencional con la nutrición, los hábitos y el estilo de vida, buscando comprender a cada persona de manera integral y no solamente a partir de un síntoma. Su experiencia en el abordaje del dolor crónico, las enfermedades de larga evolución y los cuidados paliativos se complementa con una mirada funcional que busca identificar desequilibrios y trabajar sobre sus causas."
         }
       ],
-      treatments: ["Tratamientos - Tratamientos"]
+      treatments: []
+      
     },
     nutricion: {
       title: "Nutrición",
-      intro: "Transformamos la alimentación desde un enfoque personalizado que combina ciencia, hábitos y estilo de vida. Partimos de la historia de salud, alimentación y objetivos de cada persona para diseñar estrategias adaptadas, que pueden integrar alimentos, suplementos y cambios cotidianos. Trabajamos sobre energía, digestión, metabolismo, función intestinal y peso saludable, con seguimiento y ajustes para construir cambios sostenibles.",
+      intro: "<strong>Transformamos la alimentación desde un enfoque personalizado que combina ciencia, hábitos y estilo de vida.</strong> Partimos de la historia de salud, alimentación y objetivos de cada persona para diseñar estrategias adaptadas, que pueden integrar alimentos, suplementos y cambios cotidianos. Trabajamos sobre energía, digestión, metabolismo, función intestinal y peso saludable, con seguimiento y ajustes para construir cambios sostenibles.",
       professionals: [
         {
           photo: null,
           name: "Lic. Virna Calabró",
-          bio: "Licenciada en Nutrición, con experiencia en el acompañamiento de personas que buscan mejorar su alimentación y construir hábitos saludables de manera práctica y sostenible. Su mirada contempla las necesidades individuales y el contexto cotidiano, buscando que la alimentación pueda integrarse a la vida real sin depender de reglas rígidas. Su experiencia también incluye el abordaje del sobrepeso y la educación alimentaria para favorecer cambios posibles y duraderos."
+          bio: "<strong>Licenciada en Nutrición, con experiencia en el acompañamiento de personas que buscan mejorar su alimentación y construir hábitos saludables de manera práctica y sostenible.</strong> Su mirada contempla las necesidades individuales y el contexto cotidiano, buscando que la alimentación pueda integrarse a la vida real sin depender de reglas rígidas. Su experiencia también incluye el abordaje del sobrepeso y la educación alimentaria para favorecer cambios posibles y duraderos."
         }
       ],
-      treatments: ["Tratamientos - Tratamientos"]
-    },
-    "orientacion-vocacional": {
-      title: "Orientación vocacional",
-      intro: "FALTA INFO",
-      professionals: [
-        {
-          photo: null,
-          name: "FALTA INFO",
-          bio: "FALTA INFO"
-        },
-        {
-          photo: null,
-          name: "FALTA INFO",
-          bio: "FALTA INFO"
-        }
-      ],
-      treatments: ["Tratamientos - Tratamientos"]
+      treatments: []
+      
     },
     psicoterapias: {
       title: "Psicoterapias",
@@ -1680,26 +1684,22 @@
         {
           photo: "images/uque.webp",
           name: "Lic. Eugenia Barbieri",
-          bio: "Licenciada en Psicología, con una mirada orientada al acompañamiento de procesos de autoconocimiento y desarrollo personal. Su práctica dentro del psicoanálisis propone un espacio de escucha y exploración para comprender emociones, vínculos y patrones que atraviesan la propia historia. A través de un abordaje profundo y respetuoso, acompaña a cada persona en la construcción de nuevas formas de comprenderse, relacionarse y transitar sus experiencias."
+          bio: "<strong>Licenciada en Psicología, con una mirada orientada al acompañamiento de procesos de autoconocimiento y desarrollo personal.</strong> Su práctica dentro del psicoanálisis propone un espacio de escucha y exploración para comprender emociones, vínculos y patrones que atraviesan la propia historia. A través de un abordaje profundo y respetuoso, acompaña a cada persona en la construcción de nuevas formas de comprenderse, relacionarse y transitar sus experiencias."
         },
         {
           photo: "images/cecicastro.webp",
           name: "Lic. Cecilia Castro",
-          bio: "Licenciada en psicopedagogía clínica, orientada al acompañamiento emocional desde el enfoque de la Terapia Cognitivo-Conductual. Su trabajo integra herramientas terapéuticas y psicoeducativas para comprender la relación entre pensamientos, emociones y conductas, favoreciendo recursos más saludables para afrontar distintas situaciones. Acompaña especialmente a adolescentes y adultos, brindando un espacio de escucha, reflexión y construcción de estrategias para promover mayor bienestar emocional."
+          bio: "<strong>Licenciada en psicopedagogía clínica, orientada al acompañamiento emocional desde el enfoque de la Terapia Cognitivo-Conductual.</strong> Su trabajo integra herramientas terapéuticas y psicoeducativas para comprender la relación entre pensamientos, emociones y conductas, favoreciendo recursos más saludables para afrontar distintas situaciones. Acompaña especialmente a adolescentes y adultos, brindando un espacio de escucha, reflexión y construcción de estrategias para promover mayor bienestar emocional."
         },
         {
           photo: null,
           name: "Lic. Mariela Herrero",
-          bio: "Licenciada en Psicología, especialista en Mindfulness y Coach Ontológico profesional, con más de 15 años de práctica en atención plena. Su trabajo integra herramientas de mindfulness, aprendizaje ontológico y psicología budista para acompañar procesos de transformación y desarrollo personal. Facilita espacios individuales y grupales orientados a cultivar la atención plena, gestionar las emociones y desarrollar una relación más consciente con las experiencias cotidianas."
-        },
-        {
-          photo: null,
-          name: "Lic. Laura Botto",
-          bio: "FALTA INFO"
+          bio: "<strong>Licenciada en Psicología, especialista en Mindfulness y Coach Ontológico profesional, con más de 15 años de práctica en atención plena.</strong> Su trabajo integra herramientas de mindfulness, aprendizaje ontológico y psicología budista para acompañar procesos de transformación y desarrollo personal. Facilita espacios individuales y grupales orientados a cultivar la atención plena, gestionar las emociones y desarrollar una relación más consciente con las experiencias cotidianas."
         }
       ],
       intro: "<strong>El psicoanálisis se define como una práctica de la palabra y del discurso singular</strong> que aborda la dimensión del sujeto y su relación con el deseo, el lenguaje y el malestar. Es importante entender que no busca la adaptación del individuo a un ideal de normalidad ni el borramiento sintomático, sino dar lugar a la verdad subjetiva que habita en el síntoma.",
-      treatments: ["Tratamientos - Tratamientos"]
+      treatments: []
+      
     },
     "ceramica-escultorica": {
       title: "Cerámica escultórica",
@@ -1830,7 +1830,7 @@
       modalBioLabel.style.display = '';
       modalBioLabel.textContent = data.professionals.length > 1 ? "Profesionales a cargo" : "Profesional a cargo";
     }
-    modalCtaText.innerHTML = data.ctaText || "Si querés más información<br>o sacar un turno";
+    modalCtaText.innerHTML = data.ctaText || "Si querés más información o sacar un turno";
     modalPhoto.removeAttribute('src'); // evita ver la foto del área anterior mientras carga la nueva
     buildDots();
     renderProfessional();
@@ -1842,6 +1842,7 @@
     marqueeTrack.innerHTML = '';
     const chipsHTML = data.treatments.map(t => `<span class="chip">${t}</span>`).join('');
     marqueeTrack.innerHTML = chipsHTML + chipsHTML; // duplicado para loop continuo
+    marqueeTrack.parentElement.style.display = data.treatments.length ? '' : 'none';
 
     modal.classList.add('open');
     lockedScrollY = window.scrollY;
