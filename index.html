@@ -1706,7 +1706,7 @@
       intro: "<strong>Un espacio para explorar tu creatividad y desarrollar un estilo propio a través del barro, las formas y los colores.</strong> En nuestro taller de cerámica escultórica, el barro se convierte en un medio de expresión personal, donde vas a descubrir técnicas para modelar, tallar, ilustrar y pintar piezas únicas. A través de la exploración y el acompañamiento, podrás encontrar tu propia voz artística y experimentar libremente en un ambiente que invita a crear y disfrutar del proceso.",
       professionals: [
         {
-          photo: "images/uque.webp",
+          photo: "images/ceramica.webp",
           name: "Lic. Eugenia Barbieri",
           bio: "<strong>Día y horario:</strong> Martes 13:00 a 15:30 hs / Jueves de 09:30 a 12:00 hs<br><strong>Cupo máximo:</strong> 10 personas<br>Materiales incluidos.<br><strong>No se requiere experiencia previa</strong><br><br>Revelá tu arte y conectá con tu creatividad en un ambiente cálido y acogedor."
         }
@@ -1718,7 +1718,7 @@
       intro: "<strong>Descubrí el arte de crear con tus propias manos y transformá papeles, texturas y colores en objetos únicos.</strong> En nuestro taller de encuadernación artesanal vas a aprender técnicas para unir, plegar y coser hojas, creando cuadernos, libretas y piezas personalizadas que combinan creatividad y funcionalidad. Una experiencia para bajar el ritmo, explorar materiales y disfrutar del placer de hacer algo propio, cuidando cada detalle. No necesitás experiencia previa, solo ganas de crear y dejar tu impronta en cada proyecto.",
       professionals: [
         {
-          photo: null,
+          photo: "images/encuadernacion.webp",
           name: "Mariana Raggi",
           bio: "<strong>Día y horario:</strong> Miércoles de 17:30 a 19:30 hs / Viernes de 17:00 a 19:00 hs<br><strong>Cupo máximo:</strong> 10 personas<br>Materiales incluidos.<br><strong>No se requiere experiencia previa</strong><br><br>Aprendé, explorá y creá momentos únicos."
         }
@@ -1730,7 +1730,7 @@
       intro: "<strong>Un espacio para conectar con vos a través del arte, la creatividad y la meditación activa.</strong> En el taller de puntillismo vas a descubrir una técnica artística que crea formas, dibujos y composiciones a partir de pequeños puntos de distintos tamaños y colores. A través de movimientos repetitivos y conscientes, podrás relajarte, concentrarte y disfrutar del proceso creativo. Aprendé a transformar piedras, cuadernos, tazas y otras superficies en piezas únicas, llenas de color y belleza.",
       professionals: [
         {
-          photo: null,
+          photo: "images/puntillismo.webp",
           name: "Alma Vacarezza",
           bio: "<strong>Día y horario:</strong> Martes y Jueves de 17:30 a 19:30 hs<br><strong>Cupo máximo:</strong> 10 personas<br>Materiales incluidos.<br><strong>No se requiere experiencia previa</strong><br><br>Llená tu vida de belleza y calma."
         }
@@ -1748,6 +1748,12 @@
   const modalProfessional = document.getElementById('modalProfessional');
   const modalPhoto = document.getElementById('modalPhoto');
   const modalPhotoPlaceholder = document.getElementById('modalPhotoPlaceholder');
+  // si una foto todavía no está subida, se muestra el recuadro gris en vez de una imagen rota
+  modalPhoto.addEventListener('error', () => {
+    if (!modalPhoto.getAttribute('src')) return;
+    modalPhoto.style.display = 'none';
+    modalPhotoPlaceholder.style.display = 'flex';
+  });
   const modalName = document.getElementById('modalName');
   const modalBio = document.getElementById('modalBio');
   const modalCtaText = document.getElementById('modalCtaText');
