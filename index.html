@@ -737,6 +737,30 @@
     padding:0 46px;
   }
 
+  .modal-styles-hint{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:10px;
+    color:var(--ink);
+  }
+
+  .modal-arrow{
+    width:18px;
+    height:18px;
+    color:var(--sand-deep);
+    animation:modalArrowNudge 2.6s ease-in-out infinite;
+  }
+
+  @keyframes modalArrowNudge{
+    0%,100%{transform:translateY(-2px);opacity:.55;}
+    50%{transform:translateY(3px);opacity:1;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .modal-arrow{animation:none;}
+  }
+
   .modal-professional{
     display:flex;
     align-items:center;
@@ -1515,24 +1539,24 @@
     },
     yoga: {
       title: "Yoga",
-      intro: "<strong>Un espacio para conectar con tu cuerpo, tu respiración y tu mente, a tu propio ritmo.</strong> A través de clases presenciales y grupos reducidos, el yoga combina movimiento, fuerza, flexibilidad y respiración para favorecer el equilibrio físico y mental. Las prácticas ayudan a reducir el estrés, mejorar la concentración y cultivar mayor calma y bienestar, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa. <strong>Contamos con distintos estilos:</strong>",
+      intro: "Un espacio para conectar con tu cuerpo, tu respiración y tu mente a tu propio ritmo, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa.<br><span class=\"modal-styles-hint\"><strong>Conocé nuestros estilos</strong><svg class=\"modal-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></span>",
       showBioLabel: false,
       ctaText: "Si querés reservar tu <strong>clase de prueba sin cargo</strong>",
       professionals: [
         {
           photo: "images/ashtanga.webp",
           name: "Ashtanga Yoga",
-          bio: "<strong>Práctica dinámica basada en una serie fija de posturas que se repite en cada clase, coordinando movimiento y respiración.</strong> La repetición permite profundizar progresivamente en la práctica y desarrollar fuerza, flexibilidad, concentración y presencia. Con el tiempo, la secuencia puede convertirse en una verdadera meditación en movimiento: intensa, profunda y transformadora.<br><br>Instructores: <strong>Pedro Barbieri, Eugenia Ferreti</strong>"
+          bio: "Práctica dinámica basada en una serie fija de posturas que se repite en cada clase, coordinando movimiento y respiración. La repetición permite profundizar progresivamente en la práctica y desarrollar fuerza, flexibilidad y concentración. <strong>Con el tiempo, la secuencia puede convertirse en una verdadera meditación en movimiento: intensa, profunda y transformadora.</strong><br><br>Instructores: <strong>Pedro Barbieri, Eugenia Ferreti</strong>"
         },
         {
           photo: "images/suave.webp",
           name: "Yoga Suave",
-          bio: "<strong>Práctica pensada para quienes buscan moverse desde la calma y la sutileza, con especial atención a la respiración, la movilidad y el descanso.</strong> Los movimientos se adaptan a las posibilidades de cada persona, favoreciendo una experiencia accesible y consciente. Es ideal para personas mayores, con movilidad reducida o para quienes desean comenzar a practicar yoga de manera gradual y sin exigencias.<br><br>Instructoras: <strong>Laura Marelli, Paula Origone</strong>"
+          bio: "Práctica pensada para quienes buscan moverse desde la calma y la sutileza. Los movimientos se adaptan a las posibilidades de cada persona, favoreciendo una experiencia accesible y consciente. <strong>Es ideal para personas mayores, con movilidad reducida o para quienes desean comenzar a practicar yoga de manera gradual y sin exigencias.</strong><br><br>Instructoras: <strong>Laura Marelli, Paula Origone</strong>"
         },
         {
           photo: "images/hatha.webp",
           name: "Hatha Yoga",
-          bio: "<strong>Práctica que invita a sostener y profundizar las posturas (asanas), trabajando especialmente la alineación, la estabilidad y la conciencia corporal.</strong> Se combinan posturas, respiración y concentración, utilizando elementos que pueden facilitar o intensificar la práctica según las necesidades de cada persona. Ideal para desarrollar fuerza, flexibilidad y presencia de manera progresiva.<br><br>Instructora: <strong>Ana Crupi</strong>"
+          bio: "Práctica que invita a sostener y profundizar las posturas, trabajando especialmente la alineación, la estabilidad y la conciencia corporal, utilizando elementos que pueden facilitar o intensificar la práctica según las necesidades de cada persona. <strong>Ideal para desarrollar fuerza, flexibilidad y presencia de manera progresiva.</strong><br><br>Instructora: <strong>Ana Crupi</strong>"
         }
       ],
       treatments: [
@@ -1545,7 +1569,7 @@
     },
     meditacion: {
       title: "Meditación",
-      intro: "<strong>Un espacio para bajar el ritmo, aquietar la mente y volver a conectar con vos mismo/a.</strong> La meditación propone momentos de pausa, respiración y atención plena, sin exigencias ni apuro, para cultivar mayor presencia y calma en el día a día. Los encuentros son presenciales, en grupos reducidos y en un ambiente cálido y de confianza, con prácticas de una hora pensadas para acompañarte a encontrar equilibrio y bienestar.",
+      intro: "<strong>Un espacio para bajar el ritmo, aquietar la mente y volver a conectar con vos mismo/a.</strong> La meditación propone momentos de pausa, respiración y atención plena, sin exigencias ni apuro, para cultivar mayor presencia y calma en el día a día.",
       showBioLabel: false,
       ctaText: "Si querés reservar tu <strong>clase de prueba sin cargo</strong>",
       professionals: [
@@ -1565,14 +1589,14 @@
     },
     "tai-chi": {
       title: "Tai Chi Chuan",
-      intro: "<strong>Práctica ancestral de origen marcial que combina movimientos suaves y fluidos, respiración consciente y concentración.</strong> El Tai Chi Chuan invita a conectar cuerpo, mente y respiración a través de secuencias realizadas con calma y presencia. Más que una práctica física, es un camino hacia el equilibrio y el bienestar integral, que favorece la movilidad, la coordinación, la relajación y una mayor conciencia corporal.",
+      intro: "<strong>Práctica ancestral que combina movimientos suaves y fluidos, respiración consciente y concentración, para conectar cuerpo, mente y respiración.</strong> Más que una práctica física, es un camino hacia el equilibrio y el bienestar integral, que favorece la movilidad, la coordinación, la relajación y una mayor conciencia corporal.",
       showBioLabel: false,
       ctaText: "Si querés reservar tu <strong>clase de prueba sin cargo</strong>",
       professionals: [
         {
           photo: "images/taichi.webp",
           name: "¿Por qué practicar Taichi?",
-          bio: "<strong>El Taichi conecta cuerpo y mente a través del movimiento, la respiración y la atención plena</strong>, ayudándote a encontrar mayor equilibrio, calma y presencia en el día a día. Es una práctica accesible para todas las edades y niveles, no requiere experiencia previa y se adapta al ritmo de cada persona, favoreciendo la movilidad, la coordinación y el bienestar integral.<br><br>Instructor: <strong>Maxi Labombarda</strong>"
+          bio: "El Taichi conecta cuerpo y mente a través del movimiento, la respiración y la atención plena, ayudándote a encontrar mayor equilibrio, calma y presencia en el día a día. <strong>Es una práctica accesible para todas las edades y niveles</strong>, no requiere experiencia previa y se adapta al ritmo de cada persona, favoreciendo la movilidad, la coordinación y el bienestar integral.<br><br>Instructor: <strong>Maxi Labombarda</strong>"
         }
       ],
       treatments: [
