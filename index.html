@@ -1880,9 +1880,20 @@
     marqueeTrack.innerHTML = chipsHTML + chipsHTML; // duplicado para loop continuo
     marqueeTrack.parentElement.style.display = data.treatments.length ? '' : 'none';
 
-    modal.classList.add('open');
-    lockedScrollY = window.scrollY;
-    startAutoAdvance();
+    // el desplegable se muestra recién cuando la foto está decodificada (máx. 900 ms de espera),
+    // así aparece todo junto, sin el "salto" de la foto llegando después
+    const reveal = () => {
+      if (currentArea !== data) return;
+      modal.classList.add('open');
+      lockedScrollY = window.scrollY;
+      startAutoAdvance();
+    };
+    if (modalPhoto.getAttribute('src')){
+      const wait = new Promise(r => setTimeout(r, 900));
+      Promise.race([modalPhoto.decode().catch(() => {}), wait]).then(reveal);
+    } else {
+      reveal();
+    }
   }
 
   function closeModal(){
@@ -1901,6 +1912,7 @@
   // precarga de fotos: al pasar el mouse / tocar un link del menú se piden las de esa área,
   // y cuando la página terminó de cargar se piden todas en segundo plano, así al abrir ya están listas
   const preloaded = new Set();
+  const imgKeep = []; // se guardan las referencias para que el navegador no descarte las fotos ya decodificadas
   function preloadArea(key){
     const d = areaData[key];
     if (!d) return;
@@ -1910,6 +1922,8 @@
         const img = new Image();
         img.decoding = 'async';
         img.src = p.photo;
+        imgKeep.push(img);
+        if (img.decode) img.decode().catch(() => {});
       }
     });
   }
