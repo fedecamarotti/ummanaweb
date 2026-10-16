@@ -1539,7 +1539,8 @@
     },
     yoga: {
       title: "Yoga",
-      intro: "Un espacio para conectar con tu cuerpo, tu respiración y tu mente a tu propio ritmo, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa.<br><span class=\"modal-styles-hint\"><strong>Conocé nuestros estilos</strong><svg class=\"modal-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></span>",
+      intro: "<strong>Un espacio para conectar con tu cuerpo, tu respiración y tu mente a tu propio ritmo</strong>, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa.",
+      bioLabel: "Conocé nuestros estilos",
       showBioLabel: false,
       ctaText: "Si querés reservar tu <strong>clase de prueba sin cargo</strong>",
       professionals: [
@@ -1860,8 +1861,11 @@
 
     modalEyebrow.textContent = data.title;
     modalIntro.innerHTML = data.intro;
-    if (data.showBioLabel === false){
+    if (data.showBioLabel === false && !data.bioLabel){
       modalBioLabel.style.display = 'none';
+    } else if (data.bioLabel){
+      modalBioLabel.style.display = '';
+      modalBioLabel.textContent = data.bioLabel;
     } else {
       modalBioLabel.style.display = '';
       modalBioLabel.textContent = data.professionals.length > 1 ? "Profesionales a cargo" : "Profesional a cargo";

@@ -241,6 +241,15 @@
     margin-top:34px;
   }
 
+  .style-label{
+    display:block;
+    font-size:10.5px;
+    letter-spacing:0.18em;
+    font-weight:700;
+    color:var(--sand-deep);
+    margin-bottom:8px;
+  }
+
   .styles-title{
     margin-top:28px;
     font-size:17px;
@@ -263,7 +272,7 @@
     50%{transform:translateY(3px);opacity:1;}
   }
 
-  .band.multi .styles{margin-top:22px;}
+  .band.multi .styles{margin-top:30px;}
 
   .style-row{
     display:flex;
@@ -683,7 +692,7 @@
       bg: "beige",
       title: "Yoga",
       waText: "Hola! Quiero reservar una clase de prueba sin cargo de Yoga",
-      intro: "Un espacio para conectar con tu cuerpo, tu respiración y tu mente a tu propio ritmo, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa.",
+      intro: "<strong>Un espacio para conectar con tu cuerpo, tu respiración y tu mente a tu propio ritmo</strong>, en un entorno cuidado y accesible para todos los niveles, incluso sin experiencia previa.",
       stylesTitle: "Conocé nuestros estilos",
       items: [
         {
@@ -753,6 +762,7 @@
         <div class="style-row${reverse}">
           <div class="style-photo reveal">${photoHTML}</div>
           <div class="style-text">
+            ${data.stylesTitle ? `<span class="style-label reveal">${data.stylesTitle}</span>` : ''}
             <h3 class="reveal" style="--d:.1s">${p.name}</h3>
             <p class="reveal" style="--d:.2s">${p.bio}</p>
           </div>
@@ -766,7 +776,6 @@
       <div class="band-inner">
         <h2 class="band-title reveal">${data.title}</h2>
         <p class="band-intro reveal" style="--d:.1s">${data.intro}</p>
-        ${data.stylesTitle ? `<h3 class="styles-title reveal">${data.stylesTitle}<svg class="styles-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></h3>` : ''}
         <div class="styles">${rowsHTML}</div>
         ${data.chips && data.chips.length ? `<div class="band-foot">
           <div class="marquee-wrap reveal"><div class="marquee-track">${chipsHTML}${chipsHTML}</div></div>
